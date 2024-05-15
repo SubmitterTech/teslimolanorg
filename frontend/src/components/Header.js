@@ -3,28 +3,47 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAnglesRight,
+  faArrowDown19,
+  faArrowDownAZ,
   faBalanceScale,
+  faBan,
   faBars,
+  faBook,
   faBookOpen,
   faBookQuran,
+  faCalculator,
+  faContactBook,
+  faCow,
   faEarth,
   faExclamationTriangle,
   faFaceSmile,
+  faFile,
   faFilePdf,
+  faFont,
   faHandsPraying,
   faHome,
   faHouseFlag,
   faKaaba,
   faLanguage,
+  faLaptopCode,
+  faNewspaper,
   faPager,
+  faPeopleArrows,
+  faPerson,
+  faPersonArrowUpFromLine,
   faPersonCircleQuestion,
+  faPlusMinus,
   faPray,
   faQuestion,
   faQuran,
+  faRing,
   faSearch,
   faStar,
   faSun,
   faTimes,
+  faUserGraduate,
+  faUtensils,
+  faVideo,
 } from "@fortawesome/free-solid-svg-icons";
 import SubMenuItem from "./SubMenuItem";
 
@@ -140,23 +159,51 @@ const Header = () => {
       icon: faStar,
       menuKey: "19mucizesi",
       subMenuItems: [
-        { href: "", label: "Kuran'ın Matematiksel Koduna Giriş" },
-        { href: "", label: "Basit Gerçekler" },
-        { href: "", label: "Kuranî Başlangıç Harfleri (Huruf-u Mukatta)" },
         {
+          subIcon: <FontAwesomeIcon icon={faCalculator} />,
+          href: "",
+          label: "Kuran'ın Matematiksel Koduna Giriş",
+        },
+        {
+          subIcon: <FontAwesomeIcon icon={faPlusMinus} />,
+          href: "",
+          label: "Basit Gerçekler",
+        },
+        {
+          subIcon: <FontAwesomeIcon icon={faArrowDownAZ} />,
+          href: "",
+          label: "Kuranî Başlangıç Harfleri (Huruf-u Mukatta)",
+        },
+        {
+          subIcon: <FontAwesomeIcon icon={faVideo} />,
+          href: "",
+          label: "Reşad Halife 19'u Anlatıyor ",
+        },
+        {
+          subIcon: <FontAwesomeIcon icon={faArrowDown19} />,
           href: "",
           label: "Neden 19",
         },
         {
+          subIcon: <FontAwesomeIcon icon={faFont} />,
           href: "",
           label: "Özel Kelimelerin Matematiksel Kodlaması",
         },
-        { href: "", label: "nsanüstü Sayısal Kombinasyonlar" },
         {
+          subIcon: <FontAwesomeIcon icon={faPersonArrowUpFromLine} />,
+          href: "",
+          label: "İnsanüstü Sayısal Kombinasyonlar",
+        },
+        {
+          subIcon: <FontAwesomeIcon icon={faLaptopCode} />,
           href: "",
           label: "İnsanüstü Sayısal Kombinasyonlar Programı ",
         },
-        { href: "", label: "Kuran: Mucizenin Görsel Sunumu (PDF)" },
+        {
+          subIcon: <FontAwesomeIcon icon={faFilePdf} />,
+          href: "",
+          label: "Kuran: Mucizenin Görsel Sunumu (PDF)",
+        },
       ],
     },
     {
@@ -164,24 +211,40 @@ const Header = () => {
       icon: faExclamationTriangle,
       menuKey: "dinlerdekiBozulma",
       subMenuItems: [
-        { href: "", label: "Muhammed Peygamberin Rolü" },
-        { href: "", label: "Hadis & Sünnet: Şeytani Bidatler" },
-        { href: "", label: "İsa Mesih'in Rolü" },
         {
+          subIcon: <FontAwesomeIcon icon={faPerson} />,
+          href: "",
+          label: "Muhammed Peygamberin Rolü",
+        },
+        {
+          subIcon: <FontAwesomeIcon icon={faBook} />,
+          href: "",
+          label: "Hadis & Sünnet: Şeytani Bidatler",
+        },
+        {
+          subIcon: <FontAwesomeIcon icon={faBan} />,
+          href: "",
+          label: "Tanrı'nın Sözü ile Oynandı",
+        },
+        { subIcon: <FontAwesomeIcon icon={faPerson} />, href: "", label: "İsa Mesih'in Rolü" },
+        {
+          subIcon: <FontAwesomeIcon icon={faCow} />,
           href: "",
           label: "İbrahim'in Oğlunu Kurban Etmesi ",
         },
         {
+          subIcon: <FontAwesomeIcon icon={faPeopleArrows} />,
           href: "",
           label: "Şefaat Efsanesi",
         },
-        { href: "", label: "Beslenme Yasakları" },
-        {
+
+        {subIcon: <FontAwesomeIcon icon={faUtensils} />, href: "", label: "Beslenme Yasakları" },
+        {subIcon: <FontAwesomeIcon icon={faPray} />,
           href: "",
           label: "Neden Namazın Detayı Yok",
         },
-        { href: "", label: "Peygamberin Ümmiliği" },
-        { href: "", label: "Çok Eşlilik" },
+        { subIcon: <FontAwesomeIcon icon={faUserGraduate} />, href: "", label: "Peygamberin Ümmiliği" },
+        { subIcon: <FontAwesomeIcon icon={faRing} />, href: "", label: "Çok Eşlilik" },
       ],
     },
     {
@@ -189,14 +252,16 @@ const Header = () => {
       icon: faAnglesRight,
       menuKey: "dahaFazlasi",
       subMenuItems: [
-        { href: "", label: "Haberler" },
-        { href: "", label: "Perspektif Yayınları" },
-        { href: "", label: "Reşad Halife'nin Kitapları" },
+        { subIcon: <FontAwesomeIcon icon={faNewspaper} />, href: "", label: "Haberler" },
+        { subIcon: <FontAwesomeIcon icon={faFile} />, href: "", label: "Perspektif Yayınları" },
+        { subIcon: <FontAwesomeIcon icon={faBook} />,href: "", label: "Reşad Halife'nin Kitapları" },
         {
+          subIcon: <FontAwesomeIcon icon={faVideo} />,
           href: "",
           label: "Antlaşma Elçisi Kanalı",
         },
         {
+          subIcon: <FontAwesomeIcon icon={faContactBook} />,
           href: "",
           label: "Bize Ulaşın",
         },
@@ -247,7 +312,7 @@ const Header = () => {
               <option value="option3">Makalelerde</option>
             </select>
             <button className="text-white border border-gray-400 rounded px-2">
-              Ara
+              <FontAwesomeIcon icon={faSearch}/>
             </button>
           </form>
         </div>
@@ -264,12 +329,12 @@ const Header = () => {
         >
           <FontAwesomeIcon icon={faTimes} />
         </button>
-        <ul className="flex flex-col gap-4 p-4 md:flex-row md:gap-8 md:p-0">
-          <li className="flex gap-2 items-center">
+        <ul className="flex flex-col gap-0  p-4 md:flex-row md:gap-8 md:p-0 md:justify-center md:items-center">
+          <li className="flex items-center mt-10 p-3 gap-2 border-t md:my-0 border-b md:border-none md:p-0">
             <FontAwesomeIcon icon={faHome} />
             <Link
               to="/"
-              className="navTitleWrapper"
+              className="navTitleWrapper hover:text-green-200"
               onClick={() => setExpandedMenu(null)}
             >
               ANASAYFA

@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"; // faChevronDown'ı ekleyin
 
-const SubMenuItem = ({ title, icon, subMenuItems, toggleSubMenu, expandedMenu, }) => {
+const SubMenuItem = ({ title, icon, subMenuItems, toggleSubMenu, expandedMenu }) => {
   return (
-    <li>
+    <li className="border-b md:border-none p-3 md:p-0">
       <button
         className="flex items-center w-full text-left gap-3 hover:text-green-200"
         onClick={() => toggleSubMenu(title)}
@@ -19,15 +19,22 @@ const SubMenuItem = ({ title, icon, subMenuItems, toggleSubMenu, expandedMenu, }
           }`}
         />
       </button>
-      {expandedMenu === title && (
-        <ul className="p-4 mt-2 bg-gray-600 md:absolute md:top-full md:left-0 md:mt-0 md:w-screen md:flex md:justify-center md:items-center md:gap-4 md:flex-wrap">
-          {subMenuItems.map((item, index) => (
-            <li key={index}>
-              <Link to={item.href} className="hover:text-green-200">{item.subIcon} {item.label}</Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul
+        className={`transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden ${
+          expandedMenu === title ? " h-auto opacity-100 p-4 mt-3" : "max-h-0 opacity-0"
+        } flex flex-col gap-4 rounded bg-gray-600 md:absolute md:top-full md:left-0 md:mt-0 md:w-screen md:flex md:flex-row md:justify-center md:items-center md:gap-4 md:flex-wrap`}
+      >
+        {subMenuItems.map((item, index) => (
+          <li key={index}>
+            <Link
+              to={item.href}
+              className="hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out"
+            >
+              {item.subIcon} {item.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </li>
   );
 };

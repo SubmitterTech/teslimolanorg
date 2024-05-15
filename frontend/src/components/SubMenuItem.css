@@ -1,0 +1,13 @@
+/* SubMenuItem.css */
+.sub-menu {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .sub-menu.open {
+    max-height: 500px; /* Bu değeri menünün maksimum yüksekliğine göre ayarla */
+    opacity: 1;
+  }
+  

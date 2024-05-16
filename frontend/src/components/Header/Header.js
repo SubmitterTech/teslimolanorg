@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAnglesRight,
@@ -60,6 +59,12 @@ const Header = () => {
   };
 
   const menuItems = [
+    {
+      title: "ANASAYFA",
+      icon:faHome,
+      src:"/",
+      subMenuItems:[],
+    },
     {
       title: "TESLİMİYET",
       icon: faPray,
@@ -330,20 +335,11 @@ const Header = () => {
           <FontAwesomeIcon icon={faTimes} />
         </button>
         <ul className="flex flex-col gap-0  p-4 md:flex-row md:gap-8 md:p-0 md:justify-center md:items-center">
-          <li className="flex items-center mt-10 p-3 gap-2 border-t md:my-0 border-b md:border-none md:p-0 md:text-xs md:gap-0 lg:text-base">
-            <FontAwesomeIcon icon={faHome} />
-            <Link
-              to="/"
-              className="navTitleWrapper hover:text-green-200"
-              onClick={() => setExpandedMenu(null)}
-            >
-              ANASAYFA
-            </Link>
-          </li>
           {menuItems.map((subMenuItem, index) => (
             <SubMenuItem
               key={index}
               title={subMenuItem.title}
+              src={subMenuItem.src}
               icon={subMenuItem.icon}
               subMenuItems={subMenuItem.subMenuItems}
               toggleSubMenu={toggleSubMenu}

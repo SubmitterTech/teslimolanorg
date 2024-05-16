@@ -325,7 +325,7 @@ const Header = () => {
       <nav
         className={`fixed top-0 right-0 bg-gray-700 text-white w-3/4 h-full transform transition-transform duration-300 ${
           menuOpen ? "translate-x-0" : "translate-x-full"
-        } md:static md:translate-x-0 md:flex md:items-center md:justify-center md:w-auto md:bg-gray-700 md:p-3`}
+        } md:static md:translate-x-0 md:flex md:items-center md:justify-center md:w-auto md:bg-gray-700 md:p-3 z-50`}
       >
         <button
           type="button"

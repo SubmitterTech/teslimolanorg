@@ -1,8 +1,11 @@
 import React from 'react'
+import Bilboard from '../components/Billboard/Bilboard'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div>
+      <Bilboard/>
+    </div>
   )
 }
 

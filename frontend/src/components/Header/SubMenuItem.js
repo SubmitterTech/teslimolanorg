@@ -5,7 +5,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons"; // faChevronD
 
 const SubMenuItem = ({ title, icon, subMenuItems, toggleSubMenu, expandedMenu }) => {
   return (
-    <li className="border-b md:border-none p-3 md:p-0">
+    <li className="border-b md:border-none p-3 md:p-0 md:text-xs lg:text-base">
       <button
         className="flex items-center w-full text-left gap-3 hover:text-green-200"
         onClick={() => toggleSubMenu(title)}

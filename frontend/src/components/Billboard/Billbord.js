@@ -1,8 +1,7 @@
-import React from "react";
 
-const Bilboard = () => {
+const Billboard = () => {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center relative">
       <div>
         <img
           className="w-screen"
@@ -24,7 +23,7 @@ const Bilboard = () => {
         </div>
       </div>
 
-      <div className="flex items-center flex-col gap-4 bg-black py-20 px-5">
+      <div className="flex items-center flex-col gap-4 py-20 px-5">
         <h1 className="text-white text-3xl">
           Kuran, tüm Kuran, Kuran dışında hiçbir şey
         </h1>
@@ -41,4 +40,4 @@ const Bilboard = () => {
   );
 };
 
-export default Bilboard;
+export default Billboard;

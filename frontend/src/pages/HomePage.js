@@ -1,21 +1,13 @@
 import React from "react";
-import Card from "../components/Card/Card";
 import Billboard from "../components/Billboard/Billbord";
+import Cards from "../components/Card/Cards";
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-screen bg-black">
-      <div className="lg:w-[1000px] flex flex-col bg-gray-950">
-      <Billboard/>
-        <Card
-          imgSrc="sonahit.jpg"
-          linkTitle="Web Sitemizden Kuran Son Ahit'i Okuyabilirsiniz"
-        />
-        <div className="border-l"></div>
-        <Card
-          imgSrc="sonahit.jpg"
-          linkTitle="Son eklenen videolara, makalelere, perspektiflere ve haberlere bakabilirsiniz."
-        />
+    <div className="flex justify-center items-center bg-black overflow-hidden">
+      <div className="flex flex-col w-screen bg-gray-950 lg:w-[1000px] ">
+        <Billboard />
+        <Cards/>
       </div>
     </div>
   );

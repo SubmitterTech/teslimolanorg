@@ -5,6 +5,7 @@ import FeaturedArticles from "../components/Articles/FeaturedArticles";
 import FeaturedPerspective from "../components/Perspectives/FeaturedPerspective";
 import FeaturedVideos from "../components/Videos/FeaturedVideos";
 import SuggestionsSection from "../components/Suggestions/SuggestionsSection";
+import About from "../components/About/About";
 
 
 const HomePage = () => {
@@ -17,6 +18,7 @@ const HomePage = () => {
         <FeaturedPerspective/>
         <FeaturedVideos/>
         <SuggestionsSection/>
+        <About/>
       </div>
     </div>
   );

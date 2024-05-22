@@ -275,7 +275,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="relative">
+    <header>
       <div className="flex justify-between items-center bg-black px-3">
         <a
           href="/"

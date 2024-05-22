@@ -6,12 +6,13 @@ import FeaturedPerspective from "../components/Perspectives/FeaturedPerspective"
 import FeaturedVideos from "../components/Videos/FeaturedVideos";
 import SuggestionsSection from "../components/Suggestions/SuggestionsSection";
 import About from "../components/About/About";
+import Header from "../components/Header/Header";
 
 
 const HomePage = () => {
   return (
     <div className="flex justify-center items-center bg-black overflow-hidden">
-      <div className="flex flex-col w-screen bg-gray-950 lg:w-[1000px] ">
+      <div className="flex flex-col w-screen bg-gray-950 lg:w-[1000px]">
         <Billboard />
         <Cards/>
         <FeaturedArticles/>

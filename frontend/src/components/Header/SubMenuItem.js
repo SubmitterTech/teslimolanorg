@@ -34,7 +34,6 @@ const SubMenuItem = ({
                 ? "h-auto opacity-100 p-4 md:p-14 mt-3"
                 : "max-h-0 opacity-0"
             } flex flex-col gap-4 rounded md:rounded-none bg-gray-600 md:absolute md:top-full md:left-0 md:mt-0 md:w-screen md:flex md:flex-row md:justify-center md:items-center md:gap-4 md:flex-wrap`}
-            style={{ zIndex: 1000 }}
           >
             {subMenuItems.map((item, index) => (
               <li key={index}>

@@ -1,7 +1,7 @@
 
 const Billboard = () => {
   return (
-    <div className="flex flex-col items-center justify-center relative">
+    <div className="flex flex-col items-center justify-center">
       <div>
         <img
           className="w-screen"
@@ -9,9 +9,8 @@ const Billboard = () => {
           alt="teslimiyet banner"
         />
         <div
-          className="flex flex-col gap-2 justify-end items-center px-2 py-4 absolute z-20 bg-white bg-opacity-80"
+          className="flex flex-col gap-2 justify-end items-center px-2 py-4 absolute z-20 bg-white bg-opacity-80 w-11/12 md:w-11/12 lg:w-10/12 xl:w-3/5"
           style={{
-            width: "95%",
             left: "50%",
             transform: "translate(-50%, -40%)",
           }}

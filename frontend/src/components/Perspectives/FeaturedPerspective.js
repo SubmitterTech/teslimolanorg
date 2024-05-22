@@ -1,5 +1,6 @@
 import React from "react";
 import Perspective from "./Perspective";
+import { Link } from "react-router-dom";
 
 const FeaturedPerspective = () => {
   const perspectives = [
@@ -17,7 +18,7 @@ const FeaturedPerspective = () => {
       description:
         "Çevirilerde neden bu kelimelerin tercih edildiğini açıklayan makale.",
       linkSrc: "/",
-    }
+    },
   ];
 
   return (
@@ -37,7 +38,7 @@ const FeaturedPerspective = () => {
         ))}
       </div>
       <div className="flex justify-center text-white">
-        <a href="">Tüm Perspektifleri Oku</a>
+        <Link to="">Tüm Perspektifleri Oku</Link>
       </div>
     </div>
   );

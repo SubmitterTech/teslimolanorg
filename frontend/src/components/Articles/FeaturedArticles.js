@@ -1,5 +1,6 @@
 import React from "react";
 import ArticleCard from "./ArticleCard";
+import { Link } from "react-router-dom";
 
 const FeaturedArticles = () => {
   const articles = [
@@ -51,7 +52,7 @@ const FeaturedArticles = () => {
         ))}
       </div>
       <div className="flex justify-center text-white">
-        <a href="">Tüm Makaleler</a>
+        <Link to=''>Tüm Makaleler</Link>
       </div>
     </div>
   );

@@ -309,12 +309,12 @@ const Header = () => {
             />
             <select
               id="options"
-              value="1"
+              defaultValue="1"
               className="w-[120px] bg-black border border-gray-400 rounded p-2 text-gray-100 text-sm"
             >
-              <option value="option1">Kur'anda</option>
-              <option value="option2">Eklerde</option>
-              <option value="option3">Makalelerde</option>
+              <option defaultValue="option1">Kur'anda</option>
+              <option defaultValue="option2">Eklerde</option>
+              <option defaultValue="option3">Makalelerde</option>
             </select>
             <button className="text-white border border-gray-400 rounded px-2">
               <FontAwesomeIcon icon={faSearch}/>

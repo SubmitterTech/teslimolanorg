@@ -3,6 +3,7 @@ import Billboard from "../components/Billboard/Billbord";
 import Cards from "../components/Card/Cards";
 import FeaturedArticles from "../components/Articles/FeaturedArticles";
 import FeaturedPerspective from "../components/Perspectives/FeaturedPerspective";
+import FeaturedVideos from "../components/Videos/FeaturedVideos";
 
 
 const HomePage = () => {
@@ -13,6 +14,7 @@ const HomePage = () => {
         <Cards/>
         <FeaturedArticles/>
         <FeaturedPerspective/>
+        <FeaturedVideos/>
       </div>
     </div>
   );

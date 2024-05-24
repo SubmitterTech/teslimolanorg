@@ -5,7 +5,7 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 const About = () => {
   return (
     <>
-    <hr></hr>
+    <hr className="m-5"/>
     <div className="grid grid-cols-1 md:grid-cols-2 text p-3 gap-5">
       <div className="flex flex-col text-white gap-5">
         <h1 className="text-3xl">Biz Kimiz</h1>

@@ -30,7 +30,7 @@ const FeaturedVideos = () => {
   ];
   return (
     <div className="flex flex-col mt-5 py-5 gap-5">
-      <hr></hr>
+      <hr className="bg-green-700 mx-3"/>
       <div className="text-white flex justify-center items-center">
         <h1 className="text-3xl">Videolar</h1>
       </div>

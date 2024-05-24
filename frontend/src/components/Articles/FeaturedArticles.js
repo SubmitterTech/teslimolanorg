@@ -36,7 +36,8 @@ const FeaturedArticles = () => {
   ];
 
   return (
-    <div className="flex flex-col border-t mt-5 p-3">
+    <div className="flex flex-col p-3">
+      <hr className="mb-5"/>
       <div className="flex justify-center text-white">
         <h1 className="text-3xl">Öne Çıkan Makaleler</h1>
       </div>

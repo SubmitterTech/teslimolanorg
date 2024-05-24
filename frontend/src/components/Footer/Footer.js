@@ -309,7 +309,7 @@ const Footer = () => {
               <FontAwesomeIcon icon={items.icon} />
               <Link to="">{items.title}</Link>
             </div>
-            <hr />
+            <hr/>
             <ul className="flex flex-col gap-2">
               {items.subMenuItems.map((subMenuItem,index2) => (
                 <li key={index2} className="flex gap-2">

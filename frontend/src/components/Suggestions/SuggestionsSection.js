@@ -3,7 +3,7 @@ import Suggestion from "./Suggestion";
 const SuggestionsSection = () => {
   return (
     <div className="p-5">
-        <hr></hr>
+        <hr/>
       <div className="mt-2 p-2">
         <h1 className="text-2xl text-white">İlginizi Çeken Bir Konu Seçin</h1>
       </div>

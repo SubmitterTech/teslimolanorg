@@ -22,7 +22,8 @@ const FeaturedPerspective = () => {
   ];
 
   return (
-    <div className="flex flex-col border-t mt-5 p-3">
+    <div className="flex flex-col mt-5 p-3">
+      <hr className="mb-5"/>
       <div className="flex justify-center text-white">
         <h1 className="text-3xl">Perspektif Yayınları</h1>
       </div>

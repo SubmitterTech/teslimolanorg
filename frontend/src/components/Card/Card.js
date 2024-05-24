@@ -9,7 +9,7 @@ const Card = ({ imgSrc, linkTitle }) => {
           <img src={imgSrc} alt="" />
         </div>
         <div className="w-[300px] h-[200px] text-white flex items-center justify-center">
-          <Link to="#" className="hover:text-emerald-700">
+          <Link to="#" className="hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out">
             {linkTitle}
           </Link>
         </div>

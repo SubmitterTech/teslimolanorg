@@ -44,7 +44,7 @@ const FeaturedVideos = () => {
               </div>
             </div>
             <div className="flex items-center justify-center">
-              <div className="text-white p-3">{videos[0].title}</div>
+              <div className="text-white p-3 hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out">{videos[0].title}</div>
             </div>
           </div>
         </Link>
@@ -65,7 +65,7 @@ const FeaturedVideos = () => {
         )}
       </div>
       <div className="text-white flex justify-center items-center">
-        <Link to="/">Tüm Videolar</Link>
+        <Link to="/" className="hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out">Tüm Videolar</Link>
       </div>
     </div>
   );

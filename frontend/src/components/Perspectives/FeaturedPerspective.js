@@ -39,7 +39,7 @@ const FeaturedPerspective = () => {
         ))}
       </div>
       <div className="flex justify-center text-white">
-        <Link to="">Tüm Perspektifleri Oku</Link>
+        <Link to="" className="hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out">Tüm Perspektifleri Oku</Link>
       </div>
     </div>
   );

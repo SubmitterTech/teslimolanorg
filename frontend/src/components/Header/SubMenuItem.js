@@ -16,7 +16,7 @@ const SubMenuItem = ({
       {subMenuItems.length > 0 ? (
         <>
           <button
-            className="flex items-center w-full text-left gap-3 hover:text-green-200"
+            className="flex items-center w-full text-left gap-3 hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out"
             onClick={() => toggleSubMenu(title)}
           >
             <FontAwesomeIcon icon={icon} />
@@ -48,7 +48,7 @@ const SubMenuItem = ({
           </ul>
         </>
       ) : (
-        <Link to={src} className="flex items-center gap-3 hover:text-green-200">
+        <Link to={src} className="flex items-center gap-3 hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out">
           <FontAwesomeIcon icon={icon} />
           {title}
         </Link>

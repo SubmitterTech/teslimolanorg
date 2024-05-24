@@ -291,38 +291,43 @@ const Footer = () => {
 
   return (
     <>
-    <div className="hidden  md:flex md:gap-5 md:flex-col bg-gray-700 ">
-      <div>
-        <img src="bottom-footer-bg.jpg" alt="" />
+      <div className="hidden  md:flex md:gap-5 md:flex-col bg-gray-700 ">
+        <div>
+          <img src="bottom-footer-bg.jpg" alt="" />
+        </div>
+        <div className="p-3">
+          <p className="text-white font-semibold">
+            Teslimolan.org | Teslimiyet Dini | Kuran, tüm Kuran, Kuran dışında
+            hiçbir şey
+          </p>
+        </div>
+        <div className="flex  gap-5 text-white p-3 flex-wrap wrap text-sm  justify-between">
+          {menuItems.map(
+            (items, index) =>
+              items.title !== "ANASAYFA" && (
+                <div key={index} className="flex flex-col gap-3 max-w-[160px]">
+                  <div className="flex gap-2">
+                    <FontAwesomeIcon icon={items.icon} />
+                    <Link to="">{items.title}</Link>
+                  </div>
+                  <hr />
+                  <ul className="flex flex-col gap-2">
+                    {items.subMenuItems.map((subMenuItem, index2) => (
+                      <li
+                        key={index2}
+                        className="flex gap-2 hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out"
+                      >
+                        {subMenuItem.subIcon}
+                        <Link to={subMenuItem.href}>{subMenuItem.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+          )}
+        </div>
       </div>
-      <div className="p-3"> 
-        <p className="text-white font-semibold">
-          Teslimolan.org | Teslimiyet Dini | Kuran, tüm Kuran, Kuran dışında
-          hiçbir şey
-        </p>
-      </div>
-      <div className="flex  gap-5 text-white p-3 flex-wrap wrap text-sm  justify-between">
-        {menuItems.map((items, index) => (
-            items.title !=="ANASAYFA" && (
-          <div key={index} className="flex flex-col gap-3 max-w-[160px]">
-            <div className="flex gap-2">
-              <FontAwesomeIcon icon={items.icon} />
-              <Link to="">{items.title}</Link>
-            </div>
-            <hr/>
-            <ul className="flex flex-col gap-2">
-              {items.subMenuItems.map((subMenuItem,index2) => (
-                <li key={index2} className="flex gap-2">
-                  {subMenuItem.subIcon}
-                  <Link to={subMenuItem.href}>{subMenuItem.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )))}
-      </div>
-    </div>
-    <Designer/>
+      <Designer />
     </>
   );
 };

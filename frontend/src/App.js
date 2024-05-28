@@ -5,6 +5,7 @@ import Content from "./components/Articles/Content";
 import NewsSlider from "./components/NewsSlider/NewsSlider";
 import PerspectiveContent from "./components/Perspectives/PerspectiveContent";
 import VideoContent from "./components/Videos/VideoContent";
+import AllPerspectives from "./components/Perspectives/AllPerspectives";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Route path="/" element={<HomePage/>} />
         <Route path="/makaleler/namazda-ayaktayken-neden-sadece-fatiha-okumaliyiz" element={<Content/>}/>
         <Route path="/news-slider" element={<NewsSlider/>}/>
-        <Route path="/perspektifler" element={<PerspectiveContent/>}/>
+        <Route path="/perspektif" element={<PerspectiveContent/>}/>
+        <Route path="/perspektifler" element={<AllPerspectives/>}/>
         <Route path="/videolar" element={<VideoContent/>}/>
       </Routes>
     </BrowserRouter>

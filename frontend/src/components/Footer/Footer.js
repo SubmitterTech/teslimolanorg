@@ -291,9 +291,9 @@ const Footer = () => {
 
   return (
     <>
-      <div className="hidden  md:flex md:gap-5 md:flex-col bg-gray-700 ">
+      <div className="hidden  md:flex md:gap-5 md:flex-col bg-gray-700 md:max-w-[1000px] md:w-full">
         <div>
-          <img src="bottom-footer-bg.jpg" alt="" />
+          <img src="/bottom-footer-bg.jpg" alt="" />
         </div>
         <div className="p-3">
           <p className="text-white font-semibold">

@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 const FeaturedPerspective = () => {
   const perspectives = [
     {
-      image: "sadece-fatiha.png",
+      image: "sp_1990mart_1.png",
       title: "Namazda Ayaktayken Neden Sadece Fatiha Okumalıyız",
       description:
         "Namazda ayakta dururken neden sadece Fatiha suresini okuduğumuzu açıklayan makale.",
-      linkSrc: "/anasayfa",
+      linkSrc: "/perspektifler",
     },
     {
       image: "si̇te-banners.png",

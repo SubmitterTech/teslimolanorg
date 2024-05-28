@@ -8,22 +8,22 @@ const FeaturedVideos = () => {
   const videos = [
     {
       image: "teslimiyete-karsi-kurancilik.png",
-      title: "1989 Mart Ayı",
+      title: "Video Başlık",
+      linkSrc: "/videolar",
+    },
+    {
+      image: "hqdefault1.jpg",
+      title: "Video Başlık 1",
       linkSrc: "/",
     },
     {
-      image: "sadece-fatiha.png",
-      title: "1990 Nisan Ayı",
+      image: "hqdefault2.jpg",
+      title: "Video Başlık 2",
       linkSrc: "/",
     },
     {
-      image: "sadece-fatiha.png",
-      title: "1990 Mayıs Ayı",
-      linkSrc: "/",
-    },
-    {
-      image: "si̇te-banners.png",
-      title: "1988 Mart Ayı",
+      image: "hqdefault3.jpg",
+      title: "Video Başlık 3",
       linkSrc: "/",
     },
     

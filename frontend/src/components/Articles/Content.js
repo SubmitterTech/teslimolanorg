@@ -3,6 +3,7 @@ import RelatedVerses from "../RelatedVerses/RelatedVerses";
 import RelatedAppendices from "../RelatedAppendices/RelatedAppendices";
 import RelatedTags from "../RelatedTags/RelatedTags";
 import Directory from "../Directory/Directory";
+import Footer from "../Footer/Footer";
 
 function Content() {
   const verses = [
@@ -41,14 +42,14 @@ function Content() {
     
   ];
   return (
-    <div className="flex justify-center items-center flex-col bg-black p-3">
-      <div id="container" className="flex flex-col md:flex-row  gap-3">
-        <div id="left-side" className="flex gap-5 flex-col md:max-w-[800px]">
+    <div className="flex justify-center items-center flex-col bg-black">
+      <div id="container" className="flex flex-col md:flex-row gap-3 px-5">
+        <div id="left-side" className="flex flex-col md:max-w-[800px]">
         <Directory/>
           <div id="img-content">
             <img src="/sadece-fatiha.png" alt="" />
           </div>
-          <div id="content-container" className="flex flex-col gap-5">
+          <div id="content-container" className="flex flex-col gap-5 mt-5">
             <div id="title" className="text-white">
               Namazda Ayaktayken Neden Sadece Fatiha Okumalıyız
             </div>
@@ -92,6 +93,7 @@ function Content() {
           <RelatedArticlesRightPanel articles={articles}/>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

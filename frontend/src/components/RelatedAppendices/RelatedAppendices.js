@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const RelatedAppendices = ({ appendices }) => {
   return (
-    <div id="related-appendices" className="md:min-w-[400px]  bg-gray-900 p-5">
+    <div id="related-appendices" className="md:min-w-[400px]  bg-gray-900 p-5 mt-5">
       <div className="text-white border-b p-3 text-3xl">İlgili Ekler</div>
       {appendices.map((appendix, index) => (
         <div key={index} className="flex flex-row items-center gap-3 border-b p-3">

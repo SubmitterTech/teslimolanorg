@@ -291,7 +291,7 @@ const Footer = () => {
 
   return (
     <>
-      <div className="hidden  md:flex md:gap-5 md:flex-col bg-gray-700 md:max-w-[1000px] md:w-full">
+      <div className="hidden  md:flex md:gap-5 md:flex-col bg-gray-700">
         <div>
           <img src="/bottom-footer-bg.jpg" alt="" />
         </div>
@@ -301,7 +301,7 @@ const Footer = () => {
             hiçbir şey
           </p>
         </div>
-        <div className="flex  gap-5 text-white p-3 flex-wrap wrap text-sm  justify-between">
+        <div className="flex  gap-5 text-white p-3 flex-wrap wrap text-sm  justify-around">
           {menuItems.map(
             (items, index) =>
               items.title !== "ANASAYFA" && (

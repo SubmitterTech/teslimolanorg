@@ -5,6 +5,7 @@ import RelatedVideos from "../RelatedVideos/RelatedVideos";
 import RelatedTags from "../RelatedTags/RelatedTags";
 import RelatedArticlesRightPanel from "../RelatedArticles/RelatedArticleRightPanel";
 import Directory from "../Directory/Directory";
+import Footer from "../Footer/Footer";
 
 const PerspectiveContent = () => {
   const verses = [
@@ -65,14 +66,14 @@ const PerspectiveContent = () => {
     
   ];
   return (
-    <div className="flex justify-center items-center bg-black p-3">
-      <div id="container" className="flex flex-col md:flex-row  gap-3">
-        <div id="left-side" className="flex gap-5 flex-col md:max-w-[800px]">
+    <div className="flex justify-center items-center flex-col bg-black">
+      <div id="container" className="flex flex-col md:flex-row gap-3 px-5">
+        <div id="left-side" className="flex flex-col md:max-w-[800px]">
           <Directory/>
           <div id="img-content">
             <img src="/sp_1990mart_1.png" alt="" />
           </div>
-          <div id="content-container" className="flex flex-col gap-5">
+          <div id="content-container" className="flex flex-col gap-5 mt-5">
             <div id="title" className="text-white">
               <h1 className="text-3xl font-semibold">1990 - Mart Ayı</h1>
             </div>
@@ -148,6 +149,7 @@ const PerspectiveContent = () => {
           <RelatedArticlesRightPanel articles={articles}/>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

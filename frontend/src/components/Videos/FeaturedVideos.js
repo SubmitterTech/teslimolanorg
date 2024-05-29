@@ -9,22 +9,22 @@ const FeaturedVideos = () => {
     {
       image: "teslimiyete-karsi-kurancilik.png",
       title: "Video Başlık",
-      linkSrc: "/videolar",
+      linkSrc: "/video",
     },
     {
       image: "hqdefault1.jpg",
       title: "Video Başlık 1",
-      linkSrc: "/",
+      linkSrc: "/video",
     },
     {
       image: "hqdefault2.jpg",
       title: "Video Başlık 2",
-      linkSrc: "/",
+      linkSrc: "/video",
     },
     {
       image: "hqdefault3.jpg",
       title: "Video Başlık 3",
-      linkSrc: "/",
+      linkSrc: "/video",
     },
     
   ];
@@ -65,7 +65,7 @@ const FeaturedVideos = () => {
         )}
       </div>
       <div className="text-white flex justify-center items-center">
-        <Link to="/" className="hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out">Tüm Videolar</Link>
+        <Link to="/videolar" className="hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out">Tüm Videolar</Link>
       </div>
     </div>
   );

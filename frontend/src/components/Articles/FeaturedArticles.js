@@ -9,7 +9,7 @@ const FeaturedArticles = () => {
       title: "Namazda Ayaktayken Neden Sadece Fatiha Okumalıyız",
       description:
         "Namazda ayakta dururken neden sadece Fatiha suresini okuduğumuzu açıklayan makale.",
-      linkSrc: "/makaleler/namazda-ayaktayken-neden-sadece-fatiha-okumaliyiz",
+      linkSrc: "/makale/namazda-ayaktayken-neden-sadece-fatiha-okumaliyiz",
     },
     {
       image: "si̇te-banners.png",

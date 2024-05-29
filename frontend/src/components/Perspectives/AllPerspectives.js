@@ -3,14 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
+import Directory from "../Directory/Directory";
 
 const AllPerspectives = () => {
   return (
     <div className="flex flex-col md:justify-center md:items-center bg-black w-full">
-      <div className="flex flex-col md:max-w-[1200px] md:w-full p-5 gap-5">
-        <h1 className="text-3xl text-white">Perspektif Yayınları</h1>
+      <div className="flex flex-col md:max-w-[1200px] md:w-full gap-5">
+      <Directory/>
+        <h1 className="text-3xl text-white p-5">Perspektif Yayınları</h1>
 
-        <div className="flex flex-col gap-10 border-t py-5">
+        <div className="flex flex-col gap-10 border-t p-5">
           <h2 className="text-3xl text-white">1990 - Yılı</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 place-items-center">
             <div className="flex flex-col justify-center items-center bg-gray-800 w-[180px]  gap-3 rounded py-5">
@@ -104,7 +106,7 @@ const AllPerspectives = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-10 border-t py-5">
+        <div className="flex flex-col gap-10 border-t p-5">
           <h2 className="text-3xl text-white">1990 - Yılı</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 place-items-center">
             <div className="flex flex-col justify-center items-center bg-gray-800 w-[180px]  gap-3 rounded py-5">
@@ -198,7 +200,7 @@ const AllPerspectives = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-10 border-t py-5">
+        <div className="flex flex-col gap-10 border-t p-5">
           <h2 className="text-3xl text-white">1990 - Yılı</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 place-items-center">
             <div className="flex flex-col justify-center items-center bg-gray-800 w-[180px]  gap-3 rounded py-5">

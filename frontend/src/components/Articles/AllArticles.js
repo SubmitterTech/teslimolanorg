@@ -29,7 +29,7 @@ const AllArticles = () => {
     <div className="flex flex-col md:justify-center md:items-center bg-black w-full">
       <div className="flex flex-col md:max-w-[1200px] md:w-full gap-5">
         <Directory />
-        <h1 className="text-3xl text-white p-5">Perspektif Yayınları</h1>
+        <h1 className="text-3xl text-white p-5">Tüm Makaleler</h1>
         {articles.map((article, index) => (
           <div key={index} className="flex flex-col gap-10 border-t p-5">
             <div className="flex flex-col md:flex-row gap-5">

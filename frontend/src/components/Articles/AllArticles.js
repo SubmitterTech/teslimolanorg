@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Directory from "../Directory/Directory";
+import ReadMore from "../ReadMore/ReadMore";
 
 const AllArticles = () => {
-      
+    const articleText = `Dünyanın farklı coğrafyalarında, bu hayata acılar içinde gelen bebeklerin hikayelerini okuyor ve onlara acıyoruz. Birçok insan sefalet, mutsuzluk ve kaosa doğuyor. Her bebek aynı şartlarda gelmiyor. Ve kimi insanlar, bu durum karşısında Tanrı’nın hikmetini, hatta varlığını sorguluyorlar. Çünkü bozulmuş dinler bunlara tam anlamıyla yanıt sağlamıyor. Rabbimiz,...`;
+    
   return (
     <div className="flex flex-col md:justify-center md:items-center bg-black w-full">
       <div className="flex flex-col md:max-w-[1200px] md:w-full gap-5">
@@ -22,12 +24,7 @@ const AllArticles = () => {
                 </Link>
               </h1>
               <p className="text-white mt-5">
-                Dünyanın farklı coğrafyalarında, bu hayata acılar içinde gelen
-                bebeklerin hikayelerini okuyor ve onlara acıyoruz. Birçok insan
-                sefalet, mutsuzluk ve kaosa doğuyor. Her bebek aynı şartlarda
-                gelmiyor. Ve kimi insanlar, bu durum karşısında Tanrı’nın
-                hikmetini, hatta varlığını sorguluyorlar. Çünkü bozulmuş dinler
-                bunlara tam anlamıyla yanıt sağlamıyor. Rabbimiz,...
+              <ReadMore text={articleText} limit={100} to="/makale/namazda-ayaktayken-neden-sadece-fatiha-okumaliyiz" />
               </p>
             </div>
           </div>

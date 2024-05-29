@@ -7,19 +7,24 @@ import PerspectiveContent from "./components/Perspectives/PerspectiveContent";
 import VideoContent from "./components/Videos/VideoContent";
 import AllPerspectives from "./components/Perspectives/AllPerspectives";
 import AllArticles from "./components/Articles/AllArticles";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
-    <Header/>
+      <Header />
+      <ScrollToTop />
       <Routes>
-        <Route path="/" element={<HomePage/>} />
-        <Route path="/makale/namazda-ayaktayken-neden-sadece-fatiha-okumaliyiz" element={<Content/>}/>
-        <Route path="/news-slider" element={<NewsSlider/>}/>
-        <Route path="/perspektif" element={<PerspectiveContent/>}/>
-        <Route path="/perspektifler" element={<AllPerspectives/>}/>
-        <Route path="/videolar" element={<VideoContent/>}/>
-        <Route path="/makaleler" element={<AllArticles/>}/>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/makale/namazda-ayaktayken-neden-sadece-fatiha-okumaliyiz"
+          element={<Content />}
+        />
+        <Route path="/news-slider" element={<NewsSlider />} />
+        <Route path="/perspektif" element={<PerspectiveContent />} />
+        <Route path="/perspektifler" element={<AllPerspectives />} />
+        <Route path="/videolar" element={<VideoContent />} />
+        <Route path="/makaleler" element={<AllArticles />} />
       </Routes>
     </BrowserRouter>
   );

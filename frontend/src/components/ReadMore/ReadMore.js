@@ -6,7 +6,7 @@ const ReadMore = ({ text, limit, to }) => {
     <div>
       {text.slice(0, limit)}
       {text.length > limit && (
-        <Link to={to} className=' cursor-pointer text-blue-500'>
+        <Link to={to} className=' cursor-pointer text-emerald-300'>
           ... Devam Et
         </Link>
       )}

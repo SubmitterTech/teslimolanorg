@@ -9,6 +9,7 @@ import AllPerspectives from "./components/Perspectives/AllPerspectives";
 import AllArticles from "./components/Articles/AllArticles";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import AllVideos from "./components/Videos/AllVideos";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/giris" element={<LoginPage/>}/>
         <Route
           path="/makale/namazda-ayaktayken-neden-sadece-fatiha-okumaliyiz"
           element={<Content />}

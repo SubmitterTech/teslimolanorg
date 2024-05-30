@@ -9,7 +9,7 @@ const Billboard = () => {
           alt="teslimiyet banner"
         />
         <div
-          className="flex flex-col gap-2 justify-end items-center px-2 py-4 absolute z-20 bg-white bg-opacity-80 w-11/12 md:w-11/12 lg:w-10/12 xl:w-3/5"
+          className="flex flex-col gap-2 justify-end items-center px-2 py-4 absolute z-20 bg-gray-200 bg-opacity-80 dark:bg-white dark:bg-opacity-80 w-11/12 md:w-11/12 lg:w-10/12 xl:w-3/5"
           style={{
             left: "50%",
             transform: "translate(-50%, -40%)",
@@ -23,10 +23,10 @@ const Billboard = () => {
       </div>
 
       <div className="flex items-center flex-col gap-4 py-20 px-5">
-        <h1 className="text-white text-3xl">
+        <h1 className="text-gray-900 dark:text-white text-3xl">
           Kuran, tüm Kuran, Kuran dışında hiçbir şey
         </h1>
-        <p className="text-white">
+        <p className="text-gray-900 dark:text-white">
           Veniam cillum ipsum magna amet labore qui labore reprehenderit esse.
           Labore in officia est labore eiusmod cupidatat. Labore nulla esse sunt
           laboris nulla duis minim quis nostrud enim culpa nisi elit. Aute duis

@@ -45,10 +45,12 @@ import {
   faVideo,
 } from "@fortawesome/free-solid-svg-icons";
 import SubMenuItem from "./SubMenuItem";
+import { useTheme } from "../../context/ThemeContext";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState(null);
+  const { darkMode, toggleDarkMode } = useTheme();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -61,9 +63,9 @@ const Header = () => {
   const menuItems = [
     {
       title: "ANASAYFA",
-      icon:faHome,
-      src:"/",
-      subMenuItems:[],
+      icon: faHome,
+      src: "/",
+      subMenuItems: [],
     },
     {
       title: "TESLİMİYET",
@@ -242,12 +244,8 @@ const Header = () => {
           href: "",
           label: "Şefaat Efsanesi",
         },
-
-        {subIcon: <FontAwesomeIcon icon={faUtensils} />, href: "", label: "Beslenme Yasakları" },
-        {subIcon: <FontAwesomeIcon icon={faPray} />,
-          href: "",
-          label: "Neden Namazın Detayı Yok",
-        },
+        { subIcon: <FontAwesomeIcon icon={faUtensils} />, href: "", label: "Beslenme Yasakları" },
+        { subIcon: <FontAwesomeIcon icon={faPray} />, href: "", label: "Neden Namazın Detayı Yok" },
         { subIcon: <FontAwesomeIcon icon={faUserGraduate} />, href: "", label: "Peygamberin Ümmiliği" },
         { subIcon: <FontAwesomeIcon icon={faRing} />, href: "", label: "Çok Eşlilik" },
       ],
@@ -259,31 +257,23 @@ const Header = () => {
       subMenuItems: [
         { subIcon: <FontAwesomeIcon icon={faNewspaper} />, href: "", label: "Haberler" },
         { subIcon: <FontAwesomeIcon icon={faFile} />, href: "", label: "Perspektif Yayınları" },
-        { subIcon: <FontAwesomeIcon icon={faBook} />,href: "", label: "Reşad Halife'nin Kitapları" },
-        {
-          subIcon: <FontAwesomeIcon icon={faVideo} />,
-          href: "",
-          label: "Antlaşma Elçisi Kanalı",
-        },
-        {
-          subIcon: <FontAwesomeIcon icon={faContactBook} />,
-          href: "",
-          label: "Bize Ulaşın",
-        },
+        { subIcon: <FontAwesomeIcon icon={faBook} />, href: "", label: "Reşad Halife'nin Kitapları" },
+        { subIcon: <FontAwesomeIcon icon={faVideo} />, href: "", label: "Antlaşma Elçisi Kanalı" },
+        { subIcon: <FontAwesomeIcon icon={faContactBook} />, href: "", label: "Bize Ulaşın" },
       ],
     },
   ];
 
   return (
     <header>
-      <div className="flex justify-between items-center bg-black px-3">
+      <div className="flex justify-between items-center bg-gray-50 dark:bg-black px-3">
         <a
           href="/"
           title="teslimolan anasayfaya gidin"
           className="flex items-center"
         >
           <img src="logo03.jpg" className="h-12 md:h-20" alt="logo" />
-          <span className="text-white ml-3">
+          <span className="text-gray-900 dark:text-white ml-3">
             Mutluluk Tanrıya Teslimiyettir
           </span>
         </a>
@@ -320,6 +310,12 @@ const Header = () => {
               <FontAwesomeIcon icon={faSearch}/>
             </button>
           </form>
+          <button
+            onClick={toggleDarkMode}
+            className="ml-4 px-4 py-2 rounded-full bg-blue-500 text-white dark:bg-yellow-500"
+          >
+            {darkMode ? 'Koyu Tema' : 'Açık Tema'}
+          </button>
         </div>
       </div>
       <nav
@@ -348,6 +344,7 @@ const Header = () => {
           ))}
         </ul>
       </nav>
+      {console.log(darkMode)}
     </header>
   );
 };

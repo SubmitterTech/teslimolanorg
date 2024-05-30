@@ -30,8 +30,8 @@ const FeaturedVideos = () => {
   ];
   return (
     <div className="flex flex-col mt-5 py-5 gap-5">
-      <hr className="bg-green-700 mx-3"/>
-      <div className="text-white flex justify-center items-center">
+       <hr className="mb-5 dark:border-gray-200 border-gray-900"/>
+      <div className="text-gray-900 dark:text-white flex justify-center items-center">
         <h1 className="text-3xl">Videolar</h1>
       </div>
       <div className="flex">
@@ -44,7 +44,7 @@ const FeaturedVideos = () => {
               </div>
             </div>
             <div className="flex items-center justify-center">
-              <div className="text-white p-3 hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out">{videos[0].title}</div>
+              <div className="text-gray-900 dark:text-white p-3  hover:text-emerald-600 border-b border-transparent hover:border-emerald-600 pb-1 transition-colors duration-300 ease-in-out">{videos[0].title}</div>
             </div>
           </div>
         </Link>

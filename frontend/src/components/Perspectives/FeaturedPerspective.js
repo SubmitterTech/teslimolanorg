@@ -23,8 +23,8 @@ const FeaturedPerspective = () => {
 
   return (
     <div className="flex flex-col mt-5 p-3">
-      <hr className="mb-5"/>
-      <div className="flex justify-center text-white">
+      <hr className="mb-5 dark:border-gray-200 border-gray-900"/>
+      <div className="flex justify-center text-gray-900 dark:text-white">
         <h1 className="text-3xl">Perspektif Yayınları</h1>
       </div>
       <div className="flex flex-col md:grid md:grid-cols-2 gap-4">
@@ -38,8 +38,8 @@ const FeaturedPerspective = () => {
           </div>
         ))}
       </div>
-      <div className="flex justify-center text-white">
-        <Link to="/perspektifler" className="hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out">Tüm Perspektifleri Oku</Link>
+      <div className="flex justify-center text-gray-900 dark:text-white">
+        <Link to="/perspektifler" className="hover:text-emerald-600 border-b border-transparent hover:border-emerald-600 pb-1 transition-colors duration-300 ease-in-out">Tüm Perspektifleri Oku</Link>
       </div>
     </div>
   );

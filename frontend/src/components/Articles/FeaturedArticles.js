@@ -37,8 +37,8 @@ const FeaturedArticles = () => {
 
   return (
     <div className="flex flex-col p-3">
-      <hr className="mb-5"/>
-      <div className="flex justify-center text-white">
+      <hr className="mb-5 dark:border-gray-200 border-gray-900"/>
+      <div className="flex justify-center text-gray-900 dark:text-white">
         <h1 className="text-3xl">Öne Çıkan Makaleler</h1>
       </div>
       <div className="flex flex-col md:grid md:grid-cols-2 gap-4">
@@ -52,8 +52,8 @@ const FeaturedArticles = () => {
           </div>
         ))}
       </div>
-      <div className="flex justify-center text-white">
-        <Link to='/makaleler'className="hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out">Tüm Makaleler</Link>
+      <div className="flex justify-center text-gray-900 dark:text-white">
+        <Link to='/makaleler'className="hover:text-emerald-600 border-b border-transparent hover:border-emerald-600 pb-1 transition-colors duration-300 ease-in-out">Tüm Makaleler</Link>
       </div>
     </div>
   );

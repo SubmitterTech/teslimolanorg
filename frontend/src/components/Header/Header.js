@@ -233,7 +233,11 @@ const Header = () => {
           href: "",
           label: "Tanrı'nın Sözü ile Oynandı",
         },
-        { subIcon: <FontAwesomeIcon icon={faPerson} />, href: "", label: "İsa Mesih'in Rolü" },
+        {
+          subIcon: <FontAwesomeIcon icon={faPerson} />,
+          href: "",
+          label: "İsa Mesih'in Rolü",
+        },
         {
           subIcon: <FontAwesomeIcon icon={faCow} />,
           href: "",
@@ -244,10 +248,26 @@ const Header = () => {
           href: "",
           label: "Şefaat Efsanesi",
         },
-        { subIcon: <FontAwesomeIcon icon={faUtensils} />, href: "", label: "Beslenme Yasakları" },
-        { subIcon: <FontAwesomeIcon icon={faPray} />, href: "", label: "Neden Namazın Detayı Yok" },
-        { subIcon: <FontAwesomeIcon icon={faUserGraduate} />, href: "", label: "Peygamberin Ümmiliği" },
-        { subIcon: <FontAwesomeIcon icon={faRing} />, href: "", label: "Çok Eşlilik" },
+        {
+          subIcon: <FontAwesomeIcon icon={faUtensils} />,
+          href: "",
+          label: "Beslenme Yasakları",
+        },
+        {
+          subIcon: <FontAwesomeIcon icon={faPray} />,
+          href: "",
+          label: "Neden Namazın Detayı Yok",
+        },
+        {
+          subIcon: <FontAwesomeIcon icon={faUserGraduate} />,
+          href: "",
+          label: "Peygamberin Ümmiliği",
+        },
+        {
+          subIcon: <FontAwesomeIcon icon={faRing} />,
+          href: "",
+          label: "Çok Eşlilik",
+        },
       ],
     },
     {
@@ -255,11 +275,31 @@ const Header = () => {
       icon: faAnglesRight,
       menuKey: "dahaFazlasi",
       subMenuItems: [
-        { subIcon: <FontAwesomeIcon icon={faNewspaper} />, href: "", label: "Haberler" },
-        { subIcon: <FontAwesomeIcon icon={faFile} />, href: "", label: "Perspektif Yayınları" },
-        { subIcon: <FontAwesomeIcon icon={faBook} />, href: "", label: "Reşad Halife'nin Kitapları" },
-        { subIcon: <FontAwesomeIcon icon={faVideo} />, href: "", label: "Antlaşma Elçisi Kanalı" },
-        { subIcon: <FontAwesomeIcon icon={faContactBook} />, href: "", label: "Bize Ulaşın" },
+        {
+          subIcon: <FontAwesomeIcon icon={faNewspaper} />,
+          href: "",
+          label: "Haberler",
+        },
+        {
+          subIcon: <FontAwesomeIcon icon={faFile} />,
+          href: "",
+          label: "Perspektif Yayınları",
+        },
+        {
+          subIcon: <FontAwesomeIcon icon={faBook} />,
+          href: "",
+          label: "Reşad Halife'nin Kitapları",
+        },
+        {
+          subIcon: <FontAwesomeIcon icon={faVideo} />,
+          href: "",
+          label: "Antlaşma Elçisi Kanalı",
+        },
+        {
+          subIcon: <FontAwesomeIcon icon={faContactBook} />,
+          href: "",
+          label: "Bize Ulaşın",
+        },
       ],
     },
   ];
@@ -280,19 +320,19 @@ const Header = () => {
         <button
           type="button"
           onClick={toggleMenu}
-          className="text-white md:hidden"
+          className="border py-1 px-3 rounded dark:text-white md:hidden"
         >
           <FontAwesomeIcon icon={faBars} />
         </button>
         <div className="hidden md:flex md:gap-4 md:items-center">
           <div className="hidden md:flex items-center">
-            <a href="http://submissionperspective.org/" className="text-white">
+            <a href="http://submissionperspective.org/" className="dark:text-white">
               ENGLISH
             </a>
           </div>
           <form className="flex gap-1">
             <input
-              className="w-[120px] bg-black border border-gray-400 rounded p-2 text-gray-500 text-sm"
+              className="w-[120px] bg-gray-50 text-gray-900 dark:bg-black border border-gray-400 rounded p-2 dark:text-gray-500 text-sm"
               type="text"
               name="searchInput"
               placeholder="Arama Metni"
@@ -300,21 +340,21 @@ const Header = () => {
             <select
               id="options"
               defaultValue="1"
-              className="w-[120px] bg-black border border-gray-400 rounded p-2 text-gray-100 text-sm"
+              className="w-[120px] bg-gray-50 text-gray-900 dark:bg-black border border-gray-400 rounded p-2 dark:text-gray-100 text-sm"
             >
               <option defaultValue="option1">Kur'anda</option>
               <option defaultValue="option2">Eklerde</option>
               <option defaultValue="option3">Makalelerde</option>
             </select>
-            <button className="text-white border border-gray-400 rounded px-2">
-              <FontAwesomeIcon icon={faSearch}/>
+            <button className="text-gray-900 dark:text-white border border-gray-400 rounded px-2">
+              <FontAwesomeIcon icon={faSearch} />
             </button>
           </form>
           <button
             onClick={toggleDarkMode}
             className="ml-4 px-4 py-2 rounded-full bg-blue-500 text-white dark:bg-yellow-500"
           >
-            {darkMode ? 'Koyu Tema' : 'Açık Tema'}
+            {darkMode ? "Açık Tema" : "Koyu Tema"}
           </button>
         </div>
       </div>
@@ -330,7 +370,7 @@ const Header = () => {
         >
           <FontAwesomeIcon icon={faTimes} />
         </button>
-        <ul className="flex flex-col gap-0  p-4 md:flex-row md:gap-8 md:p-0 md:justify-center md:items-center">
+        <ul className="flex flex-col gap-0   p-4 md:flex-row md:gap-8 md:p-0 md:justify-center md:items-center">
           {menuItems.map((subMenuItem, index) => (
             <SubMenuItem
               key={index}
@@ -344,7 +384,6 @@ const Header = () => {
           ))}
         </ul>
       </nav>
-      {console.log(darkMode)}
     </header>
   );
 };

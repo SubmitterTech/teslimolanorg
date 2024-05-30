@@ -12,7 +12,7 @@ const VideoSection = ({ image, title, linkSrc, featured }) => {
           </div>
         </div>
         <div>
-          <div className="text-white p-3 hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out">{title}</div>
+          <div className="text-gray-900 dark:text-white p-3 hover:text-emerald-600 border-b border-transparent hover:border-emerald-600 pb-1 transition-colors duration-300 ease-in-out">{title}</div>
         </div>
       </div>
     </Link>

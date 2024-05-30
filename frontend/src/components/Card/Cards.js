@@ -8,7 +8,7 @@ const Cards = () => {
         imgSrc="sonahit.jpg"
         linkTitle="Web Sitemizden Kuran Son Ahit'i Okuyabilirsiniz"
       />
-      <div className="border-l"></div>
+      <div className="border-l  border-gray-900 dark:border-gray-500"></div>
       <Card
         imgSrc="sonahit.jpg"
         linkTitle="Son eklenen videolara, makalelere, perspektiflere ve haberlere bakabilirsiniz."

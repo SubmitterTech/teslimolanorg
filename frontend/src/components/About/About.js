@@ -5,9 +5,9 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 const About = () => {
   return (
     <>
-    <hr className="m-5"/>
+     <hr className="mb-5 dark:border-gray-200 border-gray-900"/>
     <div className="grid grid-cols-1 md:grid-cols-2 text p-3 gap-5">
-      <div className="flex flex-col text-white gap-5">
+      <div className="flex flex-col text-gray-900 dark:text-white gap-5">
         <h1 className="text-3xl">Biz Kimiz</h1>
         <p>
           Tanrı’nın tüm peygamberleri bu dünyaya geldi ve tüm kutsal yazılar
@@ -33,15 +33,15 @@ const About = () => {
         <div className="border rounded">
             <div className="w-full text-white font-semibold bg-gray-600 p-3">Bize Soru Sorun</div>
             <form className="flex flex-col gap-1">
-                <input type="text" placeholder="Kendinizi Tanıtın"  className="p-3 bg-black border"/>
-                <input type="text" placeholder="Kendinizi Tanıtın" className="p-3 bg-black border"/>
-                <textarea className="p-3 bg-black border" placeholder="Mesajınız"></textarea>
-                <button className="text-white p-3">Mesajımı Gönder</button>
+                <input type="text" placeholder="Kendinizi Tanıtın"  className="p-3 dark:bg-black border"/>
+                <input type="text" placeholder="Kendinizi Tanıtın" className="p-3 dark:bg-black border"/>
+                <textarea className="p-3 dark:bg-black border" placeholder="Mesajınız"></textarea>
+                <button className="text-white p-3 dark:bg-none bg-gray-700">Mesajımı Gönder</button>
             </form>
         </div>
         <div className="border rounded">
             <div className="w-full text-white font-semibold bg-gray-600 p-3">Bize Sosyal Medyadan da Ulaşabilirsiniz...</div>
-            <div className="flex justify-center text-white text-3xl p-5 gap-5">
+            <div className="flex justify-center text-gray-900 dark:text-white text-3xl p-5 gap-5">
                 <FontAwesomeIcon icon={faFacebook}/>
                 <FontAwesomeIcon icon={faInstagram}/>
                 <FontAwesomeIcon icon={faX}/>

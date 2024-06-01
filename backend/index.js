@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const adminRoute=require('./routes/adminRoute');
+const connectDB = require('./config/db');
 
 
 
@@ -13,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-/* connectDB(); */
+connectDB();
 
 app.use(cors());
 app.use(bodyParser.json());

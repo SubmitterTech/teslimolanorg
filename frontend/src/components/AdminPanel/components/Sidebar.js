@@ -24,6 +24,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </div>
 
         <h1 className="text-lg font-bold">Yönetici Paneli</h1>
+        <hr className="mt-2"/>
         <nav className="mt-4">
           <ul>
             <li>

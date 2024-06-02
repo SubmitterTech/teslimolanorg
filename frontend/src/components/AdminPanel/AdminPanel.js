@@ -5,6 +5,7 @@ import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+import TextEditor from './components/TextEditor';
 
 const AdminPanel = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +24,7 @@ const AdminPanel = () => {
             <Route path="/" element={<Dashboard />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/makale" element={<TextEditor/>} />
           </Routes>
         </main>
       </div>

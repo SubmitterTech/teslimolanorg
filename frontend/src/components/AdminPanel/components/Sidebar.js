@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faChevronDown, faHome, faUser, faGear } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faChevronDown, faHome, faUser, faGear, faPen } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -12,7 +12,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div
-      className={`fixed inset-y-0 left-0 transform min-w-60 ${
+      className={`fixed inset-y-0 left-0 z-50 transform min-w-60 ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } md:translate-x-0 md:static md:w-64 h-screen bg-gray-800 text-white transition-transform duration-200 ease-in-out`}
     >
@@ -24,20 +24,20 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </div>
 
         <h1 className="text-lg font-bold">Yönetici Paneli</h1>
-        <hr className="mt-2"/>
         <nav className="mt-4">
           <ul>
             <li>
               <Link to="/admin" className="block p-2 rounded hover:bg-gray-700" onClick={toggleSidebar}>
-                <i className="mr-2"><FontAwesomeIcon icon={faHome}/></i><span>Anasayfa</span>
+                <i className="mr-2"><FontAwesomeIcon icon={faHome} /></i><span>Anasayfa</span>
               </Link>
             </li>
             <li>
               <Link
                 to="/admin/profile"
-                className="block p-2 rounded hover:bg-gray-700" onClick={toggleSidebar}
+                className="block p-2 rounded hover:bg-gray-700"
+                onClick={toggleSidebar}
               >
-                <i className="mr-2"><FontAwesomeIcon icon={faUser}/></i><span>Profil</span>
+                <i className="mr-2"><FontAwesomeIcon icon={faUser} /></i><span>Profil</span>
               </Link>
             </li>
             <li>
@@ -46,7 +46,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 className="block w-full text-left p-2 rounded hover:bg-gray-700"
               >
                 <div>
-                <i className="mr-2"><FontAwesomeIcon icon={faGear }/></i><span className="mr-2">Ayarlar</span>
+                  <i className="mr-2"><FontAwesomeIcon icon={faGear} /></i><span className="mr-2">Ayarlar</span>
                   <FontAwesomeIcon
                     icon={faChevronDown}
                     className={`transition-transform ${
@@ -60,7 +60,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                   <li>
                     <Link
                       to="/admin/settings/theme"
-                      className="block p-2 rounded hover:bg-gray-700" 
+                      className="block p-2 rounded hover:bg-gray-700"
+                      onClick={toggleSidebar}
                     >
                       Tema
                     </Link>
@@ -69,6 +70,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                     <Link
                       to="/admin/settings/profile"
                       className="block p-2 rounded hover:bg-gray-700"
+                      onClick={toggleSidebar}
                     >
                       Kullanıcı
                     </Link>
@@ -78,10 +80,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             </li>
             <li>
               <Link
-                to="/admin/profile"
+                to="/admin/makale"
                 className="block p-2 rounded hover:bg-gray-700"
+                onClick={toggleSidebar}
               >
-                Profile
+                <i className="mr-2"><FontAwesomeIcon icon={faPen} /></i><span>Yazı Ekle</span>
               </Link>
             </li>
           </ul>

@@ -5,7 +5,7 @@ import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-import TextEditor from './components/TextEditor';
+import AddTextPage from './pages/AddTextPage';
 
 const AdminPanel = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +24,7 @@ const AdminPanel = () => {
             <Route path="/" element={<Dashboard />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/makale" element={<TextEditor/>} />
+            <Route path="/makale" element={<AddTextPage/>} />
           </Routes>
         </main>
       </div>

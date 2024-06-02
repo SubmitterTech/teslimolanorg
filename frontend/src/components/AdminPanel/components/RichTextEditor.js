@@ -19,15 +19,14 @@ const RichTextEditor = () => {
   };
 
   return (
-    <div className="min-h-[400px]">
+    <div className="mb-5">
       <ReactQuill 
         value={value} 
         onChange={setValue} 
         modules={modules} 
-        className="h-full -z-10"
-        style={{ height: '400px', zIndex:0 }}
+        className="-z-10"
+        /* style={{ height: '400px', zIndex:0 }} */
       />
-      {console.log(value)}
     </div>
   );
 };

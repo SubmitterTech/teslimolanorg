@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import Header from './components/Header/Header';
 import HomePage from './pages/HomePage';
@@ -15,24 +15,22 @@ import LoginPage from './pages/LoginPage';
 function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter>
-        <Header />
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/giris" element={<LoginPage />} />
-          <Route
-            path="/makale/namazda-ayaktayken-neden-sadece-fatiha-okumaliyiz"
-            element={<Content />}
-          />
-          <Route path="/news-slider" element={<NewsSlider />} />
-          <Route path="/perspektif" element={<PerspectiveContent />} />
-          <Route path="/perspektifler" element={<AllPerspectives />} />
-          <Route path="/video" element={<VideoContent />} />
-          <Route path="/makaleler" element={<AllArticles />} />
-          <Route path="/videolar" element={<AllVideos />} />
-        </Routes>
-      </BrowserRouter>
+      <Header />
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/giris" element={<LoginPage />} />
+        <Route
+          path="/makale/namazda-ayaktayken-neden-sadece-fatiha-okumaliyiz"
+          element={<Content />}
+        />
+        <Route path="/news-slider" element={<NewsSlider />} />
+        <Route path="/perspektif" element={<PerspectiveContent />} />
+        <Route path="/perspektifler" element={<AllPerspectives />} />
+        <Route path="/video" element={<VideoContent />} />
+        <Route path="/makaleler" element={<AllArticles />} />
+        <Route path="/videolar" element={<AllVideos />} />
+      </Routes>
     </ThemeProvider>
   );
 }

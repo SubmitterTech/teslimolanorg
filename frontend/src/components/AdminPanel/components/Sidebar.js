@@ -12,7 +12,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div
-      className={`fixed inset-y-0 left-0 z-50 transform min-w-60 ${
+      className={`fixed inset-y-0  left-0 z-50 transform min-w-60 ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } md:translate-x-0 md:static md:w-64 h-screen bg-gray-800 text-white transition-transform duration-200 ease-in-out`}
     >

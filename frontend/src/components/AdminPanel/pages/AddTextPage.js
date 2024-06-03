@@ -13,11 +13,12 @@ const AddTextPage = () => {
   return (
     <div className="flex flex-col gap-5 p-4">
       <div className="flex justify-between">
+        <div><span className="mr-3">Yazı Tipi:</span>
         <select className="border p-3">
           <option>Makale</option>
           <option>Perspektif</option>
           <option>Video</option>
-        </select>
+        </select></div>
         <button className="p-3 bg-cyan-700 text-white rounded">EKLE</button>
       </div>
       <div>

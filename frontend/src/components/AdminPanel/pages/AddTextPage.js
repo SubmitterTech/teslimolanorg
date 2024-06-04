@@ -9,32 +9,73 @@ const AddTextPage = () => {
   const fileRef = useRef(null);
   const editorRef = useRef();
 
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
   };
 
-  const handleAddClick = () => {
-    const editorContent = editorRef.current.getContent(); // RichTextEditor içeriğini al
+  const uploadImage = async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch(`http://localhost:5001/api/admin/upload`, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      return data.filePath;
+    } catch (error) {
+      console.error("Image upload failed:", error);
+      return null;
+    }
+  };
+
+  const handleAddClick = async () => {
+    const editorContent = editorRef.current.getContent();
     console.log("Başlık:", title);
     console.log("Yazı Tipi:", textType);
     console.log("Etiketler:", tags);
     console.log("Editör İçeriği:", editorContent);
-    
-    if(file){
-      console.log("Dosya Adı:",file.name);
+
+    let imageUrl = null;
+    if (file) {
+      imageUrl = await uploadImage(file);
+      if (!imageUrl) {
+        alert("Resim yüklenemedi.");
+        return;
+      }
     }
 
-    // Clear form fields after submission
-    setFile(null);
-    setTextType("Makale");
-    setTags("");
-    setTitle("");
-    editorRef.current.clearContent();
+    const postData = {
+      postType: textType,
+      text: editorContent,
+      title: title,
+      tags: tags,
+      imgSrc: imageUrl
+    };
 
+    try {
+      const response = await fetch(`http://localhost:5001/api/admin/addpost`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      });
+      const data = await response.json();
+      console.log("Post başarıyla kaydedildi:", data);
+      // Formu temizle
+      setFile(null);
+      setTextType("Makale");
+      setTags("");
+      setTitle("");
+      editorRef.current.clearContent();
+    } catch (error) {
+      console.error("Post kaydedilemedi:", error);
+    }
   };
-
-
 
   return (
     <div className="flex flex-col gap-5 p-4">
@@ -59,7 +100,13 @@ const AddTextPage = () => {
         </button>
       </div>
       <div>
-        <input type="text" placeholder="Başlık" className="border p-3 w-full" value={title} onChange={(e)=>setTitle(e.target.value)}/>
+        <input
+          type="text"
+          placeholder="Başlık"
+          className="border p-3 w-full"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
       </div>
       <div>
         <RichTextEditor ref={editorRef} />

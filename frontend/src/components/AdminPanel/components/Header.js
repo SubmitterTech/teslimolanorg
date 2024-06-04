@@ -23,9 +23,9 @@ const Header = ({ toggleSidebar }) => {
             ></path>
           </svg>
         </button>
-        <h1 className="text-xl font-bold">Dashboard</h1>
+        <h1 className="text-xl font-bold">Yönetici Paneli</h1>
       </div>
-      <div>User Menu</div>
+      <div>Admin</div>
     </header>
   );
 };

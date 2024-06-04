@@ -5,6 +5,7 @@ const AddTextPage = () => {
   const [file, setFile] = useState(null);
   const [textType, setTextType] = useState("Makale");
   const [tags, setTags] = useState("");
+  const [title, setTitle] = useState("");
   const fileRef = useRef(null);
   const editorRef = useRef();
 
@@ -15,17 +16,26 @@ const AddTextPage = () => {
 
   const handleAddClick = () => {
     const editorContent = editorRef.current.getContent(); // RichTextEditor içeriğini al
+    console.log("Başlık:", title);
     console.log("Yazı Tipi:", textType);
     console.log("Etiketler:", tags);
     console.log("Editör İçeriği:", editorContent);
-
+    
     if(file){
       console.log("Dosya Adı:",file.name);
     }
+
+    // Clear form fields after submission
+    setFile(null);
+    setTextType("Makale");
+    setTags("");
+    setTitle("");
+    editorRef.current.clearContent();
+
   };
 
 
-  
+
   return (
     <div className="flex flex-col gap-5 p-4">
       <div className="flex justify-between">
@@ -47,6 +57,9 @@ const AddTextPage = () => {
         >
           EKLE
         </button>
+      </div>
+      <div>
+        <input type="text" placeholder="Başlık" className="border p-3 w-full" value={title} onChange={(e)=>setTitle(e.target.value)}/>
       </div>
       <div>
         <RichTextEditor ref={editorRef} />

@@ -7,6 +7,7 @@ const RichTextEditor = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     getContent: () => value,
+    clearContent: () => setValue(""),
   }));
 
   const modules = {

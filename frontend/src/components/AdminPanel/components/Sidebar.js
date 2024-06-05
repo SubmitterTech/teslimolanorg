@@ -46,19 +46,19 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div
-      className={`fixed inset-y-0 left-0 z-50 transform min-w-60 ${
+      className={`fixed inset-y-0 left-0 z-50 transform min-w-60 min-h-screen ${
         isOpen ? "translate-x-0" : "-translate-x-full"
-      } md:translate-x-0 md:static md:w-64 h-screen bg-gray-800 text-white transition-transform duration-200 ease-in-out`}
+      } md:translate-x-0 md:static md:w-64 bg-gray-800 text-white transition-transform duration-200 ease-in-out`}
     >
-      <div className="p-4">
-        <div className="flex justify-end">
-          <button onClick={toggleSidebar} className="md:hidden mb-2">
+      <div className="p-4 h-full flex flex-col">
+        <div className="flex justify-end md:hidden mb-2">
+          <button onClick={toggleSidebar}>
             <FontAwesomeIcon icon={faTimes} />
           </button>
         </div>
 
         <h1 className="text-lg font-bold">Yönetici Paneli</h1>
-        <nav className="mt-4">
+        <nav className="mt-4 flex-grow">
           <ul>
             {menus.map(menu => (
               <li key={menu.name}>
@@ -68,8 +68,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                       onClick={() => toggleMenu(menu.name)}
                       className="block w-full text-left p-2 rounded hover:bg-gray-700"
                     >
-                      <div>
-                        <FontAwesomeIcon icon={menu.icon} className="w-6" /><span className="mr-2">{menu.name}</span>
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <FontAwesomeIcon icon={menu.icon} className="w-6 inline-block" />
+                          <span className="ml-2">{menu.name}</span>
+                        </div>
                         <FontAwesomeIcon
                           icon={faChevronDown}
                           className={`transition-transform ${
@@ -100,7 +103,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                     className="block p-2 rounded hover:bg-gray-700"
                     onClick={toggleSidebar}
                   >
-                    <FontAwesomeIcon icon={menu.icon} className="w-6" /><span>{menu.name}</span>
+                    <FontAwesomeIcon icon={menu.icon} className="w-6 inline-block" />
+                    <span className="ml-2">{menu.name}</span>
                   </Link>
                 )}
               </li>

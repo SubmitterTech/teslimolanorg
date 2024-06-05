@@ -6,6 +6,8 @@ import Profile from './pages/Profile';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import AddTextPage from './pages/AddTextPage';
+import ArticlesPage from './pages/ArticlesPage';
+import VideosPage from './pages/VideosPage';
 
 const AdminPanel = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +27,8 @@ const AdminPanel = () => {
             <Route path="/settings" element={<Settings />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/makale" element={<AddTextPage/>} />
+            <Route path='/makaleler' element={<ArticlesPage/>}/>
+            <Route path='/videolar' element={<VideosPage/>}/>
           </Routes>
         </main>
       </div>

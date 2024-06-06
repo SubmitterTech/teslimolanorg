@@ -20,6 +20,9 @@ const PostList = ({ postType, title, fetchUrl }) => {
   }, [fetchUrl, postType]);
 
   const handleDelete = async (id) => {
+    const isConfirmed = window.confirm("Bu yazıyı silmek istediğinizden emin misiniz?");
+    if (!isConfirmed) return;
+
     try {
       const response = await fetch(`${fetchUrl}/${id}`, {
         method: 'DELETE'
@@ -59,7 +62,7 @@ const PostList = ({ postType, title, fetchUrl }) => {
                 </div>
               </div>
               <div className="flex flex-col justify-center items-center md:items-start">
-                <Link to={`/edit/${postType}/${post._id}`} className="bg-blue-500 text-white px-4 py-2 rounded mb-2">
+                <Link to={`/admin/yazilar/${postType}/${post._id}`} className="bg-blue-500 text-white px-4 py-2 rounded mb-2">
                   Düzenle
                 </Link>
                 <button onClick={() => handleDelete(post._id)} className="bg-red-500 text-white px-4 py-2 rounded">

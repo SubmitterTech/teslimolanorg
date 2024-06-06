@@ -5,9 +5,9 @@ import PostList from '../components/PostList';
 const ArticlesPage = () => {
   return (
     <PostList
-      postType="makale"
+      postType="Makale"
       title="Tüm Makaleler"
-      fetchUrl="http://localhost:5001/api/admin/yazilar/Makale"
+      fetchUrl="http://localhost:5001/api/admin/yazilar"
     />
   );
 };

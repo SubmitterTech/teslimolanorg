@@ -8,7 +8,7 @@ const PostList = ({ postType, title, fetchUrl }) => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(fetchUrl);
+        const response = await fetch(`${fetchUrl}/${postType}`);
         const data = await response.json();
         setPosts(data);
       } catch (error) {
@@ -18,6 +18,21 @@ const PostList = ({ postType, title, fetchUrl }) => {
 
     fetchPosts();
   }, [fetchUrl, postType]);
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`${fetchUrl}/${id}`, {
+        method: 'DELETE'
+      });
+      if (response.ok) {
+        setPosts(posts.filter(post => post._id !== id));
+      } else {
+        console.error('Failed to delete the post');
+      }
+    } catch (error) {
+      console.error('Error deleting the post:', error);
+    }
+  };
 
   return (
     <div className="flex flex-col md:justify-center md:items-center dark:bg-black w-full">
@@ -31,7 +46,7 @@ const PostList = ({ postType, title, fetchUrl }) => {
                   <img src={post.imgSrc || '/default-image.png'} alt={post.title} />
                 </Link>
               </div>
-              <div>
+              <div className="flex-1">
                 <h1 className="text-gray-900 dark:text-white font-semibold text-xl">
                   <Link to={`/${postType}/${post._id}`}>{post.title}</Link>
                 </h1>
@@ -42,6 +57,14 @@ const PostList = ({ postType, title, fetchUrl }) => {
                     to={`/${postType}/${post._id}`}
                   />
                 </div>
+              </div>
+              <div className="flex flex-col justify-center items-center md:items-start">
+                <Link to={`/edit/${postType}/${post._id}`} className="bg-blue-500 text-white px-4 py-2 rounded mb-2">
+                  Düzenle
+                </Link>
+                <button onClick={() => handleDelete(post._id)} className="bg-red-500 text-white px-4 py-2 rounded">
+                  Sil
+                </button>
               </div>
             </div>
           </div>

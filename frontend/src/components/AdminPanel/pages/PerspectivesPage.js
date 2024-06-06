@@ -4,9 +4,9 @@ import PostList from '../components/PostList'
 const PerspectivesPage = () => {
   return (
     <PostList 
-    postType="perspektif"
+    postType="Perspektif"
     title="Tüm Perspektifler"
-    fetchUrl="http://localhost:5001/api/admin/yazilar/Perspektif"
+    fetchUrl="http://localhost:5001/api/admin/yazilar"
     />
   )
 }

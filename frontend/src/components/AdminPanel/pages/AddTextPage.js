@@ -40,6 +40,9 @@ const AddTextPage = () => {
 
     if (title === "" || editorContent === "" || tags === "") {
       setPostSubmit({ submit: true, state: "empty" });
+      setTimeout(() => {
+        setPostSubmit({ submit: false, state: "" });
+      }, 5000);
       return;
     }
 
@@ -80,6 +83,10 @@ const AddTextPage = () => {
     } catch (error) {
       setPostSubmit({ submit: true, state: "error" });
       console.error("Post kaydedilemedi:", error);
+    } finally {
+      setTimeout(() => {
+        setPostSubmit({ submit: false, state: "" });
+      }, 5000);
     }
   };
 

@@ -1,9 +1,13 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 const RichTextEditor = forwardRef((props, ref) => {
   const [value, setValue] = useState('');
+
+  useEffect(() => {
+    setValue(props.initialContent || '');
+  }, [props.initialContent]);
 
   useImperativeHandle(ref, () => ({
     getContent: () => value,

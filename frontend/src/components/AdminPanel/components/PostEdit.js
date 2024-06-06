@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+import { message } from 'antd';
 import RichTextEditor from "../components/RichTextEditor";
 
 const PostEdit = () => {
@@ -54,16 +55,12 @@ const PostEdit = () => {
 
   const handleUpdateClick = async () => {
     const editorContent = editorRef.current.getContent();
-    console.log("Başlık:", title);
-    console.log("Yazı Tipi:", textType);
-    console.log("Etiketler:", tags);
-    console.log("Editör İçeriği:", editorContent);
 
     let imageUrl = file && file.url ? file.url : null;
     if (file && !file.url) {
       imageUrl = await uploadImage(file);
       if (!imageUrl) {
-        alert("Resim yüklenemedi.");
+        message.error("Resim yüklenemedi.");
         return;
       }
     }
@@ -85,14 +82,11 @@ const PostEdit = () => {
         body: JSON.stringify(postData),
       });
       const data = await response.json();
+      message.success("Post başarıyla güncellendi.");
       console.log("Post başarıyla güncellendi:", data);
-      // Formu temizle
-      setFile(null);
-      setTextType("Makale");
-      setTags("");
-      setTitle("");
-      editorRef.current.clearContent();
+
     } catch (error) {
+      message.error("Post güncellenemedi.");
       console.error("Post güncellenemedi:", error);
     }
   };

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import RichTextEditor from "../components/RichTextEditor";
+import { message } from 'antd';
 
 const AddTextPage = () => {
   const [file, setFile] = useState(null);
@@ -8,11 +9,6 @@ const AddTextPage = () => {
   const [title, setTitle] = useState("");
   const fileRef = useRef(null);
   const editorRef = useRef();
-  const [postSubmit, setPostSubmit] = useState({
-    submit: false,
-    state: "",
-  });
-
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
@@ -39,10 +35,7 @@ const AddTextPage = () => {
     const editorContent = editorRef.current.getContent();
 
     if (title === "" || editorContent === "" || tags === "") {
-      setPostSubmit({ submit: true, state: "empty" });
-      setTimeout(() => {
-        setPostSubmit({ submit: false, state: "" });
-      }, 5000);
+      message.warning("Gerekli alanları doldurun.")
       return;
     }
 
@@ -72,7 +65,7 @@ const AddTextPage = () => {
         body: JSON.stringify(postData),
       });
       const data = await response.json();
-      setPostSubmit({ submit: true, state: "ok" });
+      message.success("Yazı eklendi.");
       console.log("Post başarıyla kaydedildi:", data);
       // Formu temizle
       setFile(null);
@@ -81,35 +74,13 @@ const AddTextPage = () => {
       setTitle("");
       editorRef.current.clearContent();
     } catch (error) {
-      setPostSubmit({ submit: true, state: "error" });
+      message.error("Yazı ekleme işlemi başarısız..");
       console.error("Post kaydedilemedi:", error);
-    } finally {
-      setTimeout(() => {
-        setPostSubmit({ submit: false, state: "" });
-      }, 5000);
     }
   };
 
   return (
     <div className="flex flex-col gap-5 p-4">
-      {postSubmit.submit && postSubmit.state === "ok" && (
-        <div className="bg-green-600 p-1 text-white text-center rounded">
-          Yazı eklendi.
-        </div>
-      )}
-
-      {postSubmit.submit && postSubmit.state === "error" && (
-        <div className="bg-red-500 p-1 text-white text-center rounded">
-          Hata! Yazı kayıt edilemedi.
-        </div>
-      )}
-
-      {postSubmit.submit && postSubmit.state === "empty" && (
-        <div className="bg-slate-600 p-1 text-white text-center rounded">
-          Başlık, metin ve etiketler boş bırakılamaz.
-        </div>
-      )}
-
       <div className="flex justify-between">
         <div>
           <span className="mr-3">Yazı Tipi:</span>

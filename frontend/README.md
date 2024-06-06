@@ -71,3 +71,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 npm i dompurify dotenv quill swiper
+npm install antd --save

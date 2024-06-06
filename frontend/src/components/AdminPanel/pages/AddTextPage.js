@@ -8,7 +8,10 @@ const AddTextPage = () => {
   const [title, setTitle] = useState("");
   const fileRef = useRef(null);
   const editorRef = useRef();
-
+  const [postSubmit, setPostSubmit] = useState({
+    submit: false,
+    state: "",
+  });
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -34,10 +37,11 @@ const AddTextPage = () => {
 
   const handleAddClick = async () => {
     const editorContent = editorRef.current.getContent();
-    console.log("Başlık:", title);
-    console.log("Yazı Tipi:", textType);
-    console.log("Etiketler:", tags);
-    console.log("Editör İçeriği:", editorContent);
+
+    if (title === "" || editorContent === "" || tags === "") {
+      setPostSubmit({ submit: true, state: "empty" });
+      return;
+    }
 
     let imageUrl = null;
     if (file) {
@@ -53,7 +57,7 @@ const AddTextPage = () => {
       text: editorContent,
       title: title,
       tags: tags,
-      imgSrc: imageUrl
+      imgSrc: imageUrl,
     };
 
     try {
@@ -65,6 +69,7 @@ const AddTextPage = () => {
         body: JSON.stringify(postData),
       });
       const data = await response.json();
+      setPostSubmit({ submit: true, state: "ok" });
       console.log("Post başarıyla kaydedildi:", data);
       // Formu temizle
       setFile(null);
@@ -73,12 +78,31 @@ const AddTextPage = () => {
       setTitle("");
       editorRef.current.clearContent();
     } catch (error) {
+      setPostSubmit({ submit: true, state: "error" });
       console.error("Post kaydedilemedi:", error);
     }
   };
 
   return (
     <div className="flex flex-col gap-5 p-4">
+      {postSubmit.submit && postSubmit.state === "ok" && (
+        <div className="bg-green-600 p-1 text-white text-center rounded">
+          Yazı eklendi.
+        </div>
+      )}
+
+      {postSubmit.submit && postSubmit.state === "error" && (
+        <div className="bg-red-500 p-1 text-white text-center rounded">
+          Hata! Yazı kayıt edilemedi.
+        </div>
+      )}
+
+      {postSubmit.submit && postSubmit.state === "empty" && (
+        <div className="bg-slate-600 p-1 text-white text-center rounded">
+          Başlık, metin ve etiketler boş bırakılamaz.
+        </div>
+      )}
+
       <div className="flex justify-between">
         <div>
           <span className="mr-3">Yazı Tipi:</span>
@@ -121,7 +145,7 @@ const AddTextPage = () => {
             onChange={handleFileChange}
           />
           <button
-            className="p-3 bg-cyan-700 text-white rounded max-w-40 max-h-12 "
+            className="p-3 bg-cyan-700 text-white rounded max-w-40 max-h-12"
             onClick={() => fileRef.current.click()}
           >
             Kapak Fotoğrafı
@@ -129,7 +153,7 @@ const AddTextPage = () => {
         </div>
         <input
           type="text"
-          placeholder="Etiketler"
+          placeholder="etiket1,etiket2"
           className="border p-3 w-full md:w-72"
           value={tags}
           onChange={(e) => setTags(e.target.value)}

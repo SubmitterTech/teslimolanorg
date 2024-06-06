@@ -27,12 +27,12 @@ exports.getPosts= async(req,res)=>{
   }
 }
 
-exports.getPostWithType = async (req,res) => {
+exports.getPostWithType = async (req, res) => {
   try {
-    const type = req.body.postType;
-    const post = await postModel.find({postType:type});
+    const type = req.params.postType;
+    const post = await postModel.find({ postType: type });
     res.status(200).json(post);
   } catch (error) {
-    res.status(500).json({message:error.message});
+    res.status(500).json({ message: error.message });
   }
-}
+};

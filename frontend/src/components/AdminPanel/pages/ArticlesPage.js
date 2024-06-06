@@ -8,7 +8,7 @@ const ArticlesPage = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/admin/yazilar');
+        const response = await fetch('http://localhost:5001/api/admin/yazilar/Makale');
         const data = await response.json();
         setArticles(data);
       } catch (error) {

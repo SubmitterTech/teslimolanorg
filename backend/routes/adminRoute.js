@@ -9,7 +9,8 @@ router.post('/admin/addpost', createPost);
 
 router.get('/admin/yazilar',getPosts);
 
-router.post('/admin/yazilars',getPostWithType);
+
+router.get('/admin/yazilar/:postType', getPostWithType);
 
 router.get('/admin', (req, res) => {
   res.send('Admin paneline hoşgeldiniz.');

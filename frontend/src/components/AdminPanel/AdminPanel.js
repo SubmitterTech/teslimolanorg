@@ -9,6 +9,7 @@ import AddTextPage from './pages/AddTextPage';
 import ArticlesPage from './pages/ArticlesPage';
 import VideosPage from './pages/VideosPage';
 import PerspectivesPage from './pages/PerspectivesPage';
+import PostEdit from './components/PostEdit';
 
 const AdminPanel = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +32,7 @@ const AdminPanel = () => {
             <Route path='/makaleler' element={<ArticlesPage/>}/>
             <Route path='/perspektifler' element={<PerspectivesPage/>}/>
             <Route path='/videolar' element={<VideosPage/>}/>
+            <Route path='/yazilar/:id' element={<PostEdit/>}/>
           </Routes>
         </main>
       </div>

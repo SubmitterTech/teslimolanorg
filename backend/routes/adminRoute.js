@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const upload = require('../config/multerConfig');
-const { uploadFile, createPost, getPosts, getPostWithType, deletePost } = require('../controllers/adminController');
+const { uploadFile, createPost, getPosts, getPostWithType, deletePost, updatePost, getPostById } = require('../controllers/adminController');
 
 router.post('/admin/upload', upload.single('file'), uploadFile);
 
@@ -11,7 +11,9 @@ router.get('/admin/yazilar',getPosts);
 
 router.get('/admin/yazilar/:postType', getPostWithType);
 
-router.delete('/admin/yazilar/:id', deletePost);
+router.delete('/admin/yazilar/sil/:id', deletePost);
+router.get('/admin/yazilar/id/:id', getPostById);
+router.put('/admin/yazilar/duzenle/:id', updatePost);
 
 router.get('/admin', (req, res) => {
   res.send('Admin paneline hoşgeldiniz.');

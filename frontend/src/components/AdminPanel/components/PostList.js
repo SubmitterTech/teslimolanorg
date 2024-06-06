@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Modal } from 'antd';
 import ReadMore from "../../ReadMore/ReadMore";
+
+const { confirm } = Modal;
 
 const PostList = ({ postType, title, fetchUrl }) => {
   const [posts, setPosts] = useState([]);
@@ -20,21 +23,26 @@ const PostList = ({ postType, title, fetchUrl }) => {
   }, [fetchUrl, postType]);
 
   const handleDelete = async (id) => {
-    const isConfirmed = window.confirm("Bu yazıyı silmek istediğinizden emin misiniz?");
-    if (!isConfirmed) return;
-
-    try {
-      const response = await fetch(`${fetchUrl}/sil/${id}`, {
-        method: 'DELETE'
-      });
-      if (response.ok) {
-        setPosts(posts.filter(post => post._id !== id));
-      } else {
-        console.error('Failed to delete the post');
+    confirm({
+      title: "Bu yazıyı silmek istediğinizden emin misiniz?",
+      onOk: async () => {
+        try {
+          const response = await fetch(`${fetchUrl}/sil/${id}`, {
+            method: 'DELETE'
+          });
+          if (response.ok) {
+            setPosts(posts.filter(post => post._id !== id));
+          } else {
+            console.error('Failed to delete the post');
+          }
+        } catch (error) {
+          console.error('Error deleting the post:', error);
+        }
+      },
+      onCancel() {
+        console.log("Delete action cancelled");
       }
-    } catch (error) {
-      console.error('Error deleting the post:', error);
-    }
+    });
   };
 
   return (

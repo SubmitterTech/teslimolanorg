@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import AddTextPage from './pages/AddTextPage';
 import ArticlesPage from './pages/ArticlesPage';
+import SocialMedia from './pages/SocialMedia';
 import VideosPage from './pages/VideosPage';
 import PerspectivesPage from './pages/PerspectivesPage';
 import PostEdit from './components/PostEdit';
@@ -32,6 +33,7 @@ const AdminPanel = () => {
             <Route path='/makaleler' element={<ArticlesPage/>}/>
             <Route path='/perspektifler' element={<PerspectivesPage/>}/>
             <Route path='/videolar' element={<VideosPage/>}/>
+            <Route path='/ayarlar/sosyalmedya' element={<SocialMedia/>}/>
             <Route path='/yazilar/:id' element={<PostEdit/>}/>
           </Routes>
         </main>

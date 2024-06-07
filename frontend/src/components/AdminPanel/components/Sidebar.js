@@ -14,7 +14,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     { name: "Profil", icon: faUser, path: "/admin/profile", subMenus: [] },
     { name: "Ayarlar", icon: faGear, path: "#", subMenus: [
       { name: "Tema", path: "/admin/settings/theme" },
-      { name: "Kullanıcı", path: "/admin/settings/profile" },
+      { name: "Sosyal Medya", path: "/admin/ayarlar/sosyalmedya" },
     ] },
     { name: "Yazı Ekle", icon: faPen, path: "/admin/makale", subMenus: [] },
   ]);

@@ -34,3 +34,17 @@ exports.updateConfig = async (req, res) => {
     res.status(400).send(error);
   }
 };
+
+exports.getConfig = async (req, res) => {
+  try {
+    const config = await Config.findOne({ name: req.params.name });
+
+    if (!config) {
+      return res.status(404).send();
+    }
+
+    res.send(config);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const accountsSchema = new mongoose.Schema({
   name: {
@@ -22,10 +23,29 @@ const accountsSchema = new mongoose.Schema({
     enum: ['admin', 'user'],
     default: 'user',
     required: [true, 'Role is required'],
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   }
-},{timestamps:true});
+});
 
-//E-posta için benzersiz index sağlanması
+// E-posta için benzersiz index sağlanması
 accountsSchema.index({ email: 1 }, { unique: true });
+
+// Parolayı kaydetmeden önce hashle
+accountsSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    return next();
+  }
+
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = mongoose.model('AccountsModel', accountsSchema);

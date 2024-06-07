@@ -3,7 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const adminRoute = require('./routes/adminRoute');
-const configRouter = require('./routes/configRoute')
+const configRoute = require('./routes/configRoute')
+const userRoute = require('./routes/userRoute')
 const connectDB = require('./config/db');
 
 const app = express();
@@ -16,7 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 connectDB();
 
 app.use('/api',adminRoute);
-app.use('/api',configRouter)
+app.use('/api',configRoute)
+app.use('/api',userRoute)
 
 
 app.listen(port, () => {

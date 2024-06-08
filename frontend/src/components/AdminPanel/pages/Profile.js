@@ -12,7 +12,7 @@ const Profile = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5001/api/admin/updateEmail', {
+      const response = await fetch('http://localhost:5001/api/admin/kullanici/guncelle/email', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -41,12 +41,13 @@ const Profile = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5001/api/admin/updatePassword', {
+      const response = await fetch('http://localhost:5001/api/admin/kullanici/guncelle/parola', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          currentEmail: values.currentEmail,
           currentPassword: values.currentPassword,
           newPassword: values.newPassword,
         }),
@@ -65,7 +66,6 @@ const Profile = () => {
 
   return (
     <div>
-      
       <Form
         form={emailForm}
         layout="vertical"
@@ -91,7 +91,7 @@ const Profile = () => {
         </Form.Item>
 
         <Form.Item
-          label="E-Posta"
+          label="Yeni E-Posta"
           name="newEmail"
           rules={[
             {
@@ -108,7 +108,7 @@ const Profile = () => {
         </Form.Item>
 
         <Form.Item
-          label="E-Posta Onay"
+          label="Yeni E-Posta Onay"
           name="confirmEmail"
           dependencies={['newEmail']}
           rules={[
@@ -142,6 +142,23 @@ const Profile = () => {
         onFinish={updatePassword}
       >
         <h3 className="text-xl font-semibold mb-4">Parola Güncelle</h3>
+        <Form.Item
+          label="E-Posta"
+          name="currentEmail"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your email!',
+            },
+            {
+              type: 'email',
+              message: 'Please enter a valid email!',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
         <Form.Item
           label="Varsayılan Parola"
           name="currentPassword"

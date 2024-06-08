@@ -18,7 +18,7 @@ connectDB();
 
 app.use('/api',adminRoute);
 app.use('/api',configRoute)
-app.use('/api',userRoute)
+app.use('/api/admin',userRoute)
 
 
 app.listen(port, () => {

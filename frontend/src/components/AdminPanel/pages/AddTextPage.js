@@ -9,6 +9,7 @@ const AddTextPage = () => {
   const [title, setTitle] = useState("");
   const fileRef = useRef(null);
   const editorRef = useRef();
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
@@ -35,7 +36,7 @@ const AddTextPage = () => {
     const editorContent = editorRef.current.getContent();
 
     if (title === "" || editorContent === "" || tags === "") {
-      message.warning("Gerekli alanları doldurun.")
+      message.warning("Gerekli alanları doldurun.");
       return;
     }
 
@@ -74,7 +75,7 @@ const AddTextPage = () => {
       setTitle("");
       editorRef.current.clearContent();
     } catch (error) {
-      message.error("Yazı ekleme işlemi başarısız..");
+      message.error("Yazı ekleme işlemi başarısız.");
       console.error("Post kaydedilemedi:", error);
     }
   };

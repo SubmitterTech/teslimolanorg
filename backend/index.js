@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 connectDB();
 
-app.use('/api',adminRoute);
+app.use('/api/admin',adminRoute);
 app.use('/api',configRoute)
 app.use('/api/admin',userRoute)
 

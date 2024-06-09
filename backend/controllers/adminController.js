@@ -18,14 +18,14 @@ exports.createPost = async (req, res) => {
   }
 };
 
-exports.getPosts= async(req,res)=>{
+exports.getPosts = async (req, res) => {
   try {
     const allPosts = await postModel.find().sort({ createdAt: -1 }); // oluşturulma tarihine göre tersten sıralar
     res.status(200).json(allPosts);
   } catch (error) {
     res.status(500).json({message: error.message});
   }
-}
+};
 
 exports.getPostWithType = async (req, res) => {
   try {
@@ -49,7 +49,6 @@ exports.getPostById = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
 
 exports.updatePost = async (req, res) => {
   try {

@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const adminRoute = require('./routes/adminRoute');
 const configRoute = require('./routes/configRoute')
 const userRoute = require('./routes/userRoute')
+const postsRoute = require('./routes/postsRoute')
 const connectDB = require('./config/db');
 
 const app = express();
@@ -18,7 +19,8 @@ connectDB();
 
 app.use('/api/admin',adminRoute);
 app.use('/api',configRoute)
-app.use('/api/admin',userRoute)
+app.use('/api/admin',userRoute);
+app.use('/api',postsRoute);
 
 
 app.listen(port, () => {

@@ -1,39 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 import { Link } from "react-router-dom";
 
 const FeaturedArticles = () => {
-  const articles = [
-    {
-      image: "sadece-fatiha.png",
-      title: "Namazda Ayaktayken Neden Sadece Fatiha Okumalıyız",
-      description:
-        "Namazda ayakta dururken neden sadece Fatiha suresini okuduğumuzu açıklayan makale.",
-      linkSrc: "/makale/namazda-ayaktayken-neden-sadece-fatiha-okumaliyiz",
-    },
-    {
-      image: "si̇te-banners.png",
-      title:
-        "Çevirilerde neden “Allah, İslam ve Müslüman” kelimeleri yerine “Tanrı, Teslimiyet ve Teslim Olan” kelimelerini kullanıyoruz.",
-      description:
-        "Çevirilerde neden bu kelimelerin tercih edildiğini açıklayan makale.",
-      linkSrc: "/",
-    },
-    {
-      image: "teslimiyete-karsi-kurancilik.png",
-      title: "Teslimiyet'e Karşı Kuran Müslümanlığı",
-      description:
-        "Teslimiyet kavramına karşı Kur'an Müslümanlığının ne olduğunu açıklayan makale.",
-      linkSrc: "/",
-    },
-    {
-      image: "sadece-fatiha.png",
-      title: "Teslimiyet'e Karşı Kuran Müslümanlığı",
-      description:
-        "Teslimiyet kavramına karşı Kur'an Müslümanlığının ne olduğunu açıklayan makale.",
-      linkSrc: "/",
-    },
-  ];
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const response = await fetch('http://localhost:5001/api/makaleler');
+        const data = await response.json();
+        setArticles(data);
+      } catch (error) {
+        console.error("Failed to fetch articles:", error);
+      }
+    };
+
+    fetchArticles();
+  }, []);
 
   return (
     <div className="flex flex-col p-3">
@@ -45,15 +29,15 @@ const FeaturedArticles = () => {
         {articles.map((article, index) => (
           <div key={index} className="m-4">
             <ArticleCard
-              image={article.image}
+              image={article.imgSrc}
               title={article.title}
-              linkSrc={article.linkSrc}
+              linkSrc={`/makale/${article._id}`}
             />
           </div>
         ))}
       </div>
       <div className="flex justify-center text-gray-900 dark:text-white">
-        <Link to='/makaleler'className="hover:text-emerald-600 border-b border-transparent hover:border-emerald-600 pb-1 transition-colors duration-300 ease-in-out">Tüm Makaleler</Link>
+        <Link to='/makaleler' className="hover:text-emerald-600 border-b border-transparent hover:border-emerald-600 pb-1 transition-colors duration-300 ease-in-out">Tüm Makaleler</Link>
       </div>
     </div>
   );

@@ -1,25 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Perspective from "./Perspective";
 import { Link } from "react-router-dom";
 
 const FeaturedPerspective = () => {
-  const perspectives = [
-    {
-      image: "sp_1990mart_1.png",
-      title: "Namazda Ayaktayken Neden Sadece Fatiha Okumalıyız",
-      description:
-        "Namazda ayakta dururken neden sadece Fatiha suresini okuduğumuzu açıklayan makale.",
-      linkSrc: "/perspektif",
-    },
-    {
-      image: "si̇te-banners.png",
-      title:
-        "Çevirilerde neden “Allah, İslam ve Müslüman” kelimeleri yerine “Tanrı, Teslimiyet ve Teslim Olan” kelimelerini kullanıyoruz.",
-      description:
-        "Çevirilerde neden bu kelimelerin tercih edildiğini açıklayan makale.",
-      linkSrc: "/",
-    },
-  ];
+  const [perspectives, setPerspectives] = useState([]);
+
+  useEffect(() => {
+    const fetchPerspectives = async () => {
+      try {
+        const response = await fetch('http://localhost:5001/api/perspektifler');
+        const data = await response.json();
+        setPerspectives(data);
+      } catch (error) {
+        console.error("Failed to fetch perspectives:", error);
+      }
+    };
+
+    fetchPerspectives();
+  }, []);
 
   return (
     <div className="flex flex-col mt-5 p-3">
@@ -28,12 +26,12 @@ const FeaturedPerspective = () => {
         <h1 className="text-3xl">Perspektif Yayınları</h1>
       </div>
       <div className="flex flex-col md:grid md:grid-cols-2 gap-4">
-        {perspectives.map((article, index) => (
+        {perspectives.map((perspective, index) => (
           <div key={index} className="m-4">
             <Perspective
-              image={article.image}
-              title={article.title}
-              linkSrc={article.linkSrc}
+              image={perspective.imgSrc}
+              title={perspective.title}
+              linkSrc={`/perspektif/${perspective._id}`}
             />
           </div>
         ))}

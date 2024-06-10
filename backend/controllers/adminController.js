@@ -1,23 +1,61 @@
 const postModel = require("../models/postModel");
 
-exports.uploadFile = (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ error: 'No file uploaded' });
-  }
-  res.json({ filePath: `/uploads/${req.file.filename}` });
+const makeSlug = (title) => {
+  const turkishMap = {
+    ç: 'c',
+    Ç: 'C',
+    ğ: 'g',
+    Ğ: 'G',
+    ı: 'i',
+    İ: 'I',
+    ö: 'o',
+    Ö: 'O',
+    ş: 's',
+    Ş: 'S',
+    ü: 'u',
+    Ü: 'U',
+  };
+
+  return title
+    .split('')
+    .map(char => turkishMap[char] || char)
+    .join('')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 };
+
 
 exports.createPost = async (req, res) => {
   try {
-    const newPost = new postModel(req.body);
+    const { title, text, imgSrc, tags, postType, verses, appendices, relatedArticles } = req.body;
+    const slug = makeSlug(title); 
+    const newPost = new postModel({ title, text, imgSrc, tags, postType, slug, verses, appendices, relatedArticles });
     const savedPost = await newPost.save();
-
     res.status(201).json(savedPost);
   } catch (error) {
-    res.status(500).json({ error: "Server error." });
+    res.status(500).json({ error: 'Server error.' });
   }
 };
 
+
+exports.updatePost = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, text, imgSrc, tags, postType, verses, appendices, relatedArticles } = req.body;
+    const slug = makeSlug(title);
+
+    const updatedPost = await postModel.findByIdAndUpdate(
+      id,
+      { title, text, imgSrc, tags, postType, slug, verses, appendices, relatedArticles },
+      { new: true }
+    );
+
+    res.status(200).json(updatedPost);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error.' });
+  }
+};
 exports.getPosts = async (req, res) => {
   try {
     const allPosts = await postModel.find().sort({ createdAt: -1 }); // oluşturulma tarihine göre tersten sıralar
@@ -50,19 +88,6 @@ exports.getPostById = async (req, res) => {
   }
 };
 
-exports.updatePost = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const updatedPost = await postModel.findByIdAndUpdate(id, req.body, { new: true });
-    if (!updatedPost) {
-      return res.status(404).json({ message: 'Post not found' });
-    }
-    res.status(200).json(updatedPost);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
 exports.deletePost = async (req, res) => {
   try {
     const { id } = req.params;
@@ -75,4 +100,12 @@ exports.deletePost = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.uploadFile = (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
+  res.json({ filePath: `/uploads/${req.file.filename}` });
+};
+  
 

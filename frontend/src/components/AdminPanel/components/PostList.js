@@ -59,7 +59,7 @@ const PostList = ({ postType, title, fetchUrl }) => {
           <div key={index} className="flex flex-col gap-10 border-t p-5">
             <div className="flex flex-col md:flex-row gap-5">
               <div className="md:max-w-[300px]">
-                <Link to={`/${postType}/${post._id}`}>
+                <Link to={`/${postType}/${post.slug}`}>
                   <img src={post.imgSrc || '/default-image.png'} alt={post.title} />
                 </Link>
               </div>

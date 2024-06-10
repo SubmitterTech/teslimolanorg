@@ -31,7 +31,7 @@ const FeaturedArticles = () => {
             <ArticleCard
               image={article.imgSrc}
               title={article.title}
-              linkSrc={`/makale/${article._id}`}
+              linkSrc={`/makale/${article.slug}`}
             />
           </div>
         ))}

@@ -18,3 +18,16 @@ exports.getFeaturedArticles = async (req,res) =>{
       res.status(500).json({ message: error.message });
     }
   };
+
+  exports.getPostContent = async (req,res) =>{
+    try {
+      const { slug } = req.params;
+      const article = await postModel.findOne({ slug }); // Slug'a göre makaleyi bul
+      if (!article) {
+        return res.status(404).json({ message: 'Article not found' });
+      }
+      res.json(article);
+    } catch (error) {
+      res.status(500).json({ message: 'Server error' });
+    }
+  }

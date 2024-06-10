@@ -15,7 +15,7 @@ const postSchema = mongoose.Schema(
       required: true,
     },
     tags: {
-      type: String,
+      type: [String], // Tags should be an array of strings
     },
     imgSrc: {
       type: String,
@@ -26,11 +26,13 @@ const postSchema = mongoose.Schema(
       required: true,
       unique: true,
     },
+    verses: [String], // Eklemeler
+    appendices: [{ link: String, title: String }], // Eklemeler
+    relatedArticles: [{ link: String, imgSrc: String, title: String }], // Eklemeler
   },
-
   {
     timestamps: true,
   }
 );
 
-module.exports = mongoose.model("postModel", postSchema);
+module.exports = mongoose.model("Post", postSchema);

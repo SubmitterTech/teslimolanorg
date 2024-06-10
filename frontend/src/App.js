@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/giris" element={<LoginPage />} />
         <Route
-          path="/makale/namazda-ayaktayken-neden-sadece-fatiha-okumaliyiz"
+          path="/makale/:slug"
           element={<Content />}
         />
         <Route path="/news-slider" element={<NewsSlider />} />

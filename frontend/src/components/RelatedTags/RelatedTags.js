@@ -1,19 +1,18 @@
-import { Link } from "react-router-dom";
-import { faTags } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
 
-const RelatedTags = ({tags}) => {
+const RelatedTags = ({ tags }) => {
+  if (!tags || tags.length === 0) {
+    return null;
+  }
+
   return (
-    <div id="related-tags" className="md:min-w-[400px]  bg-gray-900 p-5">
-      <div className="relatedTopics tagNavigation text-white flex flex-wrap gap-5 border-t border-b p-5">
-        {tags.map((tag,index)=>(
-            <Link key={index}
-            to={tag.link}
-            className="secondaryButton link tagNavigationItem flex items-center space-x-2"
-          >
-            <FontAwesomeIcon icon={faTags} />
-            <span className="buttonText">{tag.name}</span>
-          </Link>
+    <div className="related-tags my-5">
+      <h3 className="text-white text-lg font-bold mb-2">Etiketler</h3>
+      <div className="flex flex-wrap gap-2">
+        {tags.map((tag, index) => (
+          <span key={index} className="bg-gray-700 text-white py-1 px-3 rounded">
+            {tag}
+          </span>
         ))}
       </div>
     </div>

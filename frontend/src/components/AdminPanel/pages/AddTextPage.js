@@ -7,6 +7,8 @@ const AddTextPage = () => {
   const [textType, setTextType] = useState("Makale");
   const [tags, setTags] = useState("");
   const [title, setTitle] = useState("");
+  const [verses, setVerses] = useState([]);
+  const [appendices, setAppendices] = useState([{ link: "", title: "" }]);
   const fileRef = useRef(null);
   const editorRef = useRef();
 
@@ -14,6 +16,28 @@ const AddTextPage = () => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
   };
+
+  const handleAddAppendix = () => {
+    setAppendices([...appendices, { link: "", title: "" }]);
+  };
+
+  const handleRemoveAppendix = (index) => {
+    const newAppendices = appendices.filter((_, i) => i !== index);
+    setAppendices(newAppendices);
+  };
+
+  const handleVersesChange = (e, index) => {
+    const newVerses = [...verses];
+    newVerses[index] = e.target.value;
+    setVerses(newVerses);
+  };
+
+  const handleAppendixChange = (e, index, field) => {
+    const newAppendices = [...appendices];
+    newAppendices[index][field] = e.target.value;
+    setAppendices(newAppendices);
+  };
+
 
   const uploadImage = async (file) => {
     const formData = new FormData();
@@ -53,8 +77,10 @@ const AddTextPage = () => {
       postType: textType,
       text: editorContent,
       title: title,
-      tags: tags,
+      tags: tags.split(","),
       imgSrc: imageUrl,
+      verses: verses.filter(Boolean),
+      appendices: appendices.filter(a => a.title || a.link),
     };
 
     try {
@@ -73,6 +99,8 @@ const AddTextPage = () => {
       setTextType("Makale");
       setTags("");
       setTitle("");
+      setVerses([]);
+      setAppendices([{ link: "", title: "" }]);
       editorRef.current.clearContent();
     } catch (error) {
       message.error("Yazı ekleme işlemi başarısız.");
@@ -123,12 +151,7 @@ const AddTextPage = () => {
             accept="image/*"
             onChange={handleFileChange}
           />
-          <button
-            className="p-3 bg-cyan-700 text-white rounded max-w-40 max-h-12"
-            onClick={() => fileRef.current.click()}
-          >
-            Kapak Fotoğrafı
-          </button>
+          
         </div>
         <input
           type="text"
@@ -138,17 +161,76 @@ const AddTextPage = () => {
           onChange={(e) => setTags(e.target.value)}
         />
       </div>
-      <div className="flex justify-center md:justify-normal">
-        {file && (
-          <img
-            src={URL.createObjectURL(file)}
-            alt="Selected Cover"
-            className="h-32 w-32 object-fit mt-2"
+      <div className="mt-5">
+        <h3 className="text-white mb-2">Ayetler</h3>
+        {verses.map((verse, index) => (
+          <input
+            key={index}
+            type="text"
+            placeholder={`Ayet ${index + 1}`}
+            className="border p-3 w-full mb-2"
+            value={verse}
+            onChange={(e) => handleVersesChange(e, index)}
           />
-        )}
+        ))}
+        <button
+          className="p-2 bg-cyan-700 text-white rounded"
+          onClick={() => setVerses([...verses, ""])}
+        >
+          Ayet Ekle
+        </button>
       </div>
-    </div>
-  );
+      <div className="mt-5">
+        <h3 className="text-white mb-2">Ek Bilgiler</h3>
+        {appendices.map((appendix, index) => (
+          <div key={index} className="flex gap-2 mb-2">
+            <input
+              type="text"
+              placeholder="Link"
+              className="border p-3 w-1/2"
+              value={appendix.link}
+              onChange={(e) => handleAppendixChange(e, index, "link")}
+            />
+            <input
+              type="text"
+              placeholder="Başlık"
+              className="border p-3 w-1/2"
+              value={appendix.title}
+              onChange={(e) => handleAppendixChange(e, index, "title")}
+            />
+            <button
+              className="p-2 bg-red-700 text-white rounded"
+              onClick={() => handleRemoveAppendix(index)}
+            >
+              Sil
+            </button>
+          </div>
+        ))}
+        <button
+          className="p-2 bg-cyan-700 text-white rounded"
+          onClick={handleAddAppendix}
+        >
+          Ek Bilgi Ekle
+        </button>
+      </div>
+      
+  <button
+            className="p-3 bg-cyan-700 text-white rounded max-w-40 max-h-12"
+            onClick={() => fileRef.current.click()}
+          >
+            Kapak Fotoğrafı
+          </button>
+  <div className="flex justify-center md:justify-normal">
+    {file && (
+      <img
+        src={URL.createObjectURL(file)}
+        alt="Selected Cover"
+        className="h-32 w-32 object-fit mt-2"
+      />
+    )}
+  </div>
+</div>
+);
 };
 
 export default AddTextPage;

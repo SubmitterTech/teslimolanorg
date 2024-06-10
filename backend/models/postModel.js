@@ -28,7 +28,6 @@ const postSchema = mongoose.Schema(
     },
     verses: [String], // Eklemeler
     appendices: [{ link: String, title: String }], // Eklemeler
-    relatedArticles: [{ link: String, imgSrc: String, title: String }], // Eklemeler
   },
   {
     timestamps: true,

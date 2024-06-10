@@ -47,7 +47,7 @@ function Content() {
           </div>
           <RelatedVerses verses={article.verses || []} />
           <RelatedAppendices appendices={article.appendices || []} />
-          <RelatedTags tags={article.tags || []} />
+          <RelatedTags tags={article.tags || []} /> {/* tags doğru şekilde iletiliyor */}
         </div>
         <div
           id="right-side"

@@ -10,6 +10,8 @@ const PostEdit = () => {
   const [tags, setTags] = useState("");
   const [title, setTitle] = useState("");
   const [initialContent, setInitialContent] = useState("");
+  const [verses, setVerses] = useState([]);
+  const [appendices, setAppendices] = useState([{ link: "", title: "" }]);
   const fileRef = useRef(null);
   const editorRef = useRef();
 
@@ -20,8 +22,10 @@ const PostEdit = () => {
         const data = await response.json();
         setTitle(data.title);
         setTextType(data.postType);
-        setTags(data.tags);
+        setTags(data.tags.join(","));
         setInitialContent(data.text);
+        setVerses(data.verses || []);
+        setAppendices(data.appendices || [{ link: "", title: "" }]);
         setFile(data.imgSrc ? { name: data.imgSrc, url: data.imgSrc } : null);
       } catch (error) {
         console.error("Post bilgileri alınamadı:", error);
@@ -35,6 +39,28 @@ const PostEdit = () => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
   };
+
+  const handleAddAppendix = () => {
+    setAppendices([...appendices, { link: "", title: "" }]);
+  };
+
+  const handleRemoveAppendix = (index) => {
+    const newAppendices = appendices.filter((_, i) => i !== index);
+    setAppendices(newAppendices);
+  };
+
+  const handleVersesChange = (e, index) => {
+    const newVerses = [...verses];
+    newVerses[index] = e.target.value;
+    setVerses(newVerses);
+  };
+
+  const handleAppendixChange = (e, index, field) => {
+    const newAppendices = [...appendices];
+    newAppendices[index][field] = e.target.value;
+    setAppendices(newAppendices);
+  };
+
 
   const uploadImage = async (file) => {
     const formData = new FormData();
@@ -69,8 +95,10 @@ const PostEdit = () => {
       postType: textType,
       text: editorContent,
       title: title,
-      tags: tags,
-      imgSrc: imageUrl
+      tags: tags.split(","),
+      imgSrc: imageUrl,
+      verses: verses.filter(Boolean),
+      appendices: appendices.filter(a => a.title || a.link),
     };
 
     try {
@@ -149,6 +177,59 @@ const PostEdit = () => {
           onChange={(e) => setTags(e.target.value)}
         />
       </div>
+      <div className="mt-5">
+        <h3 className="text-white mb-2">Ayetler</h3>
+        {verses.map((verse, index) => (
+          <input
+            key={index}
+            type="text"
+            placeholder={`Ayet ${index + 1}`}
+            className="border p-3 w-full mb-2"
+            value={verse}
+            onChange={(e) => handleVersesChange(e, index)}
+          />
+        ))}
+        <button
+          className="p-2 bg-cyan-700 text-white rounded"
+          onClick={() => setVerses([...verses, ""])}
+        >
+          Ayet Ekle
+        </button>
+      </div>
+      <div className="mt-5">
+        <h3 className="text-white mb-2">Ek Bilgiler</h3>
+        {appendices.map((appendix, index) => (
+          <div key={index} className="flex gap-2 mb-2">
+            <input
+              type="text"
+              placeholder="Link"
+              className="border p-3 w-1/2"
+              value={appendix.link}
+              onChange={(e) => handleAppendixChange(e, index, "link")}
+            />
+            <input
+              type="text"
+              placeholder="Başlık"
+              className="border p-3 w-1/2"
+              value={appendix.title}
+              onChange={(e) => handleAppendixChange(e, index, "title")}
+            />
+            <button
+              className="p-2 bg-red-700 text-white rounded"
+              onClick={() => handleRemoveAppendix(index)}
+            >
+              Sil
+            </button>
+          </div>
+        ))}
+        <button
+          className="p-2 bg-cyan-700 text-white rounded"
+          onClick={handleAddAppendix}
+        >
+          Ek Bilgi Ekle
+        </button>
+      </div>
+      
       <div className="flex justify-center md:justify-normal">
         {file && (
           <img

@@ -312,7 +312,7 @@ const Header = () => {
           title="teslimolan anasayfaya gidin"
           className="flex items-center"
         >
-          <img src="logo03.jpg" className="h-12 md:h-20" alt="logo" />
+          <img src="/logo03.jpg" className="h-12 md:h-20" alt="logo" />
           <span className="text-gray-900 dark:text-white ml-3">
             Mutluluk Tanrıya Teslimiyettir
           </span>

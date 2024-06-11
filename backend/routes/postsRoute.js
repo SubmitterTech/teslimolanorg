@@ -6,5 +6,6 @@ const router = express.Router();
 router.get("/makaleler",getFeaturedArticles);
 router.get('/perspektifler', getFeaturedPerspectives);
 router.get('/makale/:slug',getPostContent);
+router.get('/perspektif/:slug',getPostContent);
 
 module.exports = router;

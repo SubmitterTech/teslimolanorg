@@ -31,7 +31,7 @@ const FeaturedPerspective = () => {
             <Perspective
               image={perspective.imgSrc}
               title={perspective.title}
-              linkSrc={`/perspektif/${perspective._id}`}
+              linkSrc={`/perspektif/${perspective.slug}`}
             />
           </div>
         ))}

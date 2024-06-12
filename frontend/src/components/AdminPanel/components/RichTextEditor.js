@@ -1,6 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import '@ckeditor/ckeditor5-build-classic/build/translations/tr.js';  // Türkçe dil desteği
 
 const RichTextEditor = forwardRef((props, ref) => {
   const [value, setValue] = useState('');
@@ -11,29 +12,34 @@ const RichTextEditor = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     getContent: () => value,
-    clearContent: () => setValue(""),
+    clearContent: () => setValue(''),
   }));
-
-  const modules = {
-    toolbar: [
-      [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
-      [{ size: [] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{ 'list': 'ordered' }, { 'list': 'bullet' },
-      { 'indent': '-1' }, { 'indent': '+1' }],
-      ['link', 'image'],
-      [{ 'color': [] }, { 'background': [] }],
-      ['clean']
-    ],
-  };
 
   return (
     <div className="mb-20 md:mb-10">
-      <ReactQuill 
-        value={value} 
-        onChange={setValue} 
-        modules={modules} 
-        className="-z-10 h-[400px]"
+      <CKEditor
+        editor={ClassicEditor}
+        config={{
+          language: 'tr',  // Dil ayarını Türkçe yapar
+          toolbar: [
+            'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|', 'insertTable', 'tableColumn', 'tableRow', 'mergeTableCells', '|', 'undo', 'redo'
+          ],
+          image: {
+            toolbar: [
+              'imageTextAlternative', 'imageStyle:full', 'imageStyle:side'
+            ]
+          },
+          table: {
+            contentToolbar: [
+              'tableColumn', 'tableRow', 'mergeTableCells'
+            ]
+          }
+        }}
+        data={value}
+        onChange={(event, editor) => {
+          const data = editor.getData();
+          setValue(data);
+        }}
       />
     </div>
   );

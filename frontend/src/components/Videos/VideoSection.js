@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVideo } from "@fortawesome/free-solid-svg-icons";
 const VideoSection = ({ image, title, linkSrc, featured }) => {
   return (
-    <Link to={linkSrc}>
+    <Link to={`/video/${linkSrc}`}>
       <div className="lg:max-w-lg">
         <div className="relative">
           <img src={image} alt="video" />

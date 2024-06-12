@@ -22,6 +22,7 @@ function App() {
         <Route path="/giris" element={<LoginPage />} />
         <Route path="/makale/:slug" element={<Content />} />
         <Route path="/perspektif/:slug" element={<PerspectiveContent/>} />
+        <Route path="/video/:slug" element={<VideoContent/>} />
         <Route path="/news-slider" element={<NewsSlider />} />
         <Route path="/perspektif" element={<PerspectiveContent />} />
         <Route path="/perspektifler" element={<AllPerspectives />} />

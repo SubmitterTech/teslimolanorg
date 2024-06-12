@@ -8,5 +8,6 @@ router.get('/perspektifler', getFeaturedPerspectives);
 router.get('/videolar',getFeaturedVideos);
 router.get('/makale/:slug',getPostContent);
 router.get('/perspektif/:slug',getPostContent);
+router.get('/video/:slug',getPostContent);
 
 module.exports = router;

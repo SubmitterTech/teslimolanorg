@@ -1,92 +1,61 @@
-import Directory from "..//Directory/Directory";
-import RelatedVerses from "../RelatedVerses/RelatedVerses"
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import RelatedArticlesRightPanel from "../RelatedArticles/RelatedArticleRightPanel";
+import RelatedVerses from "../RelatedVerses/RelatedVerses";
 import RelatedAppendices from "../RelatedAppendices/RelatedAppendices";
-import RelatedVideos from "../RelatedVideos/RelatedVideos";
 import RelatedTags from "../RelatedTags/RelatedTags";
+import Directory from "../Directory/Directory";
+import Footer from "../Footer/Footer";
 const VideoContent = () => {
-    const videoId="6l5oScSQbUQ?si=J8NVHhq6eZTKZRol";
-    const verses = [
-        "Anahtar (El-Fatiha) [1:1] ;En Lütufkâr, En Merhametli olan Tanrı’nın adıyla..",
-        "Anahtar (El-Fatiha) [1:1] ;En Lütufkâr, En Merhametli olan Tanrı’nın adıyla..",
-        "Anahtar (El-Fatiha) [1:1] ;En Lütufkâr, En Merhametli olan Tanrı’nın adıyla..",
-        "Anahtar (El-Fatiha) [1:1] ;En Lütufkâr, En Merhametli olan Tanrı’nın adıyla..",
-      ];
-      const appendices = [
-        {
-          link: "",
-          title: "Ek 15 - Dini Görevler: Tanrı’dan Bir Armağan",
-        },
-        {
-          link: "",
-          title: "Ek 16 - Dini Görevler: Tanrı’dan Bir Armağan",
-        },
-      ];
-      const videos = [
-        {
-          link: "/",
-          imgSrc: "hqdefault1.jpg",
-          title: "Kadim Mesaj Yeni Elçi (Reşad Halife)",
-        },
-        {
-          link: "/",
-          imgSrc: "hqdefault2.jpg",
-          title: "Reşad Halife ile Dünya Haber Bülteni",
-        },
-        {
-          link: "/",
-          imgSrc: "hqdefault3.jpg",
-          title: "Büyük Tartışma",
-        },
-      ];
-      const tags = [
-        {
-          link: "",
-          name: "reşathalife",
-        },
-        {
-          link: "",
-          name: "ondokuzmucizesi",
-        },
-        
-      ];
-  return (
-    <div className="w-full bg-black">
-      <div className="md:max-w-[1200px] bg-gray-700 m-auto">
-        <Directory />
-        <div className="md:py-5 px-10">
-          <div id="title">
-            <h1 className="text-white md:text-3xl">
-              Her Şeyi Tanrı Yapıyor (Reşad Halife)
-            </h1>
-          </div>
-          <div id="video-section" className="mt-5">
-            <div className="w-full flex justify-center items-center bg-gray-800 p-4">
-              <div
-                className="relative pb-9/16 h-0 w-full"
-                style={{ paddingBottom: "56.25%" }}
-              >
-                <iframe
-                  className="absolute top-0 left-0 w-full h-full"
-                  src={`https://www.youtube.com/embed/${videoId}`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title="YouTube video player"
-                ></iframe>
+    const {slug} = useParams(); //dinamik olan linkten parametreyi alır.
+    const [videos,setVideos] = useState([]);
+
+    useEffect(()=>{
+      const fethVideos = async () => {
+        try {
+          const response = await fetch(`http://localhost:5001/api/video/${slug}`)
+          const data = await response.json();
+          setVideos(data);
+        } catch (error) {
+          console.log("Error fetching videos",error);
+        }
+      }
+      fethVideos();
+    },[slug]);
+
+    if (!videos) {
+      return <div>Loading...</div>;
+    }
+    return (
+      <div className="flex justify-center items-center flex-col bg-black">
+        <div id="container" className="flex flex-col md:flex-row gap-3 px-5">
+          <div id="left-side" className="flex flex-col md:max-w-[800px]">
+            <Directory />
+            <div id="img-content">
+              <img src={`${videos.imgSrc}`} alt={videos.title} />
+            </div>
+            <div id="content-container" className="flex flex-col gap-5 mt-5">
+              <div id="title" className="text-white text-3xl font-bold">
+                {videos.title}
+              </div>
+              <div id="content-text" className="text-white">
+                <div dangerouslySetInnerHTML={{ __html: videos.text }} />
               </div>
             </div>
+            <RelatedVerses verses={videos.verses || []} />
+            <RelatedAppendices appendices={videos.appendices || []} />
+            <RelatedTags tags={videos.tags || []} /> {/* tags doğru şekilde iletiliyor */}
           </div>
-          <div id="video-content" className="m-5">
-                <p className="text-white">"Her Şeyi Tanrı Yapıyor" Konulu Cuma Hutbesi</p>
+          <div
+            id="right-side"
+            className="flex flex-col gap-5 md:min-w-[300px] md:max-w-[350px] h-[400px] p-3"
+          >
+            <RelatedArticlesRightPanel articles={videos.relatedArticles || []} />
           </div>
         </div>
-        <RelatedVerses verses={verses}/>
-        <RelatedAppendices appendices={appendices}/>
-        <RelatedVideos videos={videos}/>
-        <RelatedTags tags={tags}/>
+        <Footer />
       </div>
-    </div>
-  );
+    );
 };
 
 export default VideoContent;

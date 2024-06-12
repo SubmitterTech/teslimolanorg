@@ -28,7 +28,7 @@ const FeaturedVideos = () => {
       </div>
       {videos.length > 0 && (
         <div className="flex">
-          <Link to={videos[0].slug}>
+          <Link to={`/video/${videos[0].slug}`}>
             <div className="w-full">
               <div className="relative">
                 <img src={videos[0].imgSrc} alt="video" className="w-full" />

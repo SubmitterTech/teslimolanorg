@@ -1,7 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useState, useEffect } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import '@ckeditor/ckeditor5-build-classic/build/translations/tr.js';  // Türkçe dil desteği
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';  // CKEditor build yolunu kontrol edin
 
 const RichTextEditor = forwardRef((props, ref) => {
   const [value, setValue] = useState('');
@@ -20,9 +19,9 @@ const RichTextEditor = forwardRef((props, ref) => {
       <CKEditor
         editor={ClassicEditor}
         config={{
-          language: 'tr',  // Dil ayarını Türkçe yapar
+          language: 'tr',
           toolbar: [
-            'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|', 'insertTable', 'tableColumn', 'tableRow', 'mergeTableCells', '|', 'undo', 'redo'
+            'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|', 'insertTable', 'tableColumn', 'tableRow', 'mergeTableCells', '|', 'undo', 'redo', 'mediaEmbed'
           ],
           image: {
             toolbar: [

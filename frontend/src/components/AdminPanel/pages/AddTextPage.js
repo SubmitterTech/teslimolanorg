@@ -9,6 +9,7 @@ const AddTextPage = () => {
   const [title, setTitle] = useState("");
   const [verses, setVerses] = useState([]);
   const [appendices, setAppendices] = useState([{ link: "", title: "" }]);
+  const [videoUrl, setVideoUrl] = useState(""); // Video URL state
   const fileRef = useRef(null);
   const editorRef = useRef();
 
@@ -37,7 +38,6 @@ const AddTextPage = () => {
     newAppendices[index][field] = e.target.value;
     setAppendices(newAppendices);
   };
-
 
   const uploadImage = async (file) => {
     const formData = new FormData();
@@ -81,6 +81,7 @@ const AddTextPage = () => {
       imgSrc: imageUrl,
       verses: verses.filter(Boolean),
       appendices: appendices.filter(a => a.title || a.link),
+      videoUrl: videoUrl // Video URL ekle
     };
 
     try {
@@ -101,6 +102,7 @@ const AddTextPage = () => {
       setTitle("");
       setVerses([]);
       setAppendices([{ link: "", title: "" }]);
+      setVideoUrl(""); // Video URL temizle
       editorRef.current.clearContent();
     } catch (error) {
       message.error("Yazı ekleme işlemi başarısız.");
@@ -162,6 +164,15 @@ const AddTextPage = () => {
         />
       </div>
       <div className="mt-5">
+        <input
+          type="text"
+          placeholder="Video URL"
+          className="border p-3 w-full"
+          value={videoUrl}
+          onChange={(e) => setVideoUrl(e.target.value)}
+        />
+      </div>
+      <div className="mt-5">
         <h3 className="text-white mb-2">Ayetler</h3>
         {verses.map((verse, index) => (
           <input
@@ -214,23 +225,23 @@ const AddTextPage = () => {
         </button>
       </div>
       
-  <button
-            className="p-3 bg-cyan-700 text-white rounded max-w-40 max-h-12"
-            onClick={() => fileRef.current.click()}
-          >
-            Kapak Fotoğrafı
-          </button>
-  <div className="flex justify-center md:justify-normal">
-    {file && (
-      <img
-        src={URL.createObjectURL(file)}
-        alt="Selected Cover"
-        className="h-32 w-32 object-fit mt-2"
-      />
-    )}
-  </div>
-</div>
-);
+      <button
+        className="p-3 bg-cyan-700 text-white rounded max-w-40 max-h-12"
+        onClick={() => fileRef.current.click()}
+      >
+        Kapak Fotoğrafı
+      </button>
+      <div className="flex justify-center md:justify-normal">
+        {file && (
+          <img
+            src={URL.createObjectURL(file)}
+            alt="Selected Cover"
+            className="h-32 w-32 object-fit mt-2"
+          />
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default AddTextPage;

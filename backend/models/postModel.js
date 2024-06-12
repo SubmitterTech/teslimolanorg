@@ -28,6 +28,9 @@ const postSchema = mongoose.Schema(
     },
     verses: [String], // Eklemeler
     appendices: [{ link: String, title: String }], // Eklemeler
+    videoUrl: {
+      type: String, // Video URL'sini saklamak için eklenen alan
+    },
   },
   {
     timestamps: true,

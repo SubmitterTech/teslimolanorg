@@ -16,6 +16,7 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
+import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -36,7 +37,8 @@ ClassicEditor.builtinPlugins = [
   Paragraph,
   Table,
   TableToolbar,
-  MediaEmbed
+  MediaEmbed,
+  Base64UploadAdapter
 ];
 
 ClassicEditor.defaultConfig = {
@@ -56,9 +58,11 @@ ClassicEditor.defaultConfig = {
       'tableRow',
       'mergeTableCells',
       '|',
+      'imageUpload',  // Resim yükleme butonunu ekleyin
+      'mediaEmbed',
+      '|',
       'undo',
-      'redo',
-      'mediaEmbed'
+      'redo'
     ]
   },
   language: 'tr',

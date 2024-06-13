@@ -3,9 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const adminRoute = require('./routes/adminRoute');
-const configRoute = require('./routes/configRoute')
-const userRoute = require('./routes/userRoute')
-const postsRoute = require('./routes/postsRoute')
+const configRoute = require('./routes/configRoute');
+const userRoute = require('./routes/userRoute');
+const postsRoute = require('./routes/postsRoute');
 const connectDB = require('./config/db');
 
 const app = express();
@@ -17,11 +17,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 connectDB();
 
-app.use('/api/admin',adminRoute);
-app.use('/api',configRoute)
-app.use('/api/admin',userRoute);
-app.use('/api',postsRoute);
-
+app.use('/api/admin', adminRoute);
+app.use('/api', configRoute);
+app.use('/api/admin', userRoute);
+app.use('/api', postsRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

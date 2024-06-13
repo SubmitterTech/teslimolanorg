@@ -12,7 +12,51 @@ const AddTextPage = () => {
   const fileRef = useRef(null);
   const editorRef = useRef();
 
+  const extractBase64Images = (editorContent) => {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = editorContent;
+    const images = tempDiv.querySelectorAll("img");
 
+    const imagePromises = Array.from(images).map(async (img) => {
+      const base64 = img.src.split(",")[1];
+      const mimeType = img.src.match(/data:(.*?);/)[1];
+      const response = await uploadImage(base64, mimeType);
+      if (response) {
+        img.src = response;
+      }
+    });
+
+    return Promise.all(imagePromises).then(() => tempDiv.innerHTML);
+  };
+
+  const uploadImage = async (base64, mimeType) => {
+    const extension = mimeType.split('/')[1];
+    const uniqueFilename = `image_${Date.now()}_${Math.floor(Math.random() * 1000)}.${extension}`;
+    const formData = new FormData();
+    formData.append("file", base64ToFile(base64, uniqueFilename, mimeType));
+
+    try {
+      const response = await fetch(`http://localhost:5001/api/admin/upload`, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      return data.filePath;
+    } catch (error) {
+      console.error("Image upload failed:", error);
+      return null;
+    }
+  };
+
+  const base64ToFile = (base64, filename, mimeType) => {
+    const bstr = atob(base64);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mimeType });
+  };
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -40,26 +84,9 @@ const AddTextPage = () => {
     setAppendices(newAppendices);
   };
 
-  const uploadImage = async (file) => {
-    const formData = new FormData();
-    formData.append("file", file);
-
-    try {
-      const response = await fetch(`http://localhost:5001/api/admin/upload`, {
-        method: "POST",
-        body: formData,
-      });
-      const data = await response.json();
-      return data.filePath;
-    } catch (error) {
-      console.error("Image upload failed:", error);
-      return null;
-    }
-  };
-
   const handleAddClick = async () => {
     const editorContent = editorRef.current.getContent();
-    console.log("Editörde bulunan yazı",editorContent);
+    console.log("Editörde bulunan yazı", editorContent);
 
     if (title === "" || editorContent === "" || tags === "") {
       message.warning("Gerekli alanları doldurun.");
@@ -68,16 +95,30 @@ const AddTextPage = () => {
 
     let imageUrl = null;
     if (file) {
-      imageUrl = await uploadImage(file);
-      if (!imageUrl) {
-        alert("Resim yüklenemedi.");
-        return;
-      }
-    }
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = async () => {
+        const base64data = reader.result.split(",")[1];
+        const mimeType = file.type;
+        imageUrl = await uploadImage(base64data, mimeType);
+        if (!imageUrl) {
+          alert("Resim yüklenemedi.");
+          return;
+        }
 
+        const updatedContent = await extractBase64Images(editorContent);
+        await savePost(updatedContent, imageUrl);
+      };
+    } else {
+      const updatedContent = await extractBase64Images(editorContent);
+      await savePost(updatedContent, imageUrl);
+    }
+  };
+
+  const savePost = async (updatedContent, imageUrl) => {
     const postData = {
       postType: textType,
-      text: editorContent,
+      text: updatedContent,
       title: title,
       tags: tags.split(","),
       imgSrc: imageUrl,
@@ -153,7 +194,6 @@ const AddTextPage = () => {
             accept="image/*"
             onChange={handleFileChange}
           />
-          
         </div>
         <input
           type="text"
@@ -215,7 +255,6 @@ const AddTextPage = () => {
           Ek Bilgi Ekle
         </button>
       </div>
-      
       <button
         className="p-3 bg-cyan-700 text-white rounded max-w-40 max-h-12"
         onClick={() => fileRef.current.click()}

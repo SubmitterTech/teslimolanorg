@@ -25,7 +25,6 @@ const makeSlug = (title) => {
     .replace(/^-+|-+$/g, '');
 };
 
-
 exports.createPost = async (req, res) => {
   try {
     const { title, text, imgSrc, tags, postType, verses, appendices, relatedArticles } = req.body;
@@ -37,7 +36,6 @@ exports.createPost = async (req, res) => {
     res.status(500).json({ error: 'Server error.' });
   }
 };
-
 
 exports.updatePost = async (req, res) => {
   try {
@@ -56,6 +54,7 @@ exports.updatePost = async (req, res) => {
     res.status(500).json({ error: 'Server error.' });
   }
 };
+
 exports.getPosts = async (req, res) => {
   try {
     const allPosts = await postModel.find().sort({ createdAt: -1 }); // oluşturulma tarihine göre tersten sıralar
@@ -107,5 +106,3 @@ exports.uploadFile = (req, res) => {
   }
   res.json({ filePath: `/uploads/${req.file.filename}` });
 };
-  
-

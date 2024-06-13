@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import sanitizeHtml from "sanitize-html";
 import RelatedArticlesRightPanel from "../RelatedArticles/RelatedArticleRightPanel";
 import RelatedVerses from "../RelatedVerses/RelatedVerses";
 import RelatedAppendices from "../RelatedAppendices/RelatedAppendices";
@@ -24,6 +25,24 @@ const VideoContent = () => {
         fetchVideo();
     }, [slug]);
 
+    const convertOembedToIframe = (htmlContent) => {
+        const div = document.createElement("div");
+        div.innerHTML = htmlContent;
+        const oembedElements = div.querySelectorAll("oembed[url]");
+        oembedElements.forEach((el) => {
+            const url = el.getAttribute("url");
+            const iframe = document.createElement("iframe");
+            iframe.setAttribute("width", "560");
+            iframe.setAttribute("height", "315");
+            iframe.setAttribute("src", getEmbedUrl(url));
+            iframe.setAttribute("frameborder", "0");
+            iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture");
+            iframe.setAttribute("allowfullscreen", "true");
+            el.parentNode.replaceChild(iframe, el);
+        });
+        return div.innerHTML;
+    };
+
     const getEmbedUrl = (url) => {
         const youtubeId = url.split('v=')[1] || url.split('youtu.be/')[1];
         return youtubeId ? `https://www.youtube.com/embed/${youtubeId.split('?')[0]}` : url;
@@ -32,6 +51,14 @@ const VideoContent = () => {
     if (!video) {
         return <div>Loading...</div>;
     }
+
+    const sanitizedContent = sanitizeHtml(convertOembedToIframe(video.text), {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['iframe']),
+        allowedAttributes: {
+            ...sanitizeHtml.defaults.allowedAttributes,
+            iframe: ['src', 'width', 'height', 'frameborder', 'allow', 'allowfullscreen']
+        }
+    });
 
     return (
         <div className="flex justify-center items-center flex-col bg-black">
@@ -47,7 +74,7 @@ const VideoContent = () => {
                             {video.title}
                         </div>
                         <div id="content-text" className="text-white">
-                            <div dangerouslySetInnerHTML={{ __html: video.text }} />
+                            <div dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
                         </div>
                     </div>
                     {video.videoUrl && (

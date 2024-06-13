@@ -28,9 +28,9 @@ const makeSlug = (title) => {
 
 exports.createPost = async (req, res) => {
   try {
-    const { title, text, imgSrc, tags, postType, verses, appendices, relatedArticles,videoUrl } = req.body;
+    const { title, text, imgSrc, tags, postType, verses, appendices, relatedArticles } = req.body;
     const slug = makeSlug(title); 
-    const newPost = new postModel({ title, text, imgSrc, tags, postType, slug, verses, appendices, relatedArticles,videoUrl });
+    const newPost = new postModel({ title, text, imgSrc, tags, postType, slug, verses, appendices, relatedArticles });
     const savedPost = await newPost.save();
     res.status(201).json(savedPost);
   } catch (error) {

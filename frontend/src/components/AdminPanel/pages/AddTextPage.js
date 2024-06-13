@@ -9,9 +9,10 @@ const AddTextPage = () => {
   const [title, setTitle] = useState("");
   const [verses, setVerses] = useState([]);
   const [appendices, setAppendices] = useState([{ link: "", title: "" }]);
-  const [videoUrl, setVideoUrl] = useState(""); // Video URL state
   const fileRef = useRef(null);
   const editorRef = useRef();
+
+
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -58,6 +59,7 @@ const AddTextPage = () => {
 
   const handleAddClick = async () => {
     const editorContent = editorRef.current.getContent();
+    console.log("Editörde bulunan yazı",editorContent);
 
     if (title === "" || editorContent === "" || tags === "") {
       message.warning("Gerekli alanları doldurun.");
@@ -81,7 +83,6 @@ const AddTextPage = () => {
       imgSrc: imageUrl,
       verses: verses.filter(Boolean),
       appendices: appendices.filter(a => a.title || a.link),
-      videoUrl: videoUrl // Video URL ekle
     };
 
     try {
@@ -102,7 +103,6 @@ const AddTextPage = () => {
       setTitle("");
       setVerses([]);
       setAppendices([{ link: "", title: "" }]);
-      setVideoUrl(""); // Video URL temizle
       editorRef.current.clearContent();
     } catch (error) {
       message.error("Yazı ekleme işlemi başarısız.");
@@ -161,15 +161,6 @@ const AddTextPage = () => {
           className="border p-3 w-full md:w-72"
           value={tags}
           onChange={(e) => setTags(e.target.value)}
-        />
-      </div>
-      <div className="mt-5">
-        <input
-          type="text"
-          placeholder="Video URL"
-          className="border p-3 w-full"
-          value={videoUrl}
-          onChange={(e) => setVideoUrl(e.target.value)}
         />
       </div>
       <div className="mt-5">

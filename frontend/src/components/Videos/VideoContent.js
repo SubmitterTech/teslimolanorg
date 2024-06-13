@@ -65,9 +65,9 @@ const VideoContent = () => {
             <div id="container" className="flex flex-col md:flex-row gap-3 px-5">
                 <div id="left-side" className="flex flex-col md:max-w-[800px]">
                     <Directory />
-                    <div id="img-content">
+                   {/*  <div id="img-content">
                         <img src={`${video.imgSrc}`} alt={video.title} />
-                    </div>
+                    </div> */}
                     
                     <div id="content-container" className="flex flex-col gap-5 mt-5">
                         <div id="title" className="text-white text-3xl font-bold">

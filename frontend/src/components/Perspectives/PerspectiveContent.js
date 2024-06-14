@@ -30,7 +30,7 @@ function Perspective() {
   }
 
   return (
-    <div className="flex justify-center items-center flex-col bg-black">
+    <div className="flex justify-center items-center flex-col bg-gray-50 dark:bg-black">
       <div id="container" className="flex flex-col md:flex-row gap-3 px-5">
         <div id="left-side" className="flex flex-col md:max-w-[800px]">
           <Directory />
@@ -38,10 +38,10 @@ function Perspective() {
             <img src={`${perspectives.imgSrc}`} alt={perspectives.title} />
           </div>
           <div id="content-container" className="flex flex-col gap-5 mt-5">
-            <div id="title" className="text-white text-3xl font-bold">
+            <div id="title" className="text-gray-900 dark:text-white text-3xl font-bold">
               {perspectives.title}
             </div>
-            <div id="content-text" className="text-white">
+            <div id="content-text" className="text-gray-900 dark:text-white">
               <div dangerouslySetInnerHTML={{ __html: perspectives.text }} />
             </div>
           </div>

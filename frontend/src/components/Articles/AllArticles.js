@@ -26,10 +26,10 @@ const AllArticles = () => {
   ];
 
   return (
-    <div className="flex flex-col md:justify-center md:items-center bg-black w-full">
+    <div className="flex flex-col md:justify-center md:items-center bg-gray-50 dark:bg-black w-full">
       <div className="flex flex-col md:max-w-[1200px] md:w-full gap-5">
         <Directory />
-        <h1 className="text-3xl text-white p-5">Tüm Makaleler</h1>
+        <h1 className="text-3xl text-gray-900 dark:text-white p-5">Tüm Makaleler</h1>
         {articles.map((article, index) => (
           <div key={index} className="flex flex-col gap-10 border-t p-5">
             <div className="flex flex-col md:flex-row gap-5">
@@ -39,10 +39,10 @@ const AllArticles = () => {
                 </Link>
               </div>
               <div>
-                <h1 className="text-white font-semibold text-xl">
+                <h1 className="text-gray-900 dark:text-white font-semibold text-xl">
                   <Link to="">{article.articleTitle}</Link>
                 </h1>
-                <p className="text-white mt-5">
+                <p className="text-gray-900 dark:text-white mt-5">
                   <ReadMore
                     text={article.articleText}
                     limit={100}

@@ -7,7 +7,7 @@ const RelatedTags = ({ tags }) => {
 
   return (
     <div className="related-tags my-5">
-      <h3 className="text-white text-lg font-bold mb-2">Etiketler</h3>
+      <h3 className="text-gray-900 dark:text-white text-lg font-bold mb-2">Etiketler</h3>
       <div className="flex flex-wrap gap-2">
         {tags.map((tag, index) => (
           <span key={index} className="bg-gray-700 text-white py-1 px-3 rounded">

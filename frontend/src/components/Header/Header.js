@@ -46,6 +46,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import SubMenuItem from "./SubMenuItem";
 import { useTheme } from "../../context/ThemeContext";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -326,7 +327,17 @@ const Header = () => {
         </button>
         <div className="hidden md:flex md:gap-4 md:items-center">
           <div className="hidden md:flex items-center">
-            <a href="http://submissionperspective.org/" className="dark:text-white">
+            <Link to="/admin"
+              className="text-white p-2 rounded-lg bg-gray-700 hover:opacity-90"
+            >
+              Yönetici Paneli
+            </Link>
+          </div>
+          <div className="hidden md:flex items-center">
+            <a
+              href="http://submissionperspective.org/"
+              className="dark:text-white"
+            >
               ENGLISH
             </a>
           </div>

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faChevronDown, faHome, faUser, faGear, faPen, faFont } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faChevronDown, faHome, faUser, faGear, faPen, faFont, faEarthAmericas } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const [menus, setMenus] = useState([
+    { name: "Web Site", icon: faEarthAmericas, path: "/", subMenus: [] },
     { name: "Anasayfa", icon: faHome, path: "/admin", subMenus: [] },
     { name: "Yazı Ekle", icon: faPen, path: "/admin/makale", subMenus: [] },
     { name: "Yazılar", icon: faFont, path: "#", subMenus: [

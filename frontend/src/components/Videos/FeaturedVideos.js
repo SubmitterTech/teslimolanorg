@@ -56,11 +56,9 @@ const FeaturedVideos = () => {
           </div>
         ))}
       </div>
-      <div className="text-white flex justify-center items-center">
-        <Link to="/videolar" className="hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out">
-          Tüm Videolar
-        </Link>
-      </div>
+      <div className="flex justify-center text-gray-900 dark:text-white">
+        <Link to="/videolar/listele" className="hover:text-emerald-600 border-b border-transparent hover:border-emerald-600 pb-1 transition-colors duration-300 ease-in-out">Tüm Videolar</Link>
+      </div>s
     </div>
   );
 };

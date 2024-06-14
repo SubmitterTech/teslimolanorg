@@ -47,6 +47,15 @@ exports.getFeaturedArticles = async (req,res) =>{
     }
   };
 
+  exports.getAllVideos = async (req, res) => {
+    try {
+      const videos = await postModel.find({ postType: "Video" }).sort({ createdAt: -1 });
+      res.status(200).json(videos);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
+
   exports.getPostContent = async (req,res) =>{
     try {
       const { slug } = req.params;

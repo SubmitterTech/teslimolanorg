@@ -6,6 +6,7 @@ const {
   getFeaturedVideos,
   getAllArticles,
   getAllPerspectives,
+  getAllVideos,
 } = require("../controllers/postsController");
 
 const router = express.Router();
@@ -15,6 +16,7 @@ router.get("/makaleler/listele", getAllArticles);
 router.get("/perspektifler", getFeaturedPerspectives);
 router.get("/perspektifler/listele",getAllPerspectives);
 router.get("/videolar", getFeaturedVideos);
+router.get("/videolar/listele", getAllVideos);
 router.get("/makale/:slug", getPostContent);
 router.get("/perspektif/:slug", getPostContent);
 router.get("/video/:slug", getPostContent);

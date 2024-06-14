@@ -67,7 +67,7 @@ exports.getPosts = async (req, res) => {
 exports.getPostWithType = async (req, res) => {
   try {
     const type = req.params.postType;
-    const post = await postModel.find({ postType: type });
+    const post = await postModel.find({ postType: type }).sort({createdAt:-1});
     res.status(200).json(post);
   } catch (error) {
     res.status(500).json({ message: error.message });

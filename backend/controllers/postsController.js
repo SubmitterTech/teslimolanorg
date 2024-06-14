@@ -29,7 +29,14 @@ exports.getFeaturedArticles = async (req,res) =>{
       res.status(500).json({ message: error.message });
     }
   };
-
+  exports.getAllPerspectives = async (req, res) => {
+    try {
+      const perspectives = await postModel.find({ postType: "Perspektif" }).sort({ createdAt: -1 });
+      res.status(200).json(perspectives);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
 
   exports.getFeaturedVideos = async (req, res) => {
     try {

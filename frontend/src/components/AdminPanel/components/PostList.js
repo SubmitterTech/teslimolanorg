@@ -90,7 +90,7 @@ const PostList = ({ postType, title, fetchUrl }) => {
                     <ReadMore
                       text={post.text || ""}
                       limit={250}
-                      to={`/${postType}/${post._id}`}
+                      to={`/${postType}/${post.slug}`}
                     />
                   </div>
                 </div>

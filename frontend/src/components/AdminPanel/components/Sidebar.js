@@ -6,6 +6,7 @@ import { faTimes, faChevronDown, faHome, faUser, faGear, faPen, faFont } from "@
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const [menus, setMenus] = useState([
     { name: "Anasayfa", icon: faHome, path: "/admin", subMenus: [] },
+    { name: "Yazı Ekle", icon: faPen, path: "/admin/makale", subMenus: [] },
     { name: "Yazılar", icon: faFont, path: "#", subMenus: [
       { name: "Makaleler", path: "/admin/makaleler" },
       { name: "Perspektifler", path: "/admin/perspektifler" },
@@ -16,7 +17,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       { name: "Tema", path: "/admin/settings/theme" },
       { name: "Sosyal Medya", path: "/admin/ayarlar/sosyalmedya" },
     ] },
-    { name: "Yazı Ekle", icon: faPen, path: "/admin/makale", subMenus: [] },
   ]);
 
   const [isMenuOpen, setIsMenuOpen] = useState({});

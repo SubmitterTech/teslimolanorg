@@ -20,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/giris" element={<LoginPage />} />
+        <Route path="/makaleler/listele" element={<AllArticles />} />
         <Route path="/makale/:slug" element={<Content />} />
         <Route path="/perspektif/:slug" element={<PerspectiveContent/>} />
         <Route path="/video/:slug" element={<VideoContent/>} />
@@ -27,7 +28,7 @@ function App() {
         <Route path="/perspektif" element={<PerspectiveContent />} />
         <Route path="/perspektifler" element={<AllPerspectives />} />
         <Route path="/video" element={<VideoContent />} />
-        <Route path="/makaleler" element={<AllArticles />} />
+       
         <Route path="/videolar" element={<AllVideos />} />
       </Routes>
     </ThemeProvider>

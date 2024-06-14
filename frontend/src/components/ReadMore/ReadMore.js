@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 
-const ReadMore = ({ text, limit, to }) => {
+const ReadMore = ({ text = "", limit, to }) => {
   const createMarkup = (html) => {
     return { __html: DOMPurify.sanitize(html) };
   };

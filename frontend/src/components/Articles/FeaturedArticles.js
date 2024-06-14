@@ -37,7 +37,7 @@ const FeaturedArticles = () => {
         ))}
       </div>
       <div className="flex justify-center text-gray-900 dark:text-white">
-        <Link to='/makaleler' className="hover:text-emerald-600 border-b border-transparent hover:border-emerald-600 pb-1 transition-colors duration-300 ease-in-out">Tüm Makaleler</Link>
+        <Link to='/makaleler/listele' className="hover:text-emerald-600 border-b border-transparent hover:border-emerald-600 pb-1 transition-colors duration-300 ease-in-out">Tüm Makaleler</Link>
       </div>
     </div>
   );

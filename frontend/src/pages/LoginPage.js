@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { message } from 'antd';
+import { useAuth } from '../context/AuthContext';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLogin = async (event) => {
     event.preventDefault();
-
+  
     const response = await fetch('http://localhost:5001/api/admin/kullanici/giris', {
       method: 'POST',
       headers: {
@@ -17,20 +19,19 @@ const LoginPage = () => {
       },
       body: JSON.stringify({ email, password }),
     });
-
+  
     if (response.ok) {
-      // Giriş başarılıysa kullanıcıyı /admin sayfasına yönlendir
-      navigate('/admin');
+      const { token } = await response.json(); // API'den dönen token alınır
+      login(token);  // Token ile login fonksiyonu çağrılır
+      navigate('/admin', { replace: true });
     } else {
-      // Hata durumunda bir mesaj göster
       message.error('Giriş başarısız');
     }
   };
-
   return (
     <section className="bg-gray-50 dark:bg-gray-900 h-screen">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <Link to="" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+        <Link to="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
           <img className="w-8 h-8 mr-2 rounded-full" src="logo03.jpg" alt="logo" />
           Teslimolan.org
         </Link>
@@ -83,9 +84,6 @@ const LoginPage = () => {
                 <Link to="" className="text-sm font-medium text-primary-600 hover:underline dark:text-white underline">Parolamı unuttum</Link>
               </div>
               <button type="submit" className="w-full text-gray-900 border dark:border-gray-700 dark:text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Giriş Yap</button>
-              {/* <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don’t have an account yet? <Link to="" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</Link>
-              </p> */}
             </form>
           </div>
         </div>

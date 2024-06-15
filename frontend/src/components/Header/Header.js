@@ -47,11 +47,13 @@ import {
 import SubMenuItem from "./SubMenuItem";
 import { useTheme } from "../../context/ThemeContext";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState(null);
   const { darkMode, toggleDarkMode } = useTheme();
+  const { isAuthenticated } = useAuth();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -326,13 +328,16 @@ const Header = () => {
           <FontAwesomeIcon icon={faBars} />
         </button>
         <div className="hidden md:flex md:gap-4 md:items-center">
-          <div className="hidden md:flex items-center">
-            <Link to="/admin"
-              className="text-white p-2 rounded-lg bg-gray-700 hover:opacity-90"
-            >
-              Yönetici Paneli
-            </Link>
-          </div>
+          {isAuthenticated && (
+            <div className="hidden md:flex items-center">
+              <Link
+                to="/admin"
+                className="text-white p-2 rounded-lg bg-gray-700 hover:opacity-90"
+              >
+                Yönetici Paneli
+              </Link>
+            </div>
+          )}
           <div className="hidden md:flex items-center">
             <a
               href="http://submissionperspective.org/"

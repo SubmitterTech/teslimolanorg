@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const adminRoute = require('./routes/adminRoute');
 const configRoute = require('./routes/configRoute');
 const userRoute = require('./routes/userRoute');
+const emailRoute = require('./routes/emailRoute');
 const postsRoute = require('./routes/postsRoute');
 const connectDB = require('./config/db');
 
@@ -21,6 +22,7 @@ app.use('/api/admin', adminRoute);
 app.use('/api', configRoute);
 app.use('/api/admin', userRoute);
 app.use('/api', postsRoute);
+app.use('/api', emailRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

@@ -11,10 +11,11 @@ const About = () => {
     youtube: "",
     x: "",
     discord: "",
+    email:"",
   });
 
   const [formData, setFormData] = useState({
-    to:"yusuf.balyemez93@gmail.com",
+    to:"",
     subject: "",
     email: "",
     message: "",
@@ -31,6 +32,7 @@ const About = () => {
           youtube: data.youtube || "https://www.youtube.com/",
           x: data.x || "https://www.x.com/",
           discord: data.discord || "https://www.discord.com/",
+          email:data.email,
         });
       } catch (error) {
         console.log("Error fetching social media links", error);
@@ -46,13 +48,14 @@ const About = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
+    console.log(socialLinks.email);
     try {
       const response = await fetch('http://localhost:5001/api/emailGonder', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({...formData,to:socialLinks.email}),
       });
 
       const data = await response.json();

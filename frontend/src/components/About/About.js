@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faInstagram, faYoutube, faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-
+import {message } from 'antd';
 const About = () => {
   const [socialLinks, setSocialLinks] = useState({
     facebook: "",
@@ -60,10 +60,10 @@ const About = () => {
 
       const data = await response.json();
       if (response.ok) {
-        alert('Email sent successfully');
+        message.success("Mesajınız gönderildi.")
         setFormData({ subject: "", email: "", message: "" });
       } else {
-        alert(`Error: ${data.message}`);
+        message.error(`Error: ${data.message}`);
       }
     } catch (error) {
       console.error('Error:', error);

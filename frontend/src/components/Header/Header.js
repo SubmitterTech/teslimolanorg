@@ -353,7 +353,7 @@ const Header = () => {
               name="searchInput"
               placeholder="Arama Metni"
             />
-            <select
+            {/* <select
               id="options"
               defaultValue="1"
               className="w-[120px] bg-gray-50 text-gray-900 dark:bg-black border border-gray-400 rounded p-2 dark:text-gray-100 text-sm"
@@ -361,7 +361,7 @@ const Header = () => {
               <option defaultValue="option1">Kur'anda</option>
               <option defaultValue="option2">Eklerde</option>
               <option defaultValue="option3">Makalelerde</option>
-            </select>
+            </select> */}
             <button className="text-gray-900 dark:text-white border border-gray-400 rounded px-2">
               <FontAwesomeIcon icon={faSearch} />
             </button>

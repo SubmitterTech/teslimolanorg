@@ -34,4 +34,7 @@ const postSchema = mongoose.Schema(
   }
 );
 
+// Text index oluşturma
+postSchema.index({ title: 'text', text: 'text', tags: 'text' });
+
 module.exports = mongoose.model("Post", postSchema);

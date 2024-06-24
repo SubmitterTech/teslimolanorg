@@ -46,14 +46,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import SubMenuItem from "./SubMenuItem";
 import { useTheme } from "../../context/ThemeContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState(null);
+  const [searchInput,setSearchInput] = useState("");
   const { darkMode, toggleDarkMode } = useTheme();
   const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+
+
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -62,6 +67,12 @@ const Header = () => {
   const toggleSubMenu = (menu) => {
     setExpandedMenu(expandedMenu === menu ? null : menu);
   };
+
+  const searchHandler = (e) =>{
+      e.preventDefault();
+    navigate(`/ara?bul=${searchInput}`);
+ 
+  }
 
   const menuItems = [
     {
@@ -346,12 +357,13 @@ const Header = () => {
               ENGLISH
             </a>
           </div>
-          <form className="flex gap-1">
+          <form className="flex gap-1" onSubmit={searchHandler}>
             <input
               className="w-[120px] bg-gray-50 text-gray-900 dark:bg-black border border-gray-400 rounded p-2 dark:text-gray-500 text-sm"
               type="text"
               name="searchInput"
               placeholder="Arama Metni"
+              onChange={(e)=> setSearchInput(e.target.value)}
             />
             {/* <select
               id="options"

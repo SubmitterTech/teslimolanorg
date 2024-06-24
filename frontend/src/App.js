@@ -11,6 +11,7 @@ import AllArticles from "./components/Articles/AllArticles";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import AllVideos from "./components/Videos/AllVideos";
 import LoginPage from "./pages/LoginPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/video" element={<VideoContent />} />
         <Route path="/videolar/listele" element={<AllVideos />} />
         <Route path="/video/:slug" element={<VideoContent/>} />
+        <Route path="/ara" element={<SearchPage/>}/>
       </Routes>
     </ThemeProvider>
   );

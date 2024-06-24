@@ -68,3 +68,21 @@ exports.getFeaturedArticles = async (req,res) =>{
       res.status(500).json({ message: 'Server error' });
     }
   }
+
+  exports.searchPosts = async (req, res) => {
+    try {
+      const { query, page = 1, limit = 10 } = req.query;
+      const skip = (page - 1) * limit;
+  
+      const results = await postModel.find({ $text: { $search: query } })
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(parseInt(limit));
+  
+      const total = await postModel.countDocuments({ $text: { $search: query } });
+  
+      res.status(200).json({ results, total });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };

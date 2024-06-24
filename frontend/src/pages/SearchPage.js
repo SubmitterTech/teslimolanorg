@@ -50,13 +50,11 @@ const SearchPage = () => {
     }
   };
 
-  const displayedResults = results.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-
   return (
     <div className="flex flex-col md:justify-center md:items-center bg-gray-50 dark:bg-black w-full">
       <div className="flex flex-col md:max-w-[1200px] md:w-full gap-5">
         <h1 className="text-3xl text-gray-900 dark:text-white p-5">Arama Sonuçları</h1>
-        {displayedResults.map((result, index) => (
+        {results.map((result, index) => (
           <div key={index} className="flex flex-col gap-10 border-t p-5">
             <div className="flex flex-col md:flex-row gap-5">
               <div className="md:max-w-[300px]">

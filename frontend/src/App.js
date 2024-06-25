@@ -12,6 +12,7 @@ import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import AllVideos from "./components/Videos/AllVideos";
 import LoginPage from "./pages/LoginPage";
 import SearchPage from "./pages/SearchPage";
+import FetchTags from "./components/RelatedTags/FetchTags";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/videolar/listele" element={<AllVideos />} />
         <Route path="/video/:slug" element={<VideoContent/>} />
         <Route path="/ara" element={<SearchPage/>}/>
+        <Route path="/etiketler/:tag" element={<FetchTags/>} /> 
       </Routes>
     </ThemeProvider>
   );

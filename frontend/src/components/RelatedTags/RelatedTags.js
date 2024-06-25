@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const RelatedTags = ({ tags }) => {
   if (!tags || tags.length === 0) {
@@ -11,7 +12,7 @@ const RelatedTags = ({ tags }) => {
       <div className="flex flex-wrap gap-2">
         {tags.map((tag, index) => (
           <span key={index} className="bg-gray-700 text-white py-1 px-3 rounded">
-            {tag}
+            <Link to={`/etiketler/${tag}`}>{tag}</Link>
           </span>
         ))}
       </div>

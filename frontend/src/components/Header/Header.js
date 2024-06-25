@@ -52,13 +52,10 @@ import { useAuth } from "../../context/AuthContext";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState(null);
-  const [searchInput,setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   const { darkMode, toggleDarkMode } = useTheme();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
-
-
-
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -68,11 +65,11 @@ const Header = () => {
     setExpandedMenu(expandedMenu === menu ? null : menu);
   };
 
-  const searchHandler = (e) =>{
-      e.preventDefault();
+  const searchHandler = (e) => {
+    e.preventDefault();
+    setMenuOpen(!menuOpen);
     navigate(`/ara?bul=${searchInput}`);
- 
-  }
+  };
 
   const menuItems = [
     {
@@ -349,21 +346,13 @@ const Header = () => {
               </Link>
             </div>
           )}
-          <div className="hidden md:flex items-center">
-            <a
-              href="http://submissionperspective.org/"
-              className="dark:text-white"
-            >
-              ENGLISH
-            </a>
-          </div>
           <form className="flex gap-1" onSubmit={searchHandler}>
             <input
               className="w-[120px] bg-gray-50 text-gray-900 dark:bg-black border border-gray-400 rounded p-2 dark:text-gray-500 text-sm"
               type="text"
               name="searchInput"
               placeholder="Arama Metni"
-              onChange={(e)=> setSearchInput(e.target.value)}
+              onChange={(e) => setSearchInput(e.target.value)}
             />
             {/* <select
               id="options"
@@ -410,6 +399,36 @@ const Header = () => {
               expandedMenu={expandedMenu}
             />
           ))}
+          <form
+            className="flex gap-1 md:hidden my-5 justify-center"
+            onSubmit={searchHandler}
+          >
+            <input
+              className="w-[200px] bg-gray-700 text-gray-50 border border-gray-400 rounded p-2 text-sm"
+              type="text"
+              name="searchInput"
+              placeholder="Arama Metni"
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
+            {/* <select
+              id="options"
+              defaultValue="1"
+              className="w-[120px] bg-gray-50 text-gray-900 dark:bg-black border border-gray-400 rounded p-2 dark:text-gray-100 text-sm"
+            >
+              <option defaultValue="option1">Kur'anda</option>
+              <option defaultValue="option2">Eklerde</option>
+              <option defaultValue="option3">Makalelerde</option>
+            </select> */}
+            <button className="text-gray-50 dark:text-white border border-gray-400 rounded px-2">
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+          </form>
+          <button
+            onClick={toggleDarkMode}
+            className="my-2 px-3 py-2 md:hidden rounded-full bg-blue-500 text-white dark:bg-yellow-500"
+          >
+            {darkMode ? "Açık Tema" : "Koyu Tema"}
+          </button>
         </ul>
       </nav>
     </header>

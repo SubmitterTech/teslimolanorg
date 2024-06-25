@@ -67,9 +67,9 @@ const PostList = ({ postType, title, fetchUrl }) => {
   const displayedPosts = posts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
-    <div className="flex flex-col md:justify-center md:items-center dark:bg-black w-full">
+    <div className="flex flex-col md:justify-center md:items-center w-full">
       <div className="flex flex-col md:max-w-[1200px] md:w-full gap-5">
-        <h1 className="text-3xl text-gray-900 dark:text-white p-5">{title}</h1>
+        <h1 className="text-3xl text-gray-900 p-5">{title}</h1>
         {displayedPosts.length > 0 ? (
           displayedPosts.map((post, index) => (
             <div key={index} className="flex flex-col gap-10 border-t p-5">
@@ -83,10 +83,10 @@ const PostList = ({ postType, title, fetchUrl }) => {
                   </Link>
                 </div>
                 <div className="flex-1">
-                  <h1 className="text-gray-900 dark:text-white font-semibold text-xl">
+                  <h1 className="text-gray-900  font-semibold text-xl">
                     <Link to={`/${postType}/${post._id}`}>{post.title}</Link>
                   </h1>
-                  <div className="text-gray-900 dark:text-white mt-5">
+                  <div className="text-gray-900  mt-5">
                     <ReadMore
                       text={post.text || ""}
                       limit={250}

@@ -15,10 +15,12 @@ const PostEdit = () => {
   const fileRef = useRef(null);
   const editorRef = useRef();
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/admin/yazilar/id/${id}`);
+        const response = await fetch(`${API_URL}/api/admin/yazilar/id/${id}`);
         const data = await response.json();
         setTitle(data.title);
         setTextType(data.postType);
@@ -33,7 +35,7 @@ const PostEdit = () => {
     };
 
     fetchPost();
-  }, [id]);
+  }, [id,API_URL]);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];

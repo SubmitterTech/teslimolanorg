@@ -5,6 +5,7 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import {message } from 'antd';
 const About = () => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const [socialLinks, setSocialLinks] = useState({
     facebook: "",
     instagram: "",
@@ -24,7 +25,7 @@ const About = () => {
   useEffect(() => {
     const fetchSocialMediaLinks = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/admin/ayarlar/sosyalmedya`);
+        const response = await fetch(`${API_URL}/api/admin/ayarlar/sosyalmedya`);
         const data = await response.json();
         setSocialLinks({
           facebook: data.facebook || "https://www.facebook.com/",
@@ -39,7 +40,7 @@ const About = () => {
       }
     };
     fetchSocialMediaLinks();
-  }, []);
+  }, [API_URL]);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -50,7 +51,7 @@ const About = () => {
     console.log(formData);
     console.log(socialLinks.email);
     try {
-      const response = await fetch('http://localhost:5001/api/emailGonder', {
+      const response = await fetch(`${API_URL}/api/emailGonder`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

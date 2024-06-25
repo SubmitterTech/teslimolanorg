@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
-import Directory from "../Directory/Directory";
 import ReadMore from "../ReadMore/ReadMore";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 
@@ -11,12 +10,16 @@ const AllArticles = () => {
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 10;
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await fetch("http://localhost:5001/api/makaleler/listele");
+        const response = await fetch(
+          `${API_URL}/api/makaleler/listele`
+        );
         const data = await response.json();
-        
+
         if (Array.isArray(data)) {
           setArticles(data);
           setTotalPages(Math.ceil(data.length / itemsPerPage));
@@ -29,7 +32,7 @@ const AllArticles = () => {
     };
 
     fetchArticles();
-  }, []);
+  }, [API_URL]);
 
   const handlePageChange = (direction) => {
     if (direction === "next" && currentPage < totalPages) {
@@ -39,28 +42,39 @@ const AllArticles = () => {
     }
   };
 
-  const displayedArticles = articles.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const displayedArticles = articles.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     <div className="flex flex-col md:justify-center md:items-center bg-gray-50 dark:bg-black w-full">
       <div className="flex flex-col md:max-w-[1200px] md:w-full gap-5">
-        <Directory />
-        <h1 className="text-3xl text-gray-900 dark:text-white p-5">Tüm Makaleler</h1>
+        <h1 className="text-3xl text-gray-900 dark:text-white p-5">
+          Tüm Makaleler
+        </h1>
         {displayedArticles.map((article, index) => (
           <div key={index} className="flex flex-col gap-10 border-t p-5">
             <div className="flex flex-col md:flex-row gap-5">
               <div className="md:max-w-[300px]">
                 <Link to={`/makale/${article.slug}`}>
-                  <img src={article.imgSrc || "/default-image.png"} alt={article.title} />
+                  <img
+                    src={article.imgSrc || "/default-image.png"}
+                    alt={article.title}
+                  />
                 </Link>
               </div>
               <div>
                 <h1 className="text-gray-900 dark:text-white font-semibold text-xl">
                   <Link to={`/makale/${article.slug}`}>{article.title}</Link>
                 </h1>
-                <p className="text-gray-900 dark:text-white mt-5">
-                  <ReadMore text={article.text} limit={100} to={`/makale/${article.slug}`} />
-                </p>
+                <div className="text-gray-900 dark:text-white mt-5">
+                  <ReadMore
+                    text={article.text}
+                    limit={100}
+                    to={`/makale/${article.slug}`}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -85,7 +99,10 @@ const AllArticles = () => {
         </div>
         <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
           <div>
-            <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+            <nav
+              className="isolate inline-flex -space-x-px rounded-md shadow-sm"
+              aria-label="Pagination"
+            >
               <button
                 onClick={() => handlePageChange("previous")}
                 className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
@@ -98,7 +115,11 @@ const AllArticles = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentPage(index + 1)}
-                  className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${index + 1 === currentPage ? "bg-indigo-600 text-white" : "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"} focus:z-20 focus:outline-offset-0`}
+                  className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${
+                    index + 1 === currentPage
+                      ? "bg-indigo-600 text-white"
+                      : "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                  } focus:z-20 focus:outline-offset-0`}
                 >
                   {index + 1}
                 </button>

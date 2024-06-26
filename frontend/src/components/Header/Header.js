@@ -317,7 +317,7 @@ const Header = () => {
 
   return (
     <header>
-      <div className="flex justify-between items-center bg-gray-50 dark:bg-black px-3">
+      <div className="flex justify-between items-center bg-gray-50 dark:bg-black pr-1 md:px-10">
         <a
           href="/"
           title="teslimolan anasayfaya gidin"

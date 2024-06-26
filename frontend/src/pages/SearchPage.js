@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import ReadMore from "../components/ReadMore/ReadMore";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import { Helmet } from "react-helmet-async";
+
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -52,6 +54,9 @@ const SearchPage = () => {
 
   return (
     <div className="flex flex-col md:justify-center md:items-center bg-gray-50 dark:bg-black w-full">
+      <Helmet>
+        <title>Teslimolan.org - Arama Sayfası</title>
+      </Helmet>
       <div className="flex flex-col md:max-w-[1200px] md:w-full gap-5">
         <h1 className="text-3xl text-gray-900 dark:text-white p-5">Arama Sonuçları</h1>
         {results.map((result, index) => (

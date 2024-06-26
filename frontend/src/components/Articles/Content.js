@@ -6,6 +6,7 @@ import RelatedAppendices from "../RelatedAppendices/RelatedAppendices";
 import RelatedTags from "../RelatedTags/RelatedTags";
 import Directory from "../Directory/Directory";
 import Footer from "../Footer/Footer";
+import { Helmet } from 'react-helmet-async';
 
 function Content() {
   const { slug } = useParams(); // Dinamik parametreyi al
@@ -31,6 +32,9 @@ function Content() {
 
   return (
     <div className="flex justify-center items-center flex-col bg-gray-50 dark:bg-black">
+      <Helmet>
+        <title>{article.title}</title>
+      </Helmet>
       <div id="container" className="flex flex-col md:flex-row gap-3 px-5">
         <div id="left-side" className="flex flex-col md:max-w-[800px]">
           <Directory />

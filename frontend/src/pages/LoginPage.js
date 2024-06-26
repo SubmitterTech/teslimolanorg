@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { message } from 'antd';
 import { useAuth } from '../context/AuthContext';
+import { Helmet } from 'react-helmet-async';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -30,6 +31,9 @@ const LoginPage = () => {
   };
   return (
     <section className="bg-gray-50 dark:bg-gray-900 h-screen">
+      <Helmet>
+        <title>Yönetici Giriş Sayfası</title>
+      </Helmet>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <Link to="/" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
           <img className="w-8 h-8 mr-2 rounded-full" src="logo03.jpg" alt="logo" />

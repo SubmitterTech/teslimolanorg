@@ -7,10 +7,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import ProtectedRoute from './context/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext'; // Yolun doğru olduğundan emin olun
+import { HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <HelmetProvider>
     <AuthProvider>
     <Router>
       <Routes>
@@ -23,6 +25,7 @@ root.render(
       </Routes>
     </Router>
     </AuthProvider>
+    </HelmetProvider>
   </React.StrictMode>
 );
 

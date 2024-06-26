@@ -11,6 +11,7 @@ import SocialMedia from './pages/SocialMedia';
 import VideosPage from './pages/VideosPage';
 import PerspectivesPage from './pages/PerspectivesPage';
 import PostEdit from './components/PostEdit';
+import { Helmet } from 'react-helmet-async';
 
 const AdminPanel = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +22,9 @@ const AdminPanel = () => {
 
   return (
     <div className="flex">
+      <Helmet>
+        <title>Yönetici Paneli</title>
+      </Helmet>
       <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
       <div className="flex-1 flex flex-col">
         <Header toggleSidebar={toggleSidebar} />

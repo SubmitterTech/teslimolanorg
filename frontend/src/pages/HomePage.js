@@ -7,20 +7,23 @@ import FeaturedVideos from "../components/Videos/FeaturedVideos";
 import SuggestionsSection from "../components/Suggestions/SuggestionsSection";
 import About from "../components/About/About";
 import Footer from "../components/Footer/Footer";
-
+import { Helmet } from 'react-helmet-async';
 
 const HomePage = () => {
   return (
     <div className="flex justify-center items-center bg-gray-50 dark:bg-black overflow-hidden">
+      <Helmet>
+        <title>Teslimiyet Anasayfa</title>
+      </Helmet>
       <div className="flex flex-col w-screen bg-gray-50  dark:bg-gray-950 lg:w-[1000px]">
         <Billboard />
-        <Cards/>
-        <FeaturedArticles/>
-        <FeaturedPerspective/>
-        <FeaturedVideos/>
-        <SuggestionsSection/>
-        <About/>
-        <Footer/>
+        <Cards />
+        <FeaturedArticles />
+        <FeaturedPerspective />
+        <FeaturedVideos />
+        <SuggestionsSection />
+        <About />
+        <Footer />
       </div>
     </div>
   );

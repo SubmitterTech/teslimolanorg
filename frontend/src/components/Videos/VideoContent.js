@@ -82,6 +82,10 @@ const VideoContent = () => {
     <div className="flex justify-center items-center flex-col bg-gray-50 dark:bg-black">
       <Helmet>
         <title>{video.title}</title>
+         {/* Dinamik meta keywords */}
+         {video.tags && (
+          <meta name="keywords" content={video.tags.join(", ")} />
+        )}
       </Helmet>
       <div id="container" className="flex flex-col md:flex-row gap-3 px-5">
         <div id="left-side" className="flex flex-col md:max-w-[800px]">

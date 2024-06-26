@@ -40,6 +40,10 @@ function Perspective() {
     <div className="flex justify-center items-center flex-col bg-gray-50 dark:bg-black">
       <Helmet>
         <title>{perspectives.title}</title>
+         {/* Dinamik meta keywords */}
+         {perspectives.tags && (
+          <meta name="keywords" content={perspectives.tags.join(", ")} />
+        )}
       </Helmet>
       <div id="container" className="flex flex-col md:flex-row gap-3 px-5">
         <div id="left-side" className="flex flex-col md:max-w-[800px]">

@@ -7,7 +7,7 @@ import RelatedTags from "../RelatedTags/RelatedTags";
 import Directory from "../Directory/Directory";
 import Footer from "../Footer/Footer";
 import { Helmet } from "react-helmet-async";
-import {Spin} from "antd";
+import { Spin } from "antd";
 
 function Content() {
   const { slug } = useParams(); // Dinamik parametreyi al
@@ -26,7 +26,7 @@ function Content() {
     };
 
     fetchArticle();
-  }, [slug,API_URL]);
+  }, [slug, API_URL]);
 
   if (!article) {
     return (
@@ -39,7 +39,11 @@ function Content() {
   return (
     <div className="flex justify-center items-center flex-col bg-gray-50 dark:bg-black">
       <Helmet>
-        <title>{article.title}</title>
+        <title>{article.title}</title> {/* Dinamik Title */}
+        {/* Dinamik meta keywords */}
+        {article.tags && (
+          <meta name="keywords" content={article.tags.join(", ")} />
+        )}
       </Helmet>
       <div id="container" className="flex flex-col md:flex-row gap-3 px-5">
         <div id="left-side" className="flex flex-col md:max-w-[800px]">

@@ -8,6 +8,7 @@ import RelatedAppendices from "../RelatedAppendices/RelatedAppendices";
 import RelatedTags from "../RelatedTags/RelatedTags";
 import Directory from "../Directory/Directory";
 import Footer from "../Footer/Footer";
+import { Spin } from "antd";
 
 const VideoContent = () => {
   const { slug } = useParams(); // Dinamik olan linkten parametreyi alır.
@@ -55,7 +56,11 @@ const VideoContent = () => {
   };
 
   if (!video) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spin tip="Loading..." size="large" />
+      </div>
+    );
   }
 
   const sanitizedContent = sanitizeHtml(convertOembedToIframe(video.text), {

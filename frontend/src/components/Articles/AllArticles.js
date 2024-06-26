@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import ReadMore from "../ReadMore/ReadMore";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import { Spin } from "antd";
 
 const AllArticles = () => {
+  const [loading, setLoading] = useState(false);
   const [articles, setArticles] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -15,9 +17,8 @@ const AllArticles = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await fetch(
-          `${API_URL}/api/makaleler/listele`
-        );
+        setLoading(true);
+        const response = await fetch(`${API_URL}/api/makaleler/listele`);
         const data = await response.json();
 
         if (Array.isArray(data)) {
@@ -28,6 +29,8 @@ const AllArticles = () => {
         }
       } catch (error) {
         console.error("Error fetching articles:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -46,6 +49,14 @@ const AllArticles = () => {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spin tip="Loading..." size="large" />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col md:justify-center md:items-center bg-gray-50 dark:bg-black w-full">

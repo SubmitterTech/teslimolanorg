@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Directory from "../Directory/Directory";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import { Spin } from "antd";
 
 const AllVideos = () => {
+  const [loading,setLoading] = useState(false);
   const [videos, setVideos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -15,6 +17,7 @@ const AllVideos = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
+        setLoading(true);
         const response = await fetch(`${API_URL}/api/videolar/listele`);
         const data = await response.json();
         console.log(data); // Verileri kontrol etmek için ekledim
@@ -28,10 +31,21 @@ const AllVideos = () => {
       } catch (error) {
         console.error("Error fetching videos:", error);
       }
+      finally{
+        setLoading(false);
+      }
     };
 
     fetchVideos();
   }, [API_URL]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spin tip="Loading..." size="large" />
+      </div>
+    );
+  }
 
   const handlePageChange = (direction) => {
     if (direction === "next" && currentPage < totalPages) {

@@ -7,6 +7,7 @@ import RelatedAppendices from "../RelatedAppendices/RelatedAppendices";
 import RelatedTags from "../RelatedTags/RelatedTags";
 import Directory from "../Directory/Directory";
 import Footer from "../Footer/Footer";
+import { Spin } from "antd";
 
 function Perspective() {
   const { slug } = useParams(); // Dinamik parametreyi al
@@ -28,7 +29,11 @@ function Perspective() {
   }, [slug,API_URL]);
 
   if (!perspectives) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spin tip="Loading..." size="large" />
+      </div>
+    );
   }
 
   return (

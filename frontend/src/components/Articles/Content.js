@@ -7,6 +7,7 @@ import RelatedTags from "../RelatedTags/RelatedTags";
 import Directory from "../Directory/Directory";
 import Footer from "../Footer/Footer";
 import { Helmet } from "react-helmet-async";
+import {Spin} from "antd";
 
 function Content() {
   const { slug } = useParams(); // Dinamik parametreyi al
@@ -28,7 +29,11 @@ function Content() {
   }, [slug,API_URL]);
 
   if (!article) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Spin tip="Loading..." size="large" />
+      </div>
+    );
   }
 
   return (

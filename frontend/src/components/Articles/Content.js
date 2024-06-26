@@ -6,16 +6,17 @@ import RelatedAppendices from "../RelatedAppendices/RelatedAppendices";
 import RelatedTags from "../RelatedTags/RelatedTags";
 import Directory from "../Directory/Directory";
 import Footer from "../Footer/Footer";
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 
 function Content() {
   const { slug } = useParams(); // Dinamik parametreyi al
   const [article, setArticle] = useState(null);
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/makale/${slug}`);
+        const response = await fetch(`${API_URL}/api/makale/${slug}`);
         const data = await response.json();
         setArticle(data);
       } catch (error) {
@@ -24,7 +25,7 @@ function Content() {
     };
 
     fetchArticle();
-  }, [slug]);
+  }, [slug,API_URL]);
 
   if (!article) {
     return <div>Loading...</div>;
@@ -42,7 +43,10 @@ function Content() {
             <img src={`${article.imgSrc}`} alt={article.title} />
           </div>
           <div id="content-container" className="flex flex-col gap-5 mt-5">
-            <div id="title" className="text-gray-900 dark:text-white text-3xl font-bold">
+            <div
+              id="title"
+              className="text-gray-900 dark:text-white text-3xl font-bold"
+            >
               {article.title}
             </div>
             <div id="content-text" className="text-gray-900 dark:text-white">
@@ -51,7 +55,8 @@ function Content() {
           </div>
           <RelatedVerses verses={article.verses || []} />
           <RelatedAppendices appendices={article.appendices || []} />
-          <RelatedTags tags={article.tags || []} /> {/* tags doğru şekilde iletiliyor */}
+          <RelatedTags tags={article.tags || []} />{" "}
+          {/* tags doğru şekilde iletiliyor */}
         </div>
         <div
           id="right-side"

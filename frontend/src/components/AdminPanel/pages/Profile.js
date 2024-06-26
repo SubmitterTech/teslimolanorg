@@ -5,6 +5,8 @@ const Profile = () => {
   const [emailForm] = Form.useForm();
   const [passwordForm] = Form.useForm();
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const updateEmail = async (values) => {
     if (values.newEmail !== values.confirmEmail) {
       message.error('Email addresses do not match!');
@@ -12,7 +14,7 @@ const Profile = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5001/api/admin/kullanici/guncelle/email', {
+      const response = await fetch(`${API_URL}/api/admin/kullanici/guncelle/email`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +43,7 @@ const Profile = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5001/api/admin/kullanici/guncelle/parola', {
+      const response = await fetch(`${API_URL}/api/admin/kullanici/guncelle/parola`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

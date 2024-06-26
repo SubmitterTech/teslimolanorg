@@ -12,10 +12,12 @@ const TaggedArticles = () => {
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 10;
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/etiketler/${encodeURIComponent(decodedTag)}`);
+        const response = await fetch(`${API_URL}/api/etiketler/${encodeURIComponent(decodedTag)}`);
         const data = await response.json();
         
         if (Array.isArray(data)) {
@@ -30,7 +32,7 @@ const TaggedArticles = () => {
     };
 
     fetchArticles();
-  }, [decodedTag]); // decodedTag değiştiğinde makaleleri yeniden fetch et
+  }, [decodedTag,API_URL]); // decodedTag değiştiğinde makaleleri yeniden fetch et
 
   const handlePageChange = (direction) => {
     if (direction === "next" && currentPage < totalPages) {

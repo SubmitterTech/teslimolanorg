@@ -12,6 +12,8 @@ const AddTextPage = () => {
   const fileRef = useRef(null);
   const editorRef = useRef();
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const extractBase64Images = (editorContent) => {
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = editorContent;
@@ -36,7 +38,7 @@ const AddTextPage = () => {
     formData.append("file", base64ToFile(base64, uniqueFilename, mimeType));
 
     try {
-      const response = await fetch(`http://localhost:5001/api/admin/upload`, {
+      const response = await fetch(`${API_URL}/api/admin/upload`, {
         method: "POST",
         body: formData,
       });
@@ -127,7 +129,7 @@ const AddTextPage = () => {
     };
 
     try {
-      const response = await fetch(`http://localhost:5001/api/admin/addpost`, {
+      const response = await fetch(`${API_URL}/api/admin/addpost`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

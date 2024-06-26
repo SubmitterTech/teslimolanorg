@@ -1,13 +1,14 @@
-import React from 'react';
-import PostList from '../components/PostList';
-
+import React from "react";
+import PostList from "../components/PostList";
 
 const ArticlesPage = () => {
+  const API_URL = process.env.REACT_APP_API_URL;
+
   return (
     <PostList
       postType="Makale"
       title="Tüm Makaleler"
-      fetchUrl="http://localhost:5001/api/admin/yazilar"
+      fetchUrl={`${API_URL}/api/admin/yazilar`}
     />
   );
 };

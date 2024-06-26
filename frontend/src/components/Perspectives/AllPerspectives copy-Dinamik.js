@@ -12,10 +12,12 @@ const AllPerspectives = () => {
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 15;
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchPerspectives = async () => {
       try {
-        const response = await fetch("http://localhost:5001/api/perspektifler/listele"); // API adresini güncelleyin
+        const response = await fetch(`${API_URL}/api/perspektifler/listele`); // API adresini güncelleyin
         const data = await response.json();
         
         if (Array.isArray(data)) {

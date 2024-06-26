@@ -69,7 +69,7 @@ const PostEdit = () => {
     formData.append("file", file);
 
     try {
-      const response = await fetch(`http://localhost:5001/api/admin/upload`, {
+      const response = await fetch(`${API_URL}/api/admin/upload`, {
         method: "POST",
         body: formData,
       });
@@ -104,7 +104,7 @@ const PostEdit = () => {
     };
 
     try {
-      const response = await fetch(`http://localhost:5001/api/admin/yazilar/duzenle/${id}`, {
+      const response = await fetch(`${API_URL}/api/admin/yazilar/duzenle/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -10,10 +10,12 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const handleLogin = async (event) => {
     event.preventDefault();
   
-    const response = await fetch('http://localhost:5001/api/admin/kullanici/giris', {
+    const response = await fetch(`${API_URL}/api/admin/kullanici/giris`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

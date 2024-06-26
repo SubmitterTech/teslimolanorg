@@ -12,11 +12,11 @@ import Footer from "../Footer/Footer";
 const VideoContent = () => {
   const { slug } = useParams(); // Dinamik olan linkten parametreyi alır.
   const [video, setVideo] = useState(null);
-
+  const API_URL = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchVideo = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/video/${slug}`);
+        const response = await fetch(`${API_URL}/api/video/${slug}`);
         const data = await response.json();
         setVideo(data);
       } catch (error) {
@@ -24,7 +24,7 @@ const VideoContent = () => {
       }
     };
     fetchVideo();
-  }, [slug]);
+  }, [slug,API_URL]);
 
   const convertOembedToIframe = (htmlContent) => {
     const div = document.createElement("div");

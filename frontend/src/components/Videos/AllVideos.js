@@ -10,10 +10,12 @@ const AllVideos = () => {
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 10;
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await fetch("http://localhost:5001/api/videolar/listele");
+        const response = await fetch(`${API_URL}/api/videolar/listele`);
         const data = await response.json();
         console.log(data); // Verileri kontrol etmek için ekledim
         
@@ -29,7 +31,7 @@ const AllVideos = () => {
     };
 
     fetchVideos();
-  }, []);
+  }, [API_URL]);
 
   const handlePageChange = (direction) => {
     if (direction === "next" && currentPage < totalPages) {

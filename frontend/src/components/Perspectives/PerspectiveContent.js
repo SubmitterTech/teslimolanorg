@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 import RelatedArticlesRightPanel from "../RelatedArticles/RelatedArticleRightPanel";
 import RelatedVerses from "../RelatedVerses/RelatedVerses";
 import RelatedAppendices from "../RelatedAppendices/RelatedAppendices";
@@ -8,16 +8,15 @@ import RelatedTags from "../RelatedTags/RelatedTags";
 import Directory from "../Directory/Directory";
 import Footer from "../Footer/Footer";
 
-
-
 function Perspective() {
   const { slug } = useParams(); // Dinamik parametreyi al
   const [perspectives, setPerspectives] = useState(null);
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchPerspective = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/perspektif/${slug}`);
+        const response = await fetch(`${API_URL}/api/perspektif/${slug}`);
         const data = await response.json();
         setPerspectives(data);
       } catch (error) {
@@ -26,7 +25,7 @@ function Perspective() {
     };
 
     fetchPerspective();
-  }, [slug]);
+  }, [slug,API_URL]);
 
   if (!perspectives) {
     return <div>Loading...</div>;
@@ -44,7 +43,10 @@ function Perspective() {
             <img src={`${perspectives.imgSrc}`} alt={perspectives.title} />
           </div>
           <div id="content-container" className="flex flex-col gap-5 mt-5">
-            <div id="title" className="text-gray-900 dark:text-white text-3xl font-bold">
+            <div
+              id="title"
+              className="text-gray-900 dark:text-white text-3xl font-bold"
+            >
               {perspectives.title}
             </div>
             <div id="content-text" className="text-gray-900 dark:text-white">
@@ -53,13 +55,16 @@ function Perspective() {
           </div>
           <RelatedVerses verses={perspectives.verses || []} />
           <RelatedAppendices appendices={perspectives.appendices || []} />
-          <RelatedTags tags={perspectives.tags || []} /> {/* tags doğru şekilde iletiliyor */}
+          <RelatedTags tags={perspectives.tags || []} />{" "}
+          {/* tags doğru şekilde iletiliyor */}
         </div>
         <div
           id="right-side"
           className="flex flex-col gap-5 md:min-w-[300px] md:max-w-[350px] h-[400px] p-3"
         >
-          <RelatedArticlesRightPanel articles={perspectives.relatedArticles || []} />
+          <RelatedArticlesRightPanel
+            articles={perspectives.relatedArticles || []}
+          />
         </div>
       </div>
       <Footer />

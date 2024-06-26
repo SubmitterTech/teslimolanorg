@@ -1,14 +1,16 @@
-import React from 'react'
-import PostList from '../components/PostList'
+import React from "react";
+import PostList from "../components/PostList";
 
 const PerspectivesPage = () => {
-  return (
-    <PostList 
-    postType="Perspektif"
-    title="Tüm Perspektifler"
-    fetchUrl="http://localhost:5001/api/admin/yazilar"
-    />
-  )
-}
+  const API_URL = process.env.REACT_APP_API_URL;
 
-export default PerspectivesPage
+  return (
+    <PostList
+      postType="Perspektif"
+      title="Tüm Perspektifler"
+      fetchUrl={`${API_URL}/api/admin/yazilar`}
+    />
+  );
+};
+
+export default PerspectivesPage;

@@ -5,7 +5,6 @@ import ReadMore from "../components/ReadMore/ReadMore";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import { Helmet } from "react-helmet-async";
 
-
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
@@ -18,12 +17,16 @@ const SearchPage = () => {
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 10;
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/search?query=${searchQuery}&page=${currentPage}&limit=${itemsPerPage}`);
+        const response = await fetch(
+          `${API_URL}/api/search?query=${searchQuery}&page=${currentPage}&limit=${itemsPerPage}`
+        );
         const data = await response.json();
-        
+
         if (data && data.results) {
           setResults(data.results);
           setTotalPages(Math.ceil(data.total / itemsPerPage));
@@ -42,7 +45,7 @@ const SearchPage = () => {
     if (searchQuery) {
       fetchResults();
     }
-  }, [searchQuery, currentPage]);
+  }, [searchQuery, currentPage, API_URL]);
 
   const handlePageChange = (direction) => {
     if (direction === "next" && currentPage < totalPages) {
@@ -58,21 +61,32 @@ const SearchPage = () => {
         <title>Teslimolan.org - Arama Sayfası</title>
       </Helmet>
       <div className="flex flex-col md:max-w-[1200px] md:w-full gap-5">
-        <h1 className="text-3xl text-gray-900 dark:text-white p-5">Arama Sonuçları</h1>
+        <h1 className="text-3xl text-gray-900 dark:text-white p-5">
+          Arama Sonuçları
+        </h1>
         {results.map((result, index) => (
           <div key={index} className="flex flex-col gap-10 border-t p-5">
             <div className="flex flex-col md:flex-row gap-5">
               <div className="md:max-w-[300px]">
                 <Link to={`/${result.postType.toLowerCase()}/${result.slug}`}>
-                  <img src={result.imgSrc || "/default-image.png"} alt={result.title} />
+                  <img
+                    src={result.imgSrc || "/default-image.png"}
+                    alt={result.title}
+                  />
                 </Link>
               </div>
               <div>
                 <h1 className="text-gray-900 dark:text-white font-semibold text-xl">
-                <Link to={`/${result.postType.toLowerCase()}/${result.slug}`}>{result.title}</Link>
+                  <Link to={`/${result.postType.toLowerCase()}/${result.slug}`}>
+                    {result.title}
+                  </Link>
                 </h1>
                 <p className="text-gray-900 dark:text-white mt-5">
-                  <ReadMore text={result.text} limit={100} to={`/${result.postType.toLowerCase()}/${result.slug}`} />
+                  <ReadMore
+                    text={result.text}
+                    limit={100}
+                    to={`/${result.postType.toLowerCase()}/${result.slug}`}
+                  />
                 </p>
               </div>
             </div>
@@ -98,7 +112,10 @@ const SearchPage = () => {
         </div>
         <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
           <div>
-            <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+            <nav
+              className="isolate inline-flex -space-x-px rounded-md shadow-sm"
+              aria-label="Pagination"
+            >
               <button
                 onClick={() => handlePageChange("previous")}
                 className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
@@ -111,7 +128,11 @@ const SearchPage = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentPage(index + 1)}
-                  className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${index + 1 === currentPage ? "bg-indigo-600 text-white" : "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"} focus:z-20 focus:outline-offset-0`}
+                  className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${
+                    index + 1 === currentPage
+                      ? "bg-indigo-600 text-white"
+                      : "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                  } focus:z-20 focus:outline-offset-0`}
                 >
                   {index + 1}
                 </button>

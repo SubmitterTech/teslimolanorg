@@ -3,11 +3,12 @@ import { Input, Button, Form, message } from 'antd';
 
 const SocialMedia = () => {
   const [config, setConfig] = useState({});
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/admin/ayarlar/sosyalmedya`);
+        const response = await fetch(`${API_URL}/api/admin/ayarlar/sosyalmedya`);
         const data = await response.json();
         setConfig(data);
       } catch (error) {
@@ -16,11 +17,11 @@ const SocialMedia = () => {
     };
 
     fetchConfig();
-  }, []);
+  }, [API_URL]);
 
   const handleUpdate = async (type, value) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/admin/ayarlar/guncelle/sosyalmedya`, { 
+      const response = await fetch(`${API_URL}/api/admin/ayarlar/guncelle/sosyalmedya`, { 
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

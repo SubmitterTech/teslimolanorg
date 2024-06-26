@@ -6,11 +6,11 @@ import { faVideo } from "@fortawesome/free-solid-svg-icons";
 
 const FeaturedVideos = () => {
   const [videos, setVideos] = useState([]);
-
+  const API_URL = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/videolar');
+        const response = await fetch(`${API_URL}/api/videolar`);
         const data = await response.json();
         setVideos(data);
       } catch (error) {
@@ -18,7 +18,7 @@ const FeaturedVideos = () => {
       }
     };
     fetchVideos();
-  }, []);
+  }, [API_URL]);
 
   return (
     <div className="flex flex-col mt-5 py-5 gap-5">

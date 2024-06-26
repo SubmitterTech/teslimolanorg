@@ -9,6 +9,7 @@ const {
   getAllVideos,
   searchPosts,
   getPostsWithTag,
+  getLatestPosts,
 } = require("../controllers/postsController");
 
 const router = express.Router();
@@ -24,5 +25,6 @@ router.get("/perspektif/:slug", getPostContent);
 router.get("/video/:slug", getPostContent);
 router.get("/search", searchPosts);
 router.get("/etiketler/:etiket", getPostsWithTag);
+router.get("/slider", getLatestPosts);
 
 module.exports = router;

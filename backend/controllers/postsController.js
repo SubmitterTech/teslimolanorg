@@ -114,3 +114,14 @@ exports.getPostsWithTag = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+exports.getLatestPosts = async (req, res) => {
+  try {
+    const posts = await postModel
+      .find()
+      .sort({ createdAt: -1 })
+      .limit(10);
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

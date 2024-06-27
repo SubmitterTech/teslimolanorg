@@ -47,7 +47,7 @@ function Perspective() {
       </Helmet>
       <div id="container" className="flex flex-col md:flex-row gap-3 px-5">
         <div id="left-side" className="flex flex-col md:max-w-[800px]">
-          <Directory />
+        <Directory postTitle={perspectives.title} postType={perspectives.postType} />
           <div id="img-content">
             <img src={`${perspectives.imgSrc}`} alt={perspectives.title} />
           </div>

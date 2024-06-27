@@ -47,7 +47,7 @@ function Content() {
       </Helmet>
       <div id="container" className="flex flex-col md:flex-row gap-3 px-5">
         <div id="left-side" className="flex flex-col md:max-w-[800px]">
-          <Directory />
+          <Directory postTitle={article.title} postType={article.postType} />
           <div id="img-content">
             <img src={`${article.imgSrc}`} alt={article.title} />
           </div>

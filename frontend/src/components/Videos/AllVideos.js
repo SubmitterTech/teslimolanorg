@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
-import Directory from "../Directory/Directory";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import { Spin } from "antd";
 
@@ -63,7 +62,6 @@ const AllVideos = () => {
   return (
     <div className="flex flex-col md:justify-center md:items-center bg-gray-50 dark:bg-black w-full">
       <div className="flex flex-col md:max-w-[1200px] md:w-full gap-5">
-        <Directory />
         <h1 className="text-3xl text-gray-900 dark:text-white p-5">Tüm Videolar</h1>
         <div className="grid grid-cols-1 md:grid-cols-4 place-items-center gap-5 py-5">
           {displayedVideos.map((video, index) => (

@@ -402,7 +402,18 @@ const Header = () => {
               }
             />
           ))}
-
+  {isAuthenticated && (
+            <div className="flex items-center justify-center mt-5">
+              <div className="flex items-center">
+                <Link
+                  to="/admin"
+                  className="text-white p-2 rounded-lg bg-gray-500 hover:opacity-90"
+                >
+                  Yönetici Paneli
+                </Link>
+              </div>
+            </div>
+          )}
           <form
             className="flex gap-1 md:hidden my-5 justify-center"
             onSubmit={searchHandler}

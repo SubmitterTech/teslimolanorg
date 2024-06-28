@@ -16,7 +16,7 @@ const RichTextEditor = forwardRef((props, ref) => {
   }));
 
   return (
-    <div className="mb-20 md:mb-10">
+    <div className="w-full overflow-hidden mb-10">
       <CKEditor
         editor={ClassicEditor}
         config={{
@@ -32,7 +32,7 @@ const RichTextEditor = forwardRef((props, ref) => {
           simpleUpload: {
             uploadUrl: '/upload'  // Only necessary if you have actual upload functionality
           },
-          extraPlugins: [ MyCustomUploadAdapterPlugin ]
+          extraPlugins: [MyCustomUploadAdapterPlugin]
         }}
         data={value}
         onChange={(event, editor) => {

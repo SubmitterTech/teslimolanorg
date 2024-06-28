@@ -403,7 +403,7 @@ const Header = () => {
             />
           ))}
   {isAuthenticated && (
-            <div className="flex items-center justify-center mt-5">
+            <div className="flex items-center justify-center mt-5 md:hidden">
               <div className="flex items-center">
                 <Link
                   to="/admin"

@@ -316,7 +316,7 @@ const Header = () => {
   ];
 
   return (
-    <header>
+    <header style={{ position: 'relative', zIndex: 1000 }}>
       <div className="flex justify-between items-center bg-gray-50 dark:bg-black pr-1 md:px-10">
         <a
           href="/"

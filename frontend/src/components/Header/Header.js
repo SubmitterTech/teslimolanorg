@@ -316,7 +316,7 @@ const Header = () => {
   ];
 
   return (
-    <header style={{ position: 'relative', zIndex: 1000 }}>
+    <header style={{ position: "relative", zIndex: 1000 }}>
       <div className="flex justify-between items-center bg-gray-50 dark:bg-black pr-1 md:px-10">
         <a
           href="/"
@@ -397,8 +397,12 @@ const Header = () => {
               subMenuItems={subMenuItem.subMenuItems}
               toggleSubMenu={toggleSubMenu}
               expandedMenu={expandedMenu}
+              onClick={
+                subMenuItem.title === "ANASAYFA" ? toggleMenu : undefined
+              }
             />
           ))}
+
           <form
             className="flex gap-1 md:hidden my-5 justify-center"
             onSubmit={searchHandler}

@@ -10,7 +10,13 @@ const SubMenuItem = ({
   subMenuItems,
   toggleSubMenu,
   expandedMenu,
+  onClick,
 }) => {
+  const handleClick = () => {
+    if (onClick) onClick();
+    // Any other click handlers can go here
+  };
+
   return (
     <li className="border-b md:border-none p-3 md:p-0 md:text-xs lg:text-base">
       {subMenuItems.length > 0 ? (
@@ -48,13 +54,13 @@ const SubMenuItem = ({
           </ul>
         </>
       ) : (
-        <Link to={src} className="flex items-center gap-3 hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out">
-          <FontAwesomeIcon icon={icon} />
-          {title}
+        <Link to={src} className="flex items-center gap-3 hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out" onClick={handleClick}>
+            <FontAwesomeIcon icon={icon} />
+            {title}
         </Link>
-      )}
-    </li>
-  );
+    )}
+</li>
+);
 };
 
 export default SubMenuItem;

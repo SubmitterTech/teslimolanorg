@@ -1,4 +1,6 @@
 const postModel = require("../models/postModel");
+const fs = require('fs');
+const path = require('path');
 
 const makeSlug = (title) => {
   const turkishMap = {
@@ -86,20 +88,54 @@ exports.getPostById = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+const deleteImage = async (imagePath) => {
+  if (fs.existsSync(imagePath)) {
+    try {
+      await fs.promises.unlink(imagePath);
+      console.log('Image successfully deleted:', imagePath);
+    } catch (err) {
+      console.error('Error deleting image:', err);
+    }
+  } else {
+    console.error('Image not found:', imagePath);
+  }
+};
 
 exports.deletePost = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedPost = await postModel.findByIdAndDelete(id);
-    if (!deletedPost) {
+    const post = await postModel.findById(id);
+
+    if (!post) {
       return res.status(404).json({ message: 'Post not found' });
     }
+
+    // imgSrc yolunun başında '/uploads/' olup olmadığını kontrol edin
+    let imagePath;
+    if (post.imgSrc.startsWith('/uploads/')) {
+      imagePath = path.join(__dirname, '../../frontend/public', post.imgSrc);
+    } else {
+      imagePath = path.join(__dirname, '../../frontend/public/uploads', post.imgSrc);
+    }
+
+    console.log('Attempting to delete image at path:', imagePath);
+
+    if (fs.existsSync(imagePath)) {
+      console.log('Image exists at path:', imagePath);
+    } else {
+      console.error('Image not found at path:', imagePath);
+    }
+
+    await postModel.findByIdAndDelete(id);
+
+    // Görseli sil
+    await deleteImage(imagePath);
+
     res.status(200).json({ message: 'Post deleted successfully' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
-
 exports.uploadFile = (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'No file uploaded' });

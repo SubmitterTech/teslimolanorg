@@ -3,8 +3,16 @@ import { Link } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 
 const ReadMore = ({ text = "", limit, to }) => {
+  const removeImages = (html) => {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const images = doc.querySelectorAll('img');
+    images.forEach(img => img.remove());
+    return doc.body.innerHTML;
+  };
+
   const createMarkup = (html) => {
-    return { __html: DOMPurify.sanitize(html) };
+    const cleanHtml = removeImages(html);
+    return { __html: DOMPurify.sanitize(cleanHtml) };
   };
 
   return (

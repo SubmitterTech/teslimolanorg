@@ -12,6 +12,7 @@ import VideosPage from './pages/VideosPage';
 import PerspectivesPage from './pages/PerspectivesPage';
 import PostEdit from './components/PostEdit';
 import { Helmet } from 'react-helmet-async';
+import AddHutbePage from './pages/AddHutbePage';
 
 const AdminPanel = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +35,7 @@ const AdminPanel = () => {
             <Route path="/settings" element={<Settings />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/makale" element={<AddTextPage/>} />
+            <Route path="/hutbe" element={<AddHutbePage/>} />
             <Route path='/makaleler' element={<ArticlesPage/>}/>
             <Route path='/perspektifler' element={<PerspectivesPage/>}/>
             <Route path='/videolar' element={<VideosPage/>}/>

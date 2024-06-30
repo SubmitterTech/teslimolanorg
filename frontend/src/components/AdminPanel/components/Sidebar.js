@@ -7,6 +7,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   const [menus, setMenus] = useState([
     { name: "Web Site", icon: faEarthAmericas, path: "/", subMenus: [] },
     { name: "Anasayfa", icon: faHome, path: "/admin", subMenus: [] },
+    { name: "Hutbe Ekle", icon: faPen, path: "/admin/makale", subMenus: [] },
     { name: "Yazı Ekle", icon: faPen, path: "/admin/makale", subMenus: [] },
     { name: "Yazılar", icon: faFont, path: "#", subMenus: [
       { name: "Makaleler", path: "/admin/makaleler" },

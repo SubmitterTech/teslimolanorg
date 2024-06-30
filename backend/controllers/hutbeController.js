@@ -26,6 +26,18 @@ exports.getHutbeler = async (req, res) => {
   }
 };
 
+exports.getFeaturedSermons = async (req, res) => {
+  try {
+    const articles = await HutbeModel
+      .find()
+      .sort({ createdAt: -1 })
+      .limit(2);
+    res.status(200).json(articles);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 exports.getHutbeBySlug = async (req, res) => {
   try {
     const hutbe = await HutbeModel.findOne({ slug: req.params.slug });

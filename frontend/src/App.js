@@ -13,6 +13,8 @@ import AllVideos from "./components/Videos/AllVideos";
 import LoginPage from "./pages/LoginPage";
 import SearchPage from "./pages/SearchPage";
 import FetchTags from "./components/RelatedTags/FetchTags";
+import SermonContent from "./components/Sermons/SermonContent";
+import AllSermons from "./components/Sermons/AllSermons";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/perspektif/:slug" element={<PerspectiveContent />} />
           <Route path="/news-slider" element={<NewsSlider />} />
           <Route path="/perspektif" element={<PerspectiveContent />} />
+          <Route path="/hutbe/:slug" element={<SermonContent/>} />
+          <Route path="/hutbeler" element={<AllSermons/>} />
           <Route path="/perspektifler/listele" element={<AllPerspectives />} />
           <Route path="/video" element={<VideoContent />} />
           <Route path="/videolar/listele" element={<AllVideos />} />

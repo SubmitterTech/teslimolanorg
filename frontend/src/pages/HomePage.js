@@ -8,6 +8,7 @@ import About from "../components/About/About";
 import Footer from "../components/Footer/Footer";
 import { Helmet } from "react-helmet-async";
 import NewsSlider from "../components/NewsSlider/NewsSlider";
+import FeaturedSermons from "../components/Sermons/FeaturedSermons";
 
 const HomePage = () => {
   return (
@@ -22,6 +23,7 @@ const HomePage = () => {
         <FeaturedPerspective />
         <FeaturedVideos />
         <SuggestionsSection />
+        <FeaturedSermons/>
         <About />
         <Footer />
       </div>

@@ -14,6 +14,7 @@ import PostEdit from './components/PostEdit';
 import { Helmet } from 'react-helmet-async';
 import AddHutbePage from './pages/AddHutbePage';
 import HutbeList from './components/HutbeList';
+import HutbeEditPage from './pages/HutbeEditPage';
 
 const AdminPanel = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,6 +39,7 @@ const AdminPanel = () => {
             <Route path="/makale" element={<AddTextPage/>} />
             <Route path='/hutbeler' element={<HutbeList/>}/>
             <Route path="/hutbe/ekle" element={<AddHutbePage/>} />
+            <Route path="/hutbe/getir/:slug" element={<HutbeEditPage/>} />
             <Route path='/makaleler' element={<ArticlesPage/>}/>
             <Route path='/perspektifler' element={<PerspectivesPage/>}/>
             <Route path='/videolar' element={<VideosPage/>}/>

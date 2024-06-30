@@ -20,7 +20,7 @@ const HutbeList = ({ postType, title }) => {
       try {
         const response = await fetch(`${API_URL}/api/hutbeler/getir`);
         const data = await response.json();
-        
+
         // Verilerin doğrudan bir dizi olduğunu kabul edelim
         if (Array.isArray(data)) {
           setPosts(data);
@@ -67,7 +67,10 @@ const HutbeList = ({ postType, title }) => {
     }
   };
 
-  const displayedPosts = posts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const displayedPosts = posts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     <div className="flex flex-col md:justify-center md:items-center w-full">
@@ -79,15 +82,12 @@ const HutbeList = ({ postType, title }) => {
               <div className="flex flex-col md:flex-row gap-5">
                 <div className="md:max-w-[300px]">
                   <Link to={`/${postType}/${post.slug}`}>
-                    <img
-                      src={defaultImage}
-                      alt={post.title}
-                    />
+                    <img src={defaultImage} alt={post.title} />
                   </Link>
                 </div>
                 <div className="flex-1">
                   <h1 className="text-gray-900  font-semibold text-xl">
-                    <Link to={`/${postType}/${post._id}`}>{post.title}</Link>
+                    <Link to={`/${postType}/${post.slug}`}>{post.title}</Link>
                   </h1>
                   <div className="text-gray-900  mt-5">
                     <ReadMore
@@ -99,7 +99,7 @@ const HutbeList = ({ postType, title }) => {
                 </div>
                 <div className="flex flex-col justify-center items-center md:items-start">
                   <Link
-                    to={`/admin/yazilar/${post._id}`}
+                    to={`/admin/hutbe/getir/${post.slug}`}
                     className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
                   >
                     Düzenle
@@ -115,7 +115,9 @@ const HutbeList = ({ postType, title }) => {
             </div>
           ))
         ) : (
-          <p className="text-gray-900 dark:text-white p-5">Gönderi bulunamadı.</p>
+          <p className="text-gray-900 dark:text-white p-5">
+            Gönderi bulunamadı.
+          </p>
         )}
       </div>
       <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
@@ -153,7 +155,11 @@ const HutbeList = ({ postType, title }) => {
                 <button
                   key={index}
                   onClick={() => setCurrentPage(index + 1)}
-                  className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${index + 1 === currentPage ? "bg-indigo-600 text-white" : "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"} focus:z-20 focus:outline-offset-0`}
+                  className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${
+                    index + 1 === currentPage
+                      ? "bg-indigo-600 text-white"
+                      : "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                  } focus:z-20 focus:outline-offset-0`}
                 >
                   {index + 1}
                 </button>

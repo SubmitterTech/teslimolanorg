@@ -41,7 +41,7 @@ const NewsSlider = () => {
     <Swiper
       pagination={{ clickable: true }}
       modules={[Pagination, Autoplay]}
-      className="w-full h-96 md:h-80 sm:h-60 mySwiper"
+      className="w-full h-96 md:h-80 sm:h-60 mySwiper mt-12 md:mt-0"
       autoplay={{ delay: 3000, disableOnInteraction: false }}
     >
       {posts.map((post) => (

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import RichTextEditor from "../components/RichTextEditor";
 import { message } from "antd";
+import RichTextEditor from "../../components/RichTextEditor";
 
 const AddHutbePage = () => {
   const [tags, setTags] = useState("");
@@ -82,6 +82,7 @@ const AddHutbePage = () => {
           className="border p-3 w-full md:w-72"
           value={tags}
           onChange={(e) => setTags(e.target.value)}
+
         />
       </div>
     </div>

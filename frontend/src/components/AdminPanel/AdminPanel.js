@@ -12,9 +12,9 @@ import VideosPage from './pages/VideosPage';
 import PerspectivesPage from './pages/PerspectivesPage';
 import PostEdit from './components/PostEdit';
 import { Helmet } from 'react-helmet-async';
-import AddHutbePage from './pages/AddHutbePage';
-import HutbeList from './components/HutbeList';
-import HutbeEditPage from './pages/HutbeEditPage';
+import AddHutbePage from './pages/Hutbeler/AddHutbePage';
+import HutbeList from './pages/Hutbeler/HutbeList';
+import HutbeEditPage from './pages/Hutbeler/HutbeEditPage';
 
 const AdminPanel = () => {
   const [isOpen, setIsOpen] = useState(false);

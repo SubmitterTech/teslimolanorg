@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import RichTextEditor from "../components/RichTextEditor";
+import RichTextEditor from "../../components/RichTextEditor";
 import { message } from "antd";
 import { useParams, useNavigate } from "react-router-dom";
 

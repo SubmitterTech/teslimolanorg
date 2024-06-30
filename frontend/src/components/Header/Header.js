@@ -316,7 +316,7 @@ const Header = () => {
   ];
 
   return (
-    <header style={{ position: "relative", zIndex: 1000 }}>
+    <header className="bg-gray-50 dark:bg-black md:relative md:z-auto fixed top-0 left-0 w-full z-50" style={{zIndex:1000}}>
       <div className="flex justify-between items-center bg-gray-50 dark:bg-black pr-1 md:px-10">
         <a
           href="/"
@@ -354,15 +354,6 @@ const Header = () => {
               placeholder="Arama Metni"
               onChange={(e) => setSearchInput(e.target.value)}
             />
-            {/* <select
-              id="options"
-              defaultValue="1"
-              className="w-[120px] bg-gray-50 text-gray-900 dark:bg-black border border-gray-400 rounded p-2 dark:text-gray-100 text-sm"
-            >
-              <option defaultValue="option1">Kur'anda</option>
-              <option defaultValue="option2">Eklerde</option>
-              <option defaultValue="option3">Makalelerde</option>
-            </select> */}
             <button className="text-gray-900 dark:text-white border border-gray-400 rounded px-2">
               <FontAwesomeIcon icon={faSearch} />
             </button>
@@ -387,7 +378,7 @@ const Header = () => {
         >
           <FontAwesomeIcon icon={faTimes} />
         </button>
-        <ul className="flex flex-col gap-0   p-4 md:flex-row md:gap-8 md:p-0 md:justify-center md:items-center">
+        <ul className="flex flex-col gap-0 p-4 md:flex-row md:gap-8 md:p-0 md:justify-center md:items-center">
           {menuItems.map((subMenuItem, index) => (
             <SubMenuItem
               key={index}
@@ -402,7 +393,7 @@ const Header = () => {
               }
             />
           ))}
-  {isAuthenticated && (
+          {isAuthenticated && (
             <div className="flex items-center justify-center mt-5 md:hidden">
               <div className="flex items-center">
                 <Link
@@ -425,15 +416,6 @@ const Header = () => {
               placeholder="Arama Metni"
               onChange={(e) => setSearchInput(e.target.value)}
             />
-            {/* <select
-              id="options"
-              defaultValue="1"
-              className="w-[120px] bg-gray-50 text-gray-900 dark:bg-black border border-gray-400 rounded p-2 dark:text-gray-100 text-sm"
-            >
-              <option defaultValue="option1">Kur'anda</option>
-              <option defaultValue="option2">Eklerde</option>
-              <option defaultValue="option3">Makalelerde</option>
-            </select> */}
             <button className="text-gray-50 dark:text-white border border-gray-400 rounded px-2">
               <FontAwesomeIcon icon={faSearch} />
             </button>

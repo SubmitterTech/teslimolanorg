@@ -5,7 +5,7 @@ import ReadMore from "../../ReadMore/ReadMore";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 
 const { confirm } = Modal;
-const defaultImage = "/ekler.png"; // Varsayılan resim yolu
+const defaultImage = "/hutbe-teslimiyet.png"; // Varsayılan resim yolu
 
 const HutbeList = ({ postType, title }) => {
   const [posts, setPosts] = useState([]);

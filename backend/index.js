@@ -7,6 +7,7 @@ const configRoute = require('./routes/configRoute');
 const userRoute = require('./routes/userRoute');
 const emailRoute = require('./routes/emailRoute');
 const postsRoute = require('./routes/postsRoute');
+const hutbeRoute = require('./routes/hutbeRoute');
 const connectDB = require('./config/db');
 
 const app = express();
@@ -23,6 +24,7 @@ app.use('/api', configRoute);
 app.use('/api/admin', userRoute);
 app.use('/api', postsRoute);
 app.use('/api', emailRoute);
+app.use("/api/hutbeler", hutbeRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

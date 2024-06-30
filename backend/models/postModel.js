@@ -19,7 +19,7 @@ const postSchema = mongoose.Schema(
     },
     imgSrc: {
       type: String,
-      required: true,
+      default:""
     },
     slug: {
       type: String,

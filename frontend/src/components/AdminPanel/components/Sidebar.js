@@ -13,6 +13,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       { name: "Makaleler", path: "/admin/makaleler" },
       { name: "Perspektifler", path: "/admin/perspektifler" },
       { name: "Videolar", path: "/admin/videolar" },
+      { name: "Hutbeler", path: "/admin/hutbeler" },
     ] },
     { name: "Profil", icon: faUser, path: "/admin/profile", subMenus: [] },
     { name: "Ayarlar", icon: faGear, path: "#", subMenus: [

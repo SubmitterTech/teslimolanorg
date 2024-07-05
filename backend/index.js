@@ -33,6 +33,8 @@ app.use(cors({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+// Public klasöründeki statik dosyalara erişim sağlar
+app.use('/uploads', express.static('public/uploads'));
 
 connectDB();
 

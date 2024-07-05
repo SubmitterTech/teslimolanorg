@@ -16,7 +16,8 @@ const port = 5001; //Server Port
 // CORS yapılandırması
 const allowedOrigins = [
   'http://localhost:3000', // Yerel geliştirme ortamı
-  'https://teslimolanorg-frontend.onrender.com/' // Üretim ortamı domaini
+  'https://teslimolanorg-frontend.onrender.com/', // Üretim ortamı domaini
+  'https://teslimolanorg-backend.onrender.com'
 ];
 
 app.use(cors({

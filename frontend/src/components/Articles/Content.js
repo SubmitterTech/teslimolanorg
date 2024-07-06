@@ -37,7 +37,7 @@ function Content() {
   }
 
   return (
-    <div className="flex justify-center items-center flex-col bg-gray-50 dark:bg-black">
+    <div className="flex justify-center items-center flex-col bg-gray-50 dark:bg-black mt-16">
       <Helmet>
         <title>{article.title}</title> {/* Dinamik Title */}
         {/* Dinamik meta keywords */}

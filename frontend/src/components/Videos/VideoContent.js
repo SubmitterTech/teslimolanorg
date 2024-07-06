@@ -79,7 +79,7 @@ const VideoContent = () => {
   });
 
   return (
-    <div className="flex justify-center items-center flex-col bg-gray-50 dark:bg-black">
+    <div className="flex justify-center items-center flex-col bg-gray-50 dark:bg-black mt-16">
       <Helmet>
         <title>{video.title}</title>
          {/* Dinamik meta keywords */}

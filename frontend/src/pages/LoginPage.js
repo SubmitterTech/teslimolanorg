@@ -32,7 +32,7 @@ const LoginPage = () => {
     }
   };
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 h-screen">
+    <section className="bg-gray-50 dark:bg-gray-900 h-screen mt-16">
       <Helmet>
         <title>Yönetici Giriş Sayfası</title>
       </Helmet>

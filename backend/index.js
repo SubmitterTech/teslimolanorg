@@ -17,8 +17,11 @@ const port = 5001; //Server Port
 const allowedOrigins = [
   'http://localhost:3000', // Yerel geliştirme ortamı
   'https://teslimolanorg-frontend.onrender.com', // Üretim ortamı domaini
-  'https://teslimolanorg-backend.onrender.com'
+  'https://teslimolanorg-backend.onrender.com',
+  'http://157.230.18.195',
+  'http://157.230.18.195:3000' // Droplet üzerindeki frontend
 ];
+
 
 app.use(cors({
   origin: (origin, callback) => {

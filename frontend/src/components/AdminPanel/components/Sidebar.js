@@ -4,25 +4,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faChevronDown, faHome, faUser, faGear, faPen, faFont, faEarthAmericas } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
-  const [menus, setMenus] = useState([
-    { name: "Web Site", icon: faEarthAmericas, path: "/", subMenus: [] },
-    { name: "Anasayfa", icon: faHome, path: "/admin", subMenus: [] },
-    { name: "Hutbe Ekle", icon: faPen, path: "/admin/hutbe/ekle", subMenus: [] },
-    { name: "Yazı Ekle", icon: faPen, path: "/admin/makale", subMenus: [] },
-    { name: "Yazılar", icon: faFont, path: "#", subMenus: [
-      { name: "Makaleler", path: "/admin/makaleler" },
-      { name: "Perspektifler", path: "/admin/perspektifler" },
-      { name: "Videolar", path: "/admin/videolar" },
-      { name: "Hutbeler", path: "/admin/hutbeler" },
-    ] },
-    { name: "Profil", icon: faUser, path: "/admin/profile", subMenus: [] },
-    { name: "Ayarlar", icon: faGear, path: "#", subMenus: [
-      { name: "Tema", path: "/admin/settings/theme" },
-      { name: "Sosyal Medya", path: "/admin/ayarlar/sosyalmedya" },
-    ] },
-  ]);
+  // eslint-disable-next-line no-unused-vars
+const [menus, setMenus] = useState([
+  { name: "Web Site", icon: faEarthAmericas, path: "/", subMenus: [] },
+  { name: "Anasayfa", icon: faHome, path: "/admin", subMenus: [] },
+  { name: "Hutbe Ekle", icon: faPen, path: "/admin/hutbe/ekle", subMenus: [] },
+  { name: "Yazı Ekle", icon: faPen, path: "/admin/makale", subMenus: [] },
+  { name: "Yazılar", icon: faFont, path: "#", subMenus: [
+    { name: "Makaleler", path: "/admin/makaleler" },
+    { name: "Perspektifler", path: "/admin/perspektifler" },
+    { name: "Videolar", path: "/admin/videolar" },
+    { name: "Hutbeler", path: "/admin/hutbeler" },
+  ] },
+  { name: "Profil", icon: faUser, path: "/admin/profile", subMenus: [] },
+  { name: "Ayarlar", icon: faGear, path: "#", subMenus: [
+    { name: "Tema", path: "/admin/settings/theme" },
+    { name: "Sosyal Medya", path: "/admin/ayarlar/sosyalmedya" },
+  ] },
+]);
 
-  const [isMenuOpen, setIsMenuOpen] = useState({});
+const [isMenuOpen, setIsMenuOpen] = useState({});
 
   const toggleMenu = (name) => {
     setIsMenuOpen((prevState) => ({
@@ -31,7 +32,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     }));
   };
 
-  const handleAddMenu = (menuName, icon, path) => {
+ /*  const handleAddMenu = (menuName, icon, path) => {
     setMenus([...menus, { name: menuName, icon: icon, path: path, subMenus: [] }]);
   };
 
@@ -45,7 +46,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       }
       return menu;
     }));
-  };
+  }; */
 
   return (
     <div

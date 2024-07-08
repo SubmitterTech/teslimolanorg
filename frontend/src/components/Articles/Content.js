@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet-async";
 import { Spin } from "antd";
 
 function Content() {
-  const { slug } = useParams(); // Dinamik parametreyi al
+  const { slug } = useParams();
   const [article, setArticle] = useState(null);
   const API_URL = process.env.REACT_APP_API_URL;
   const uploadSrc = process.env.REACT_APP_UPLOAD_SRC;
@@ -20,15 +20,25 @@ function Content() {
       try {
         const response = await fetch(`${API_URL}/api/makale/${slug}`);
         const data = await response.json();
+        if (data && data.text) {
+          const updatedText = data.text.replace(
+            /<img [^>]*src="([^"]*)"/g,
+            (match, p1) => {
+              console.log('Original match:', match); // Tüm img tag'ini gösterir
+              console.log('Original src:', p1); // src içindeki URL'yi gösterir
+              return `<img src="${uploadSrc}${p1.startsWith('/') ? p1.slice(1) : p1}"`;
+            }
+          );
+          data.text = updatedText;
+        }
         setArticle(data);
       } catch (error) {
         console.error("Error fetching article:", error);
       }
     };
-
+  
     fetchArticle();
-  }, [slug, API_URL]);
-
+  }, [slug, API_URL, uploadSrc]);
   if (!article) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -40,8 +50,7 @@ function Content() {
   return (
     <div className="flex justify-center items-center flex-col bg-gray-50 dark:bg-black mt-16">
       <Helmet>
-        <title>{article.title}</title> {/* Dinamik Title */}
-        {/* Dinamik meta keywords */}
+        <title>{article.title}</title>
         {article.tags && (
           <meta name="keywords" content={article.tags.join(", ")} />
         )}
@@ -53,25 +62,16 @@ function Content() {
             <img src={`${uploadSrc}${article.imgSrc}`} alt={article.title} />
           </div>
           <div id="content-container" className="flex flex-col gap-5 mt-5">
-            <div
-              id="title"
-              className="text-gray-900 dark:text-white text-3xl font-bold"
-            >
+            <div id="title" className="text-gray-900 dark:text-white text-3xl font-bold">
               {article.title}
             </div>
-            <div id="content-text" className="text-gray-900 dark:text-white">
-              <div dangerouslySetInnerHTML={{ __html: article.text }} />
-            </div>
+            <div id="content-text" className="text-gray-900 dark:text-white" dangerouslySetInnerHTML={{ __html: article.text }} />
           </div>
           <RelatedVerses verses={article.verses || []} />
           <RelatedAppendices appendices={article.appendices || []} />
-          <RelatedTags tags={article.tags || []} />{" "}
-          {/* tags doğru şekilde iletiliyor */}
+          <RelatedTags tags={article.tags || []} />
         </div>
-        <div
-          id="right-side"
-          className="flex flex-col gap-5 md:min-w-[300px] md:max-w-[350px] h-[400px] p-3"
-        >
+        <div id="right-side" className="flex flex-col gap-5 md:min-w-[300px] md:max-w-[350px] h-[400px] p-3">
           <RelatedArticlesRightPanel articles={article.relatedArticles || []} />
         </div>
       </div>

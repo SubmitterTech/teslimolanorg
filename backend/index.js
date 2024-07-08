@@ -8,6 +8,7 @@ const userRoute = require('./routes/userRoute');
 const emailRoute = require('./routes/emailRoute');
 const postsRoute = require('./routes/postsRoute');
 const hutbeRoute = require('./routes/hutbeRoute');
+const path = require('path'); // path modülünü import edin
 const connectDB = require('./config/db');
 
 const app = express();
@@ -37,7 +38,9 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // Public klasöründeki statik dosyalara erişim sağlar
-app.use('/uploads', express.static('public/uploads'));
+/* app.use('/uploads', express.static('public/uploads')); */
+// Statik dosyaların servis edilmesi
+app.use('/uploads', express.static(path.join(__dirname, 'assets/uploads')));
 
 connectDB();
 

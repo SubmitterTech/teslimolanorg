@@ -15,7 +15,8 @@ const fileFilter = (req, file, cb) => {
 // Depolama ayarları
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, '../../frontend/public/uploads'));
+    /* cb(null, path.join(__dirname, '../../frontend/public/uploads')); */
+    cb(null, path.join(__dirname, '../../backend/assets/uploads'));
   },
   filename: (req, file, cb) => {
     const uniqueName = `${uuidv4()}-${file.originalname}`;

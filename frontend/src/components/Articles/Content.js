@@ -13,6 +13,7 @@ function Content() {
   const { slug } = useParams(); // Dinamik parametreyi al
   const [article, setArticle] = useState(null);
   const API_URL = process.env.REACT_APP_API_URL;
+  const uploadSrc = process.env.REACT_APP_UPLOAD_SRC;
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -49,7 +50,7 @@ function Content() {
         <div id="left-side" className="flex flex-col md:max-w-[800px]">
           <Directory postTitle={article.title} postType={article.postType} />
           <div id="img-content">
-            <img src={`${article.imgSrc}`} alt={article.title} />
+            <img src={`${uploadSrc}${article.imgSrc}`} alt={article.title} />
           </div>
           <div id="content-container" className="flex flex-col gap-5 mt-5">
             <div

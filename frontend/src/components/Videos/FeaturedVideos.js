@@ -28,11 +28,15 @@ const FeaturedVideos = () => {
         <h1 className="text-3xl">Videolar</h1>
       </div>
       {videos.length > 0 && (
-        <div className="flex">
+        <div className="flex items-center justify-center min-h-full">
           <Link to={`/video/${videos[0].slug}`}>
-            <div className="w-full">
-              <div className="relative">
-                <img src={`${uploadSrc}${videos[0].imgSrc}`} alt="video" className="w-full" />
+            <div className="m-4 md:w-full md:m-0">
+              <div className="relative ">
+                <img
+                  src={`${uploadSrc}${videos[0].imgSrc}`}
+                  alt="video"
+                  className="w-full"
+                />
                 <div className="absolute text-3xl bg-black bg-opacity-80 bottom-1 left-1 text-white py-1 px-3 rounded">
                   <FontAwesomeIcon icon={faVideo} />
                 </div>
@@ -58,7 +62,12 @@ const FeaturedVideos = () => {
         ))}
       </div>
       <div className="flex justify-center text-gray-900 dark:text-white">
-        <Link to="/videolar/listele" className="hover:text-emerald-600 border-b border-transparent hover:border-emerald-600 pb-1 transition-colors duration-300 ease-in-out">Tüm Videolar</Link>
+        <Link
+          to="/videolar/listele"
+          className="hover:text-emerald-600 border-b border-transparent hover:border-emerald-600 pb-1 transition-colors duration-300 ease-in-out"
+        >
+          Tüm Videolar
+        </Link>
       </div>
     </div>
   );

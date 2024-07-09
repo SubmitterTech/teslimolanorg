@@ -24,9 +24,11 @@ function Content() {
           const updatedText = data.text.replace(
             /<img [^>]*src="([^"]*)"/g,
             (match, p1) => {
-              console.log('Original match:', match); // Tüm img tag'ini gösterir
-              console.log('Original src:', p1); // src içindeki URL'yi gösterir
-              return `<img src="${uploadSrc}${p1.startsWith('/') ? p1.slice(1) : p1}"`;
+              console.log("Original match:", match); // Tüm img tag'ini gösterir
+              console.log("Original src:", p1); // src içindeki URL'yi gösterir
+              return `<img src="${uploadSrc}${
+                p1.startsWith("/") ? p1.slice(1) : p1
+              }"`;
             }
           );
           data.text = updatedText;
@@ -36,7 +38,7 @@ function Content() {
         console.error("Error fetching article:", error);
       }
     };
-  
+
     fetchArticle();
   }, [slug, API_URL, uploadSrc]);
   if (!article) {
@@ -62,16 +64,26 @@ function Content() {
             <img src={`${uploadSrc}${article.imgSrc}`} alt={article.title} />
           </div>
           <div id="content-container" className="flex flex-col gap-5 mt-5">
-            <div id="title" className="text-gray-900 dark:text-white text-3xl font-bold">
+            <div
+              id="title"
+              className="text-gray-900 dark:text-white text-3xl font-bold"
+            >
               {article.title}
             </div>
-            <div id="content-text" className="text-gray-900 dark:text-white" dangerouslySetInnerHTML={{ __html: article.text }} />
+            <div
+              id="content-text"
+              className="text-gray-900 dark:text-white"
+              dangerouslySetInnerHTML={{ __html: article.text }}
+            />
           </div>
           <RelatedVerses verses={article.verses || []} />
           <RelatedAppendices appendices={article.appendices || []} />
           <RelatedTags tags={article.tags || []} />
         </div>
-        <div id="right-side" className="flex flex-col gap-5 md:min-w-[300px] md:max-w-[350px] h-[400px] p-3">
+        <div
+          id="right-side"
+          className="flex flex-col gap-5 md:min-w-[300px] md:max-w-[350px] h-[400px] p-3"
+        >
           <RelatedArticlesRightPanel articles={article.relatedArticles || []} />
         </div>
       </div>

@@ -7,6 +7,7 @@ import { faVideo } from "@fortawesome/free-solid-svg-icons";
 const FeaturedVideos = () => {
   const [videos, setVideos] = useState([]);
   const API_URL = process.env.REACT_APP_API_URL;
+  const uploadSrc = process.env.REACT_APP_UPLOAD_SRC;
   useEffect(() => {
     const fetchVideos = async () => {
       try {
@@ -31,7 +32,7 @@ const FeaturedVideos = () => {
           <Link to={`/video/${videos[0].slug}`}>
             <div className="w-full">
               <div className="relative">
-                <img src={videos[0].imgSrc} alt="video" className="w-full" />
+                <img src={`${uploadSrc}${videos[0].imgSrc}`} alt="video" className="w-full" />
                 <div className="absolute text-3xl bg-black bg-opacity-80 bottom-1 left-1 text-white py-1 px-3 rounded">
                   <FontAwesomeIcon icon={faVideo} />
                 </div>

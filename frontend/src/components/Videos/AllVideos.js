@@ -12,6 +12,8 @@ const AllVideos = () => {
   const itemsPerPage = 10;
 
   const API_URL = process.env.REACT_APP_API_URL;
+  const uploadSrc = process.env.REACT_APP_UPLOAD_SRC;
+
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -70,7 +72,7 @@ const AllVideos = () => {
               className="flex flex-col items-center  justify-center w-full max-w-xs md:h-[280px] border border-gray-600 p-3 rounded-lg"
             >
               <Link to={video.linkSrc} className="flex flex-col justify-center items-center">
-                <img src={video.imgSrc} alt={video.title} className="md:w-48 md:h-48" />
+                <img src={`${uploadSrc}${video.imgSrc}`} alt={video.title} className="md:w-48 md:h-48" />
                 <div className="flex items-center justify-center">
                   <h2 className="text-gray-900 dark:text-white line-clamp-2">{video.title}</h2>
                 </div>

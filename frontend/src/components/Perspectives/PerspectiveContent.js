@@ -13,20 +13,32 @@ function Perspective() {
   const { slug } = useParams(); // Dinamik parametreyi al
   const [perspectives, setPerspectives] = useState(null);
   const API_URL = process.env.REACT_APP_API_URL;
+  const uploadSrc = process.env.REACT_APP_UPLOAD_SRC;
 
   useEffect(() => {
     const fetchPerspective = async () => {
       try {
-        const response = await fetch(`${API_URL}/api/perspektif/${slug}`);
+        const response = await fetch(`${API_URL}/api/makale/${slug}`);
         const data = await response.json();
+        if (data && data.text) {
+          const updatedText = data.text.replace(
+            /<img [^>]*src="([^"]*)"/g,
+            (match, p1) => {
+              console.log('Original match:', match); // Tüm img tag'ini gösterir
+              console.log('Original src:', p1); // src içindeki URL'yi gösterir
+              return `<img src="${uploadSrc}${p1.startsWith('/') ? p1.slice(1) : p1}"`;
+            }
+          );
+          data.text = updatedText;
+        }
         setPerspectives(data);
       } catch (error) {
-        console.error("Error fetching perspectives:", error);
+        console.error("Error fetching article:", error);
       }
     };
 
     fetchPerspective();
-  }, [slug,API_URL]);
+  }, [slug,API_URL, uploadSrc]);
 
   if (!perspectives) {
     return (
@@ -49,7 +61,7 @@ function Perspective() {
         <div id="left-side" className="flex flex-col md:max-w-[800px]">
         <Directory postTitle={perspectives.title} postType={perspectives.postType} />
           <div id="img-content">
-            <img src={`${perspectives.imgSrc}`} alt={perspectives.title} />
+          <img src={`${uploadSrc}${perspectives.imgSrc}`} alt={perspectives.title} />
           </div>
           <div id="content-container" className="flex flex-col gap-5 mt-5">
             <div

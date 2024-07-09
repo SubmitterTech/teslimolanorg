@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const ArticleCard = ({ linkSrc, image, title }) => {
   const uploadSrc = process.env.REACT_APP_UPLOAD_SRC;

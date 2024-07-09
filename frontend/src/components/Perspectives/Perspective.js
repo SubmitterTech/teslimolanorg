@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Perspective = ({ image, title, linkSrc }) => {
+  const uploadSrc = process.env.REACT_APP_UPLOAD_SRC;
   return (
     <Link to={linkSrc}>
       <div className="rounded overflow-hidden shadow-lg text-gray-900 dark:text-white">
         <div className="relative w-full h-48 bg-gray-50 dark:bg-black flex items-center justify-center">
           <img
             className="max-h-full max-w-full object-contain"
-            src={image}
+            src={`${uploadSrc}${image}`}
             alt="Perspective"
           />
         </div>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const FeaturedPerspective = () => {
   const [perspectives, setPerspectives] = useState([]);
   const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchPerspectives = async () => {
       try {

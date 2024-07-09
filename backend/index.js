@@ -18,29 +18,31 @@ const port = process.env.PORT || 5001;  // Tavsiye edilen: PORT'u .env dosyasın
 
 // CORS yapılandırması
 const allowedOrigins = [
-  'http://localhost:3000', // Yerel geliştirme ortamı
-  'https://teslimolanorg-frontend.onrender.com', // Üretim ortamı domaini
+  'http://localhost:3000',
+  'https://teslimolanorg-frontend.onrender.com',
   'https://teslimolanorg-backend.onrender.com',
   'http://157.230.18.195',
-  'http://157.230.18.195:3000', // Droplet üzerindeki frontend
-  'http://157.230.18.195:5001' // Droplet üzerindeki backend
+  'http://157.230.18.195:3000',
+  'http://157.230.18.195:5001'
 ];
 
-app.use(cors({
-  origin: (origin, callback) => {
+const corsOptions = {
+  origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
   }
-}));
+};
+
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Statik dosyaların servis edilmesi
-app.use('/uploads', express.static(path.join(__dirname, 'assets/uploads')));
+// Statik dosyalar için genel CORS politikası
+app.use('/uploads', cors({ origin: '*' }), express.static(path.join(__dirname, 'assets/uploads')));
 
 // Veritabanına bağlan
 connectDB();

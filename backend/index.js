@@ -20,7 +20,8 @@ const allowedOrigins = [
   'https://teslimolanorg-frontend.onrender.com', // Üretim ortamı domaini
   'https://teslimolanorg-backend.onrender.com',
   'http://157.230.18.195',
-  'http://157.230.18.195:3000' // Droplet üzerindeki frontend
+  'http://157.230.18.195:3000', // Droplet üzerindeki frontend
+  'http://157.230.18.195:5001' // Droplet üzerindeki backend
 ];
 
 

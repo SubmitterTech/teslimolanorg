@@ -13,6 +13,7 @@ const AllArticles = () => {
   const itemsPerPage = 10;
 
   const API_URL = process.env.REACT_APP_API_URL;
+  const uploadSrc = process.env.REACT_APP_UPLOAD_SRC;
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -70,7 +71,8 @@ const AllArticles = () => {
               <div className="md:max-w-[300px]">
                 <Link to={`/makale/${article.slug}`}>
                   <img
-                    src={article.imgSrc || "/default-image.png"}
+                    /* src={article.imgSrc || "/default-image.png"} */
+                    src={`${uploadSrc}${article.imgSrc}`}
                     alt={article.title}
                   />
                 </Link>

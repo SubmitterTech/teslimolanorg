@@ -214,5 +214,6 @@ exports.uploadFile = (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "No file uploaded" });
   }
-  res.json({ filePath: `${req.file.filename}` });
+  // Yalnızca dosya adını döndür
+  res.json({ filePath: req.file.filename });
 };

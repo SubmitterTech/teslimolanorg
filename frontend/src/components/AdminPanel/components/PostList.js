@@ -11,6 +11,7 @@ const PostList = ({ postType, title, fetchUrl }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 3;
+  const uploadSrc = process.env.REACT_APP_UPLOAD_SRC;
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -77,7 +78,9 @@ const PostList = ({ postType, title, fetchUrl }) => {
                 <div className="md:max-w-[300px]">
                   <Link to={`/${postType}/${post.slug}`}>
                     <img
-                      src={post.imgSrc || "/default-image.png"}
+                    className="w-[300px] h-[180px]"
+                      /* src={post.imgSrc || "/default-image.png"} */
+                      src={`${uploadSrc}${post.imgSrc}`}
                       alt={post.title}
                     />
                   </Link>

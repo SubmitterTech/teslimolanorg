@@ -20,6 +20,7 @@ const SearchPage = () => {
   const itemsPerPage = 10;
 
   const API_URL = process.env.REACT_APP_API_URL;
+  const uploadSrc = process.env.REACT_APP_UPLOAD_SRC;
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -89,7 +90,8 @@ const SearchPage = () => {
                 <div className="md:max-w-[300px]">
                   <Link to={`/${result.postType.toLowerCase()}/${result.slug}`}>
                     <img
-                      src={result.imgSrc || "/default-image.png"}
+                      /* src={result.imgSrc || "/default-image.png"} */
+                      src={`${uploadSrc}${result.imgSrc}`}
                       alt={result.title}
                     />
                   </Link>

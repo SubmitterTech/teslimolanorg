@@ -3,7 +3,7 @@ import Card from "./Card";
 
 const Cards = () => {
   return (
-    <div className="flex flex-wrap md:justify-between md:flex-nowrap"> 
+    <div className="flex flex-wrap  md:justify-between md:flex-nowrap md:mt-5"> 
       <Card
         imgSrc="sonahit.jpg"
         linkTitle="Web Sitemizden Kuran Son Ahit'i Okuyabilirsiniz"

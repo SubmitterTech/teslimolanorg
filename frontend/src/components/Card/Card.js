@@ -8,7 +8,7 @@ const Card = ({ imgSrc, linkTitle }) => {
         <div className="w-[100px] h-[200px] flex items-center justify-center">
           <img src={imgSrc} alt="" />
         </div>
-        <div className="w-[300px] h-[200px] text-gray-900  dark:text-white flex items-center justify-center">
+        <div className="w-[150px] h-[100px] md:w-[300px] md:h-[200px] text-gray-900  dark:text-white flex items-center justify-center">
           <Link to="#" className="hover:text-emerald-600 border-b border-transparent hover:border-emerald-600 pb-1 transition-colors duration-300 ease-in-out">
             {linkTitle}
           </Link>

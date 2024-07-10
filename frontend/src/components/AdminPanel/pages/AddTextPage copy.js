@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import RichTextEditor from "../components/RichTextEditor";
-import { message } from "antd";
+import { message } from 'antd';
 
 const AddTextPage = () => {
   const [file, setFile] = useState(null);
@@ -32,10 +32,8 @@ const AddTextPage = () => {
   };
 
   const uploadImage = async (base64, mimeType) => {
-    const extension = mimeType.split("/")[1];
-    const uniqueFilename = `image_${Date.now()}_${Math.floor(
-      Math.random() * 1000
-    )}.${extension}`;
+    const extension = mimeType.split('/')[1];
+    const uniqueFilename = `image_${Date.now()}_${Math.floor(Math.random() * 1000)}.${extension}`;
     const formData = new FormData();
     formData.append("file", base64ToFile(base64, uniqueFilename, mimeType));
 
@@ -98,7 +96,7 @@ const AddTextPage = () => {
     }
 
     let imageUrl = null;
-    if (file && (textType === "Makale" || textType === "Video")) {
+    if (file) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = async () => {
@@ -115,9 +113,6 @@ const AddTextPage = () => {
       };
     } else {
       const updatedContent = await extractBase64Images(editorContent);
-      if (textType === "Perspektif") {
-        imageUrl = "perspektif.jpg"; // Eğer Perspektifse Varsayılan kapak fotoğrafı
-      }
       await savePost(updatedContent, imageUrl);
     }
   };
@@ -130,7 +125,7 @@ const AddTextPage = () => {
       tags: tags.split(","),
       imgSrc: imageUrl,
       verses: verses.filter(Boolean),
-      appendices: appendices.filter((a) => a.title || a.link),
+      appendices: appendices.filter(a => a.title || a.link),
     };
 
     try {
@@ -194,23 +189,13 @@ const AddTextPage = () => {
       </div>
       <div className="flex flex-col md:flex-row md:justify-between items-center gap-5 mt-5">
         <div className="flex flex-row gap-5">
-          {(textType === "Makale" || textType === "Video") && (
-            <>
-              <input
-                type="file"
-                ref={fileRef}
-                hidden
-                accept="image/*"
-                onChange={handleFileChange}
-              />
-              <button
-                className="p-3 bg-cyan-700 text-white rounded"
-                onClick={() => fileRef.current.click()}
-              >
-                Kapak Fotoğrafı
-              </button>
-            </>
-          )}
+          <input
+            type="file"
+            ref={fileRef}
+            hidden
+            accept="image/*"
+            onChange={handleFileChange}
+          />
         </div>
         <input
           type="text"
@@ -272,15 +257,21 @@ const AddTextPage = () => {
           Ek Bilgi Ekle
         </button>
       </div>
-      {file && (textType === "Makale" || textType === "Video") && (
-        <div className="flex justify-center md:justify-normal">
+      <button
+        className="p-3 bg-cyan-700 text-white rounded max-w-40 max-h-12"
+        onClick={() => fileRef.current.click()}
+      >
+        Kapak Fotoğrafı
+      </button>
+      <div className="flex justify-center md:justify-normal">
+        {file && (
           <img
             src={URL.createObjectURL(file)}
             alt="Selected Cover"
             className="h-32 w-32 object-fit mt-2"
           />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { message } from 'antd';
+import { message } from "antd";
 import RichTextEditor from "../components/RichTextEditor";
 
 const PostEdit = () => {
@@ -16,6 +16,7 @@ const PostEdit = () => {
   const editorRef = useRef();
 
   const API_URL = process.env.REACT_APP_API_URL;
+  const uploadSrc = process.env.REACT_APP_UPLOAD_SRC;
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -35,7 +36,7 @@ const PostEdit = () => {
     };
 
     fetchPost();
-  }, [id,API_URL]);
+  }, [id, API_URL]);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -62,7 +63,6 @@ const PostEdit = () => {
     newAppendices[index][field] = e.target.value;
     setAppendices(newAppendices);
   };
-
 
   const uploadImage = async (file) => {
     const formData = new FormData();
@@ -100,21 +100,23 @@ const PostEdit = () => {
       tags: tags.split(","),
       imgSrc: imageUrl,
       verses: verses.filter(Boolean),
-      appendices: appendices.filter(a => a.title || a.link),
+      appendices: appendices.filter((a) => a.title || a.link),
     };
 
     try {
-      const response = await fetch(`${API_URL}/api/admin/yazilar/duzenle/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(postData),
-      });
+      const response = await fetch(
+        `${API_URL}/api/admin/yazilar/duzenle/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(postData),
+        }
+      );
       const data = await response.json();
       message.success("Post başarıyla güncellendi.");
       console.log("Post başarıyla güncellendi:", data);
-
     } catch (error) {
       message.error("Post güncellenemedi.");
       console.error("Post güncellenemedi:", error);
@@ -231,13 +233,15 @@ const PostEdit = () => {
           Ek Bilgi Ekle
         </button>
       </div>
-      
+
       <div className="flex justify-center md:justify-normal">
         {file && (
           <img
-            src={file.url || URL.createObjectURL(file)}
+            src={
+              file.url ? `${uploadSrc}${file.url}` : URL.createObjectURL(file)
+            }
             alt="Selected Cover"
-            className="h-32 w-32 object-fit mt-2"
+            className="h-32 w-32 object-cover mt-2"
           />
         )}
       </div>

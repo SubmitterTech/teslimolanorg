@@ -14,6 +14,7 @@ const VideoContent = () => {
   const { slug } = useParams(); // Dinamik olan linkten parametreyi alır.
   const [video, setVideo] = useState(null);
   const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchVideo = async () => {
       try {
@@ -25,7 +26,7 @@ const VideoContent = () => {
       }
     };
     fetchVideo();
-  }, [slug,API_URL]);
+  }, [slug, API_URL]);
 
   const convertOembedToIframe = (htmlContent) => {
     const div = document.createElement("div");
@@ -34,7 +35,7 @@ const VideoContent = () => {
     oembedElements.forEach((el) => {
       const url = el.getAttribute("url");
       const iframe = document.createElement("iframe");
-      iframe.setAttribute("width", "560");
+      iframe.setAttribute("width", "100%");
       iframe.setAttribute("height", "315");
       iframe.setAttribute("src", getEmbedUrl(url));
       iframe.setAttribute("frameborder", "0");
@@ -79,24 +80,24 @@ const VideoContent = () => {
   });
 
   return (
-    <div className="flex justify-center items-center flex-col bg-gray-50 dark:bg-black mt-16">
+    <div className="flex flex-col items-center bg-gray-50 dark:bg-black mt-16 px-4 md:px-8">
       <Helmet>
         <title>{video.title}</title>
-         {/* Dinamik meta keywords */}
-         {video.tags && (
+        {/* Dinamik meta keywords */}
+        {video.tags && (
           <meta name="keywords" content={video.tags.join(", ")} />
         )}
       </Helmet>
-      <div id="container" className="flex flex-col md:flex-row gap-3 px-5">
-        <div id="left-side" className="flex flex-col md:max-w-[800px]">
-        <Directory postTitle={video.title} postType={video.postType} />
+      <div id="container" className="flex flex-col md:flex-row gap-6 w-full max-w-screen-xl">
+        <div id="left-side" className="flex flex-col w-full md:w-2/3">
+          <Directory postTitle={video.title} postType={video.postType} />
           {/*  <div id="img-content">
                         <img src={`${video.imgSrc}`} alt={video.title} />
                     </div> */}
           <div id="content-container" className="flex flex-col gap-5 mt-5">
             <div
               id="title"
-              className="text-gray-900 dark:text-white text-3xl font-bold"
+              className="text-gray-900 dark:text-white text-2xl md:text-3xl font-bold"
             >
               {video.title}
             </div>
@@ -107,7 +108,7 @@ const VideoContent = () => {
           {video.videoUrl && (
             <div id="video-content" className="my-5">
               <iframe
-                width="560"
+                width="100%"
                 height="315"
                 src={getEmbedUrl(video.videoUrl)}
                 frameBorder="0"
@@ -119,12 +120,11 @@ const VideoContent = () => {
           )}
           <RelatedVerses verses={video.verses || []} />
           <RelatedAppendices appendices={video.appendices || []} />
-          <RelatedTags tags={video.tags || []} />{" "}
-          {/* Tags doğru şekilde iletiliyor */}
+          <RelatedTags tags={video.tags || []} />
         </div>
         <div
           id="right-side"
-          className="flex flex-col gap-5 md:min-w-[300px] md:max-w-[350px] h-[400px] p-3"
+          className="flex flex-col gap-5 w-full md:w-1/3 p-3"
         >
           <RelatedArticlesRightPanel articles={video.relatedArticles || []} />
         </div>

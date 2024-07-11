@@ -57,6 +57,7 @@ exports.createPost = async (req, res) => {
     res.status(500).json({ error: "Server error." });
   }
 };
+
 exports.updatePost = async (req, res) => {
   try {
     const { id } = req.params;
@@ -93,7 +94,7 @@ exports.updatePost = async (req, res) => {
     }
 
     // Kapak fotoğrafını kontrol et ve gerekirse sil
-    if (imgSrc !== existingPost.imgSrc) {
+    if (existingPost.imgSrc && imgSrc !== existingPost.imgSrc) {
       const coverImagePath = path.join(
         __dirname,
         "../assets/uploads",
@@ -124,6 +125,7 @@ exports.updatePost = async (req, res) => {
     res.status(500).json({ error: "Server error." });
   }
 };
+
 exports.getPosts = async (req, res) => {
   try {
     const allPosts = await postModel.find().sort({ createdAt: -1 }); // oluşturulma tarihine göre tersten sıralar
@@ -191,19 +193,21 @@ exports.deletePost = async (req, res) => {
     }
 
     // Kapak fotoğrafını silme
-    const coverImagePath = path.join(
-      __dirname,
-      "../assets/uploads",
-      post.imgSrc
-    );
+    if (post.imgSrc) {
+      const coverImagePath = path.join(
+        __dirname,
+        "../assets/uploads",
+        post.imgSrc
+      );
 
-    console.log("Attempting to delete cover image at path:", coverImagePath);
+      console.log("Attempting to delete cover image at path:", coverImagePath);
 
-    if (fs.existsSync(coverImagePath)) {
-      console.log("Cover image exists at path:", coverImagePath);
-      await deleteImage(coverImagePath);
-    } else {
-      console.error("Cover image not found at path:", coverImagePath);
+      if (fs.existsSync(coverImagePath)) {
+        console.log("Cover image exists at path:", coverImagePath);
+        await deleteImage(coverImagePath);
+      } else {
+        console.error("Cover image not found at path:", coverImagePath);
+      }
     }
 
     // İçerikteki resimleri silme

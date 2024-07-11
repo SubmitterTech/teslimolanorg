@@ -97,6 +97,11 @@ const AddTextPage = () => {
       return;
     }
 
+    if ((textType === "Makale" || textType === "Video") && !file) {
+      message.warning(`${textType} için kapak fotoğrafı seçin.`);
+      return;
+    }
+
     let imageUrl = null;
     if (file && (textType === "Makale" || textType === "Video")) {
       const reader = new FileReader();
@@ -249,40 +254,40 @@ const AddTextPage = () => {
               className="border p-3 w-1/2"
               value={appendix.link}
               onChange={(e) => handleAppendixChange(e, index, "link")}
-            />
-            <input
-              type="text"
-              placeholder="Başlık"
-              className="border p-3 w-1/2"
-              value={appendix.title}
-              onChange={(e) => handleAppendixChange(e, index, "title")}
-            />
-            <button
-              className="p-2 bg-red-700 text-white rounded"
-              onClick={() => handleRemoveAppendix(index)}
-            >
-              Sil
-            </button>
-          </div>
-        ))}
-        <button
-          className="p-2 bg-cyan-700 text-white rounded"
-          onClick={handleAddAppendix}
-        >
-          Ek Bilgi Ekle
-        </button>
-      </div>
-      {file && (textType === "Makale" || textType === "Video") && (
-        <div className="flex justify-center md:justify-normal">
-          <img
-            src={URL.createObjectURL(file)}
-            alt="Selected Cover"
-            className="h-32 w-32 object-fit mt-2"
-          />
+              />
+              <input
+                type="text"
+                placeholder="Başlık"
+                className="border p-3 w-1/2"
+                value={appendix.title}
+                onChange={(e) => handleAppendixChange(e, index, "title")}
+              />
+              <button
+                className="p-2 bg-red-700 text-white rounded"
+                onClick={() => handleRemoveAppendix(index)}
+              >
+                Sil
+              </button>
+            </div>
+          ))}
+          <button
+            className="p-2 bg-cyan-700 text-white rounded"
+            onClick={handleAddAppendix}
+          >
+            Ek Bilgi Ekle
+          </button>
         </div>
-      )}
-    </div>
-  );
-};
-
-export default AddTextPage;
+        {file && (textType === "Makale" || textType === "Video") && (
+          <div className="flex justify-center md:justify-normal">
+            <img
+              src={URL.createObjectURL(file)}
+              alt="Selected Cover"
+              className="h-32 w-32 object-fit mt-2"
+            />
+          </div>
+        )}
+      </div>
+    );
+  };
+  
+  export default AddTextPage;

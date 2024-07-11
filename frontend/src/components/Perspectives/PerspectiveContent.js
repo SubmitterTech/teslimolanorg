@@ -49,7 +49,7 @@ function Perspective() {
   }
 
   return (
-    <div className="flex justify-center items-center flex-col bg-gray-50 dark:bg-black mt-16">
+    <div className="flex justify-center items-center flex-col bg-gray-50 dark:bg-black mt-12 md:mt-0">
       <Helmet>
         <title>{perspectives.title}</title>
          {/* Dinamik meta keywords */}

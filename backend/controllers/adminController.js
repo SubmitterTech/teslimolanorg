@@ -57,7 +57,6 @@ exports.createPost = async (req, res) => {
     res.status(500).json({ error: "Server error." });
   }
 };
-
 exports.updatePost = async (req, res) => {
   try {
     const { id } = req.params;
@@ -73,6 +72,37 @@ exports.updatePost = async (req, res) => {
     } = req.body;
     const slug = makeSlug(title);
 
+    // Güncellenen gönderiyi al
+    const existingPost = await postModel.findById(id);
+    if (!existingPost) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    // Yeni ve eski içeriklerden resim yollarını çıkar
+    const oldImagePaths = extractImagePaths(existingPost.text);
+    const newImagePaths = extractImagePaths(text);
+
+    // Eski içerikte olup yeni içerikte olmayan resimleri sil
+    const imagesToDelete = oldImagePaths.filter(
+      (oldPath) => !newImagePaths.includes(oldPath)
+    );
+
+    for (const imagePath of imagesToDelete) {
+      const fullPath = path.join(__dirname, "../assets/uploads", path.basename(imagePath));
+      await deleteImage(fullPath);
+    }
+
+    // Kapak fotoğrafını kontrol et ve gerekirse sil
+    if (imgSrc !== existingPost.imgSrc) {
+      const coverImagePath = path.join(
+        __dirname,
+        "../assets/uploads",
+        existingPost.imgSrc
+      );
+      await deleteImage(coverImagePath);
+    }
+
+    // Gönderiyi güncelle
     const updatedPost = await postModel.findByIdAndUpdate(
       id,
       {
@@ -94,7 +124,6 @@ exports.updatePost = async (req, res) => {
     res.status(500).json({ error: "Server error." });
   }
 };
-
 exports.getPosts = async (req, res) => {
   try {
     const allPosts = await postModel.find().sort({ createdAt: -1 }); // oluşturulma tarihine göre tersten sıralar

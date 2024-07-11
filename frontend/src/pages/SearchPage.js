@@ -71,7 +71,7 @@ const SearchPage = () => {
   }
 
   return (
-    <div className="flex flex-col md:justify-center md:items-center bg-gray-50 dark:bg-black w-full">
+    <div className="flex flex-col md:justify-center md:items-center bg-gray-50 dark:bg-black w-full mt-16">
       <Helmet>
         <title>Teslimolan.org - Arama Sayfası</title>
       </Helmet>

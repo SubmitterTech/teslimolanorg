@@ -23,6 +23,19 @@ const PostEdit = () => {
       try {
         const response = await fetch(`${API_URL}/api/admin/yazilar/id/${id}`);
         const data = await response.json();
+        console.log(data.text)
+        if (data && data.text) {
+          const updatedText = data.text.replace(
+            /<img [^>]*src="([^"]*)"/g,
+            (match, p1) => {
+              return `<img src="${uploadSrc}${
+                p1.startsWith("/") ? p1.slice(1) : p1
+              }"`;
+            }
+          );
+          data.text = updatedText;
+        }
+
         setTitle(data.title);
         setTextType(data.postType);
         setTags(data.tags.join(","));
@@ -36,7 +49,7 @@ const PostEdit = () => {
     };
 
     fetchPost();
-  }, [id, API_URL]);
+  }, [id, API_URL, uploadSrc]);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -73,16 +86,48 @@ const PostEdit = () => {
         method: "POST",
         body: formData,
       });
+      if (!response.ok) {
+        throw new Error("Resim yükleme başarısız.");
+      }
       const data = await response.json();
-      return data.filePath;
+      return data.filePath; // Burada dosya yolunun doğru döndüğünden emin olun
     } catch (error) {
       console.error("Image upload failed:", error);
       return null;
     }
   };
 
+  const extractBase64Images = (editorContent) => {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = editorContent;
+    const images = tempDiv.querySelectorAll("img");
+
+    const imagePromises = Array.from(images).map(async (img) => {
+      const base64 = img.src.split(",")[1];
+      const mimeType = img.src.match(/data:(.*?);/)[1];
+      const response = await uploadImage(base64ToFile(base64, `image_${Date.now()}_${Math.floor(Math.random() * 1000)}.${mimeType.split("/")[1]}`, mimeType));
+      if (response) {
+        //bu kısım veritabanına kayıt biçimini ayarlıyor.
+        img.src = `${response}`;
+      }
+    });
+
+    return Promise.all(imagePromises).then(() => tempDiv.innerHTML);
+  };
+
+  const base64ToFile = (base64, filename, mimeType) => {
+    const bstr = atob(base64);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mimeType });
+  };
+
   const handleUpdateClick = async () => {
-    const editorContent = editorRef.current.getContent();
+    let editorContent = editorRef.current.getContent();
+    editorContent = await extractBase64Images(editorContent);
 
     let imageUrl = file && file.url ? file.url : null;
     if (file && !file.url) {
@@ -114,6 +159,9 @@ const PostEdit = () => {
           body: JSON.stringify(postData),
         }
       );
+      if (!response.ok) {
+        throw new Error("Post güncelleme başarısız.");
+      }
       const data = await response.json();
       message.success("Post başarıyla güncellendi.");
       console.log("Post başarıyla güncellendi:", data);
@@ -196,7 +244,7 @@ const PostEdit = () => {
         <button
           className="p-2 bg-cyan-700 text-white rounded"
           onClick={() => setVerses([...verses, ""])}
-        >
+          >
           Ayet Ekle
         </button>
       </div>
@@ -233,7 +281,6 @@ const PostEdit = () => {
           Ek Bilgi Ekle
         </button>
       </div>
-
       <div className="flex justify-center md:justify-normal">
         {file && (
           <img

@@ -162,44 +162,33 @@ exports.deletePost = async (req, res) => {
     }
 
     // Kapak fotoğrafını silme
-    let coverImagePath;
-    if (post.imgSrc.startsWith("/uploads/")) {
-      coverImagePath = path.join(
-        __dirname,
-        "../../frontend/public",
-        post.imgSrc
-      );
-    } else {
-      coverImagePath = path.join(
-        __dirname,
-        "../../frontend/public/uploads",
-        post.imgSrc
-      );
-    }
+    const coverImagePath = path.join(
+      __dirname,
+      "../assets/uploads",
+      post.imgSrc
+    );
 
     console.log("Attempting to delete cover image at path:", coverImagePath);
 
     if (fs.existsSync(coverImagePath)) {
       console.log("Cover image exists at path:", coverImagePath);
+      await deleteImage(coverImagePath);
     } else {
       console.error("Cover image not found at path:", coverImagePath);
     }
 
-    // Kapak fotoğrafını sil
-    await deleteImage(coverImagePath);
-
     // İçerikteki resimleri silme
-    const contentImagePaths = extractImagePaths(post.text).map((src) => {
-      if (src.startsWith("/uploads/")) {
-        return path.join(__dirname, "../../frontend/public", src);
-      } else {
-        return path.join(__dirname, "../../frontend/public/uploads", src);
-      }
-    });
+    const contentImagePaths = extractImagePaths(post.text).map((src) =>
+      path.join(__dirname, "../assets/uploads", path.basename(src))
+    );
 
     for (const imagePath of contentImagePaths) {
       console.log("Attempting to delete content image at path:", imagePath);
-      await deleteImage(imagePath);
+      if (fs.existsSync(imagePath)) {
+        await deleteImage(imagePath);
+      } else {
+        console.error("Content image not found at path:", imagePath);
+      }
     }
 
     await postModel.findByIdAndDelete(id);

@@ -1,6 +1,5 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const SubMenuItem = ({
@@ -43,24 +42,30 @@ const SubMenuItem = ({
           >
             {subMenuItems.map((item, index) => (
               <li key={index}>
-                <Link
-                  to={item.href}
+                <a
+                  href={item.href}
                   className="hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {item.subIcon} {item.label}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
         </>
       ) : (
-        <Link to={src} className="flex items-center gap-3 hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out" onClick={handleClick}>
-            <FontAwesomeIcon icon={icon} />
-            {title}
-        </Link>
-    )}
-</li>
-);
+        <a
+          href={src}
+          className="flex items-center gap-3 hover:text-green-200 border-b border-transparent hover:border-green-200 pb-1 transition-colors duration-300 ease-in-out"
+          onClick={handleClick}
+        >
+          <FontAwesomeIcon icon={icon} />
+          {title}
+        </a>
+      )}
+    </li>
+  );
 };
 
 export default SubMenuItem;

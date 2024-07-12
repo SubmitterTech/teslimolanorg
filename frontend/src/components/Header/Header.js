@@ -90,7 +90,7 @@ const Header = () => {
         },
         {
           subIcon: <FontAwesomeIcon icon={faHandsPraying} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/15",
           label: "Dini Görevler",
         },
         {

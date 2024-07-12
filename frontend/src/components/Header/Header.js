@@ -95,7 +95,7 @@ const Header = () => {
         },
         {
           subIcon: <FontAwesomeIcon icon={faKaaba} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/13",
           label: "Teslimiyet'in İlk Direği",
         },
         {
@@ -105,17 +105,17 @@ const Header = () => {
         },
         {
           subIcon: <FontAwesomeIcon icon={faQuestion} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/7",
           label: "Biz Niçin Yaratıldık?",
         },
         {
           subIcon: <FontAwesomeIcon icon={faPersonCircleQuestion} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/27",
           label: "Senin Tanrın Kim",
         },
         {
           subIcon: <FontAwesomeIcon icon={faBalanceScale} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/37",
           label: "Adalet Sistemi",
         },
       ],
@@ -137,7 +137,7 @@ const Header = () => {
         },
         {
           subIcon: <FontAwesomeIcon icon={faPager} />,
-          href: "",
+          href: "https://kuransonahit.org/ekler",
           label: "Ekler",
         },
         {
@@ -152,22 +152,22 @@ const Header = () => {
         },
         {
           subIcon: <FontAwesomeIcon icon={faLanguage} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/4",
           label: "Kuran Neden Arapça Vahyolundu?",
         },
         {
           subIcon: <FontAwesomeIcon icon={faSun} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/18",
           label: "Kuran: Kurtuluşumuz İçin İhtiyacımız Olan Her Şey",
         },
         {
           subIcon: <FontAwesomeIcon icon={faEarth} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/25",
           label: "Dünyanın Sonu (2280)",
         },
         {
           subIcon: <FontAwesomeIcon icon={faBookOpen} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/23",
           label: "Vahyin Kronolojik Sırası",
         },
       ],
@@ -231,52 +231,52 @@ const Header = () => {
       subMenuItems: [
         {
           subIcon: <FontAwesomeIcon icon={faPerson} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/12",
           label: "Muhammed Peygamberin Rolü",
         },
         {
           subIcon: <FontAwesomeIcon icon={faBook} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/19",
           label: "Hadis & Sünnet: Şeytani Bidatler",
         },
         {
           subIcon: <FontAwesomeIcon icon={faBan} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/24",
           label: "Tanrı'nın Sözü ile Oynandı",
         },
         {
           subIcon: <FontAwesomeIcon icon={faPerson} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/22",
           label: "İsa Mesih'in Rolü",
         },
         {
           subIcon: <FontAwesomeIcon icon={faCow} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/9",
           label: "İbrahim'in Oğlunu Kurban Etmesi ",
         },
         {
           subIcon: <FontAwesomeIcon icon={faPeopleArrows} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/8",
           label: "Şefaat Efsanesi",
         },
         {
           subIcon: <FontAwesomeIcon icon={faUtensils} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/16",
           label: "Beslenme Yasakları",
         },
         {
           subIcon: <FontAwesomeIcon icon={faPray} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/9",
           label: "Neden Namazın Detayı Yok",
         },
         {
           subIcon: <FontAwesomeIcon icon={faUserGraduate} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/28",
           label: "Peygamberin Ümmiliği",
         },
         {
           subIcon: <FontAwesomeIcon icon={faRing} />,
-          href: "",
+          href: "https://kuransonahit.org/ek/30",
           label: "Çok Eşlilik",
         },
       ],
@@ -303,7 +303,7 @@ const Header = () => {
         },
         {
           subIcon: <FontAwesomeIcon icon={faVideo} />,
-          href: "",
+          href: "https://www.youtube.com/channel/UCm6kh1SANzI-h6zHeScPcNw",
           label: "Antlaşma Elçisi Kanalı",
         },
         {

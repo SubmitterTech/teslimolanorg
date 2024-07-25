@@ -194,7 +194,7 @@ const Header = () => {
         },
         {
           subIcon: <FontAwesomeIcon icon={faVideo} />,
-          href: "",
+          href: "https://www.youtube.com/watch?v=IL3CKqvEZIQ",
           label: "Reşad Halife 19'u Anlatıyor ",
         },
         {
@@ -214,7 +214,7 @@ const Header = () => {
         },
         {
           subIcon: <FontAwesomeIcon icon={faLaptopCode} />,
-          href: "",
+          href: "https://bilisimhocamyusufbalyemez.com/kuran19/kuran.php",
           label: "İnsanüstü Sayısal Kombinasyonlar Programı ",
         },
         {
